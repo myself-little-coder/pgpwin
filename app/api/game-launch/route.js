@@ -20,10 +20,20 @@ export async function POST(req) {
     const { gameId } = await req.json();
     const currentUser = await getCurrentUser();
 
+    console.log("current user", currentUser);
+
     const API_URL = process.env.TORROSPIN_API_URL;
     const API_TOKEN = process.env.TORROSPIN_API_KEY;
     const SECRET_KEY = process.env.TORROSPIN_API_SECRET;
     const BASE_URL = process.env.BASE_URL;
+
+    console.log(
+      "api url, token, key, base url",
+      API_URL,
+      API_TOKEN,
+      SECRET_KEY,
+      BASE_URL
+    );
 
     const gameData = {
       token: uuidv4(),
