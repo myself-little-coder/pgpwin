@@ -55,9 +55,9 @@ export default function GamePage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ gameId }),
         });
-        const data = await res.json();
+        // const data = await res.json();
 
-        window.location.href = data.url;
+        // window.location.href = data.url;
 
         // if (isMounted && data.url) {
         //   setUrl(data.url); // set iframe only after receiving fresh token
