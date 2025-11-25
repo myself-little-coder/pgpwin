@@ -13,6 +13,7 @@ export async function POST(req) {
       str += value === true ? "1" : value === false ? "0" : String(value) || "";
     }
     str += SECRET_KEY;
+    console.log("str : ", str);
     return crypto.createHash("md5").update(str).digest("hex");
   }
 
@@ -38,8 +39,8 @@ export async function POST(req) {
     const gameData = {
       token: uuidv4(),
       game_name: gameId,
-      user_id: String(currentUser?.userId),
-      bank_id: String(currentUser?.userId),
+      user_id: currentUser?.userId,
+      bank_id: currentUser?.userId,
       currency: "BDT",
       quit_link: BASE_URL,
       device: "mobile",
@@ -55,6 +56,8 @@ export async function POST(req) {
       { ...gameData, hash: gameDataHash },
       { headers: { "x-api-key": API_TOKEN } }
     );
+
+    console.log(gameRes.data);
 
     return new Response(JSON.stringify(gameRes.data), { status: 200 });
   } catch (err) {
