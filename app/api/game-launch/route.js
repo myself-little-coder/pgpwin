@@ -2,6 +2,7 @@ import axios from "axios";
 import crypto from "crypto";
 import { getCurrentUser } from "@/app/lib/auth";
 import { v4 as uuidv4 } from "uuid";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   function generateHash(data, SECRET_KEY) {
@@ -57,9 +58,7 @@ export async function POST(req) {
       { headers: { "x-api-key": API_TOKEN } }
     );
 
-    console.log(gameRes.data);
-
-    return new Response(JSON.stringify(gameRes.data), { status: 200 });
+    return NextResponse.json(gameRes.data, { status: 200 });
   } catch (err) {
     console.error(err);
     return new Response(

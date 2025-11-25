@@ -36,6 +36,7 @@
 
 "use client";
 
+import axios from "axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -46,15 +47,16 @@ export default function GamePage() {
 
   useEffect(() => {
     let isMounted = true; // prevent state update if unmounted
+    if (typeof window === "undefined") return;
 
     const fetchGameUrl = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/api/game-launch", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ gameId }),
+        const res = await axios.post("/api/game-launch", {
+          gameId,
         });
+
+        console.log(res.data);
         // const data = await res.json();
 
         // window.location.href = data.url;
