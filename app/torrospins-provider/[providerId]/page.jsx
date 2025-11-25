@@ -1,78 +1,39 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import GameCard from "@/components/GameCard";
 import GameCategories from "@/components/GameCategories";
-import axios from "axios";
+import { useParams } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+export default function ProviderPage() {
+  const { providerId } = useParams();
+  const [games, setGames] = useState([]);
+  const [providers, setProviders] = useState([]);
+  const [err, setErr] = useState("");
 
-export default async function ProviderPage({ params }) {
-  const { providerId } = await params;
-  let games, err, providersCatalog;
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch(`/api/provider-games?providerId=${providerId}`);
+        const data = await res.json();
 
-  const workingProviders = [
-    "rubyplay",
-    "RTG",
-    "spribe",
-    "Habanero",
-    "GMW",
-    "veliplay",
-    "playngo",
-    "EGT",
-    "jili",
-    "SimplePlay",
-    "Pragmatic",
-    "vivo",
-    "AMARIX",
-    "Blue Jack Gaming",
-    "DSTPLAY",
-    "Wonwon Games",
-    "YEEBET LIVE",
-    "PLAYSON",
-    "Hacksaw Gaming",
-    "BOONGO",
-    "Aviatrix",
-    "Gamzix",
-    "BGaming",
-    "Platipus",
-    "SA Gaming",
-  ];
+        if (res.ok) {
+          setGames(data.games || []);
+          setProviders(data?.providers || []);
+        } else {
+          setErr(data.error || "Failed to load games");
+        }
+      } catch (error) {
+        setErr(error.message);
+      }
+    }
 
-  try {
-    console.log("Provider ID:", providerId);
-
-    const API_URL = process.env.TORROSPIN_API_URL;
-    const API_KEY = process.env.TORROSPIN_API_KEY;
-
-    const res = await axios.get(`${API_URL}/api/games/catalog`, {
-      headers: {
-        "x-api-key": API_KEY,
-      },
-      params: {
-        game_type: "all",
-        status: "active",
-        providers: [providerId],
-        per_page: 1000,
-      },
-    });
-
-    providersCatalog = await axios.get(`${API_URL}/api/games/providers`, {
-      headers: {
-        "x-api-key": API_KEY,
-      },
-      params: {
-        status: "active",
-        providers: workingProviders,
-      },
-    });
-
-    games = res.data.data;
-  } catch (error) {
-    err = error?.message;
-    console.log(err);
-  }
+    fetchData();
+  }, [providerId]);
 
   return (
     <div className="min-h-screen bg-orange-50 dark:bg-gray-900 p-4">
-      <GameCategories slides={providersCatalog?.data} />
+      <GameCategories slides={providers} />
       <div>
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -83,8 +44,8 @@ export default async function ProviderPage({ params }) {
           </p>
         </div>
 
-        {games && (
-          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-5 ">
+        {games.length > 0 ? (
+          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-5">
             {games.map((game) => (
               <GameCard
                 key={game.game_code || game.id || Math.random()}
@@ -95,9 +56,11 @@ export default async function ProviderPage({ params }) {
               />
             ))}
           </div>
+        ) : (
+          <div className="text-center py-6 text-red-500">
+            {err || "Loading..."}
+          </div>
         )}
-
-        {err && <div className="text-center py-6 text-red-500">{err}</div>}
       </div>
     </div>
   );
