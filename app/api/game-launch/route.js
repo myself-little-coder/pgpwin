@@ -3,19 +3,19 @@ import crypto from "crypto";
 import { getCurrentUser } from "@/app/lib/auth";
 import { v4 as uuidv4 } from "uuid";
 
-function generateHash(data, SECRET_KEY) {
-  let str = "";
-  for (const key of Object.keys(data)) {
-    if (key === "hash") continue;
-    const value = data[key];
-    if (typeof value === "object") continue;
-    str += value === true ? "1" : value === false ? "0" : String(value) || "";
-  }
-  str += SECRET_KEY;
-  return crypto.createHash("md5").update(str).digest("hex");
-}
-
 export async function POST(req) {
+  function generateHash(data, SECRET_KEY) {
+    let str = "";
+    for (const key of Object.keys(data)) {
+      if (key === "hash") continue;
+      const value = data[key];
+      if (typeof value === "object") continue;
+      str += value === true ? "1" : value === false ? "0" : String(value) || "";
+    }
+    str += SECRET_KEY;
+    return crypto.createHash("md5").update(str).digest("hex");
+  }
+
   try {
     const { gameId } = await req.json();
     const currentUser = await getCurrentUser();
@@ -38,8 +38,8 @@ export async function POST(req) {
     const gameData = {
       token: uuidv4(),
       game_name: gameId,
-      user_id: currentUser?.userId,
-      bank_id: currentUser?.userId,
+      user_id: String(currentUser?.userId),
+      bank_id: String(currentUser?.userId),
       currency: "BDT",
       quit_link: BASE_URL,
       device: "mobile",
