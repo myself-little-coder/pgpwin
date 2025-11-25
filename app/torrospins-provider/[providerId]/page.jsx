@@ -2,6 +2,8 @@ import GameCard from "@/components/GameCard";
 import GameCategories from "@/components/GameCategories";
 import axios from "axios";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProviderPage({ params }) {
   const { providerId } = await params;
   let games, err, providersCatalog;

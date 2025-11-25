@@ -4,6 +4,8 @@ import axios from "axios";
 import crypto from "crypto";
 import { v4 as uuidv4 } from "uuid";
 
+export const dynamic = "force-dynamic";
+
 function generateHash(data, SECRET_KEY) {
   let str = "";
   for (const key of Object.keys(data)) {

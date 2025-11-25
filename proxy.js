@@ -19,9 +19,7 @@ export default async function Proxy(req) {
     return NextResponse.next();
   } catch (err) {
     console.error("Unauthorized access:", err);
-    return NextResponse.redirect(
-      new URL(`/auth?redirect_url${pathname}`, req.url)
-    );
+    return NextResponse.redirect(new URL(`/auth/login`, req.url));
   }
 }
 
