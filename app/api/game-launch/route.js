@@ -27,8 +27,7 @@ export async function POST(req) {
     const API_URL = process.env.TORROSPIN_API_URL;
     const API_TOKEN = process.env.TORROSPIN_API_KEY;
     const SECRET_KEY = process.env.TORROSPIN_API_SECRET;
-    // const BASE_URL = process.env.BASE_URL;
-    const BASE_URL = "https://pgpwin.site";
+    const BASE_URL = process.env.BASE_URL;
 
     console.log(
       "api url, token, key, base url",
@@ -39,8 +38,7 @@ export async function POST(req) {
     );
 
     const gameData = {
-      // token: uuidv4(),
-      token: "121212",
+      token: uuidv4(),
       game_name: gameId,
       user_id: currentUser?.userId,
       bank_id: currentUser?.userId,
@@ -62,7 +60,9 @@ export async function POST(req) {
       { headers: { "x-api-key": API_TOKEN } }
     );
 
-    return NextResponse.json(gameRes.data, { status: 200 });
+    console.log(gameRes.data);
+
+    // return NextResponse.json(gameRes.data, { status: 200 });
   } catch (err) {
     console.error(err);
     return new Response(
