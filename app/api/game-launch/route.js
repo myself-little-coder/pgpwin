@@ -62,7 +62,7 @@ export async function POST(req) {
 
     console.log(gameRes.data);
 
-    // return NextResponse.json(gameRes.data, { status: 200 });
+    return NextResponse.json(gameRes.data, { status: 200 });
   } catch (err) {
     console.error(err);
     return new Response(

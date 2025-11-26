@@ -21,7 +21,7 @@ export default function GameCard({ game, badgeColor, badgeText, borderColor }) {
       transition={{ duration: 0.3 }}
       className={` relative ${borderColor}`}
     >
-      <Link href={`/torrospins-game/${game?.game_code}`} className="block">
+      <Link href={`/new-game/${game?.game_code}`} className="block">
         <div className="relative inline-block aspect-square w-full  ">
           <Image
             src={game.image_url || "/placeholder.svg"}

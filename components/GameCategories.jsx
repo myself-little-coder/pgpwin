@@ -25,7 +25,7 @@ const GameCategories = ({ slides = [] }) => {
           return slide.name ? (
             <Link
               key={index}
-              href={`/torrospins-provider/${slide.display_name}`}
+              href={`/new-provider/${slide.display_name}`}
               className=" relative w-28 aspect-video bg-black/50 dark:bg-transparent border-light dark:border-yellow-400 border-2 rounded-lg shrink-0 overflow-hidden"
             >
               <Image

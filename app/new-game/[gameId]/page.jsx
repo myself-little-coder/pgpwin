@@ -57,13 +57,10 @@ export default function GamePage() {
         });
 
         console.log(res.data);
-        // const data = await res.json();
 
-        // window.location.href = data.url;
-
-        // if (isMounted && data.url) {
-        //   setUrl(data.url); // set iframe only after receiving fresh token
-        // }
+        if (isMounted && res.data.url) {
+          setUrl(res.data.url); // set iframe only after receiving fresh token
+        }
       } catch (err) {
         console.error("Failed to fetch game URL:", err);
       } finally {
@@ -84,13 +81,13 @@ export default function GamePage() {
 
   return (
     <div className="fixed top-0 left-0 w-screen h-dvh z-50">
-      {/* <iframe
+      <iframe
         key={url} // force reload if URL changes
         className="w-screen h-dvh"
         src={url}
         allow="fullscreen; autoplay; encrypted-media; clipboard-write; accelerometer; gyroscope; picture-in-picture"
         allowFullScreen
-      /> */}
+      />
     </div>
   );
 }
