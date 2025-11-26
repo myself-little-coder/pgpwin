@@ -27,7 +27,8 @@ export async function POST(req) {
     const API_URL = process.env.TORROSPIN_API_URL;
     const API_TOKEN = process.env.TORROSPIN_API_KEY;
     const SECRET_KEY = process.env.TORROSPIN_API_SECRET;
-    const BASE_URL = process.env.BASE_URL;
+    // const BASE_URL = process.env.BASE_URL;
+    const BASE_URL = "https://pgpwin.site";
 
     console.log(
       "api url, token, key, base url",
@@ -38,7 +39,8 @@ export async function POST(req) {
     );
 
     const gameData = {
-      token: uuidv4(),
+      // token: uuidv4(),
+      token: "121212",
       game_name: gameId,
       user_id: currentUser?.userId,
       bank_id: currentUser?.userId,
@@ -51,6 +53,8 @@ export async function POST(req) {
     };
 
     const gameDataHash = generateHash(gameData, SECRET_KEY);
+
+    console.log("gameDataHash", gameDataHash);
 
     const gameRes = await axios.post(
       `${API_URL}/api/request_link/real`,
