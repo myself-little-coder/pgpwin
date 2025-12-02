@@ -19,6 +19,7 @@ const RegisterPage = () => {
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
   const referralRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -46,6 +47,7 @@ const RegisterPage = () => {
     }
 
     try {
+      setIsSubmitting(true);
       // ✅ Generate fingerprint ID
       const fp = await FingerprintJS.load();
       const result = await fp.get();
@@ -65,8 +67,11 @@ const RegisterPage = () => {
       const data = await res.json();
       if (!data.success) return toast.error(data.message || "নিবন্ধন ব্যর্থ");
       toast.success("নিবন্ধন সফল হয়েছে!");
+      setIsSubmitting(false);
       router.push("/");
     } catch (err) {
+      setIsSubmitting(false);
+      console.log(err);
       toast.error("কিছু ভুল হয়েছে, পরে চেষ্টা করুন");
     }
   };
@@ -234,6 +239,7 @@ const RegisterPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full mt-4 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition"
           >
             নিবন্ধন
