@@ -66,8 +66,9 @@ export async function POST(request) {
     // Set the token in cookies
     response.cookies.set("auth_token", token, {
       httpOnly: true,
-      secure: process.env.ENVIRONMENT === "dev" ? false : true,
-      sameSite: "strict",
+      secure: process.env.ENVIRONMENT === "prod" ? true : false,
+      sameSite: process.env.ENVIRONMENT === "prod" ? "none" : "strict",
+      domain: process.env.ENVIRONMENT === "prod" ? "pgpwin.site" : "localhost",
       path: "/",
       maxAge: 5 * 365 * 24 * 60 * 60, // 5 years
     });
