@@ -125,6 +125,7 @@ exports.Prisma.UserScalarFieldEnum = {
   status: 'status',
   phone_number: 'phone_number',
   user_code: 'user_code',
+  recovery_code: 'recovery_code',
   password: 'password',
   fp_id: 'fp_id',
   ip: 'ip',
@@ -133,6 +134,14 @@ exports.Prisma.UserScalarFieldEnum = {
   invited_by: 'invited_by',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OtpRecordScalarFieldEnum = {
+  id: 'id',
+  phone: 'phone',
+  otp: 'otp',
+  valid: 'valid',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.TransactionScalarFieldEnum = {
@@ -211,6 +220,7 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  OtpRecord: 'OtpRecord',
   Transaction: 'Transaction',
   GameTransaction: 'GameTransaction',
   Message: 'Message',

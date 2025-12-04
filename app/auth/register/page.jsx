@@ -27,14 +27,16 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Submitting registration form");
+
     const username = usernameRef.current?.value.trim();
     const phone = phoneRef.current?.value.trim();
     const password = passwordRef.current?.value;
     const confirmPassword = confirmPasswordRef.current?.value;
     const referral = referralRef.current?.value.trim();
 
-    if (!username || username.length < 6 || username.length > 11) {
-      return toast.error("ব্যবহারকারীর নাম ৬-১১ অক্ষর হতে হবে");
+    if (!username || username.length < 6 || username.length > 15) {
+      return toast.error("ব্যবহারকারীর নাম 6-15 অক্ষর হতে হবে");
     }
     if (!phone || phone.length !== 10) {
       return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 1312XXXXXX)");
@@ -58,17 +60,19 @@ const RegisterPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
-          phone_number: phone,
+          phone_number: String(0) + String(phone),
           password,
           invited_by: referral,
           fingerprint_id,
         }),
       });
       const data = await res.json();
-      if (!data.success) return toast.error(data.message || "নিবন্ধন ব্যর্থ");
-      toast.success("নিবন্ধন সফল হয়েছে!");
       setIsSubmitting(false);
-      router.push("/");
+      if (data.success) {
+        toast.success("নিবন্ধন সফল হয়েছে!");
+        return router.push("/");
+      }
+      return toast.error(data.message || "নিবন্ধন ব্যর্থ");
     } catch (err) {
       setIsSubmitting(false);
       console.log(err);
@@ -102,7 +106,7 @@ const RegisterPage = () => {
           />
         </div> */}
 
-        <div className=" text-lg font-semibold flex justify-center items-center mt-2 text-blue-600 space-x-2 ">
+        <div className=" py-5 border-b-2 border-orange-600 text-lg font-semibold flex justify-center items-center mt-2 text-blue-600 space-x-2 ">
           <Link href="/auth/login">লগইন</Link>
           <p className="text-dark dark:text-light">|</p>
           <Link
@@ -240,7 +244,7 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-4 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition"
+            className="w-full mt-4 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition disabled:opacity-50"
           >
             নিবন্ধন
           </button>

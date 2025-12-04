@@ -12,7 +12,6 @@ export async function POST(req) {
   const body = await req.json();
   const { command, data, check } = body;
   const checks = check.split(",");
-  console.log(command, checks);
   const [user, betRecord] = await Promise.all([
     prisma.user.findUnique({ where: { phone_number: data.account } }),
     prisma.gameTransaction.findUnique({

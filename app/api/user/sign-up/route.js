@@ -53,25 +53,25 @@ export async function POST(request) {
       );
     }
 
-    const existingUserWithSameFPAndIp = await prisma.user.findFirst({
-      where: {
-        fp_id: fingerprint_id,
-        ip: ip,
-      },
-    });
+    // const existingUserWithSameFPAndIp = await prisma.user.findFirst({
+    //   where: {
+    //     fp_id: fingerprint_id,
+    //     ip: ip,
+    //   },
+    // });
 
-    if (existingUserWithSameFPAndIp) {
-      return NextResponse.json(
-        { message: "You already have an account with this device." },
-        { status: 400 }
-      );
-    }
+    // if (existingUserWithSameFPAndIp) {
+    //   return NextResponse.json(
+    //     { message: "You already have an account with this device." },
+    //     { status: 400 }
+    //   );
+    // }
 
     const hashedPassword = await hashPassword(password);
 
     const newUser = await prisma.user.create({
       data: {
-        phone_number,
+        phone_number: String(phone_number),
         user_code: username,
         password: hashedPassword,
         invited_by,
@@ -130,10 +130,11 @@ export async function POST(request) {
 
     // Correct cookie method
     response.cookies.set("auth_token", token, {
+      httpOnly: true,
+      secure: process.env.ENVIRONMENT === "dev" ? false : true,
+      sameSite: "strict",
       path: "/",
-      maxAge: 29 * 24 * 60 * 60,
-      sameSite: "none",
-      secure: true,
+      maxAge: 5 * 365 * 24 * 60 * 60, // 5 years
     });
 
     return response;

@@ -25,6 +25,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "p44103.amarix-stage.com",
+      },
+      {
+        protocol: "https",
         hostname: "mgmt-stg.hacksawgaming.com",
       },
       {

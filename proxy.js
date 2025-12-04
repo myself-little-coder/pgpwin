@@ -10,7 +10,7 @@ export default async function Proxy(req) {
   const token = req.cookies.get("auth_token")?.value;
 
   if (!token) {
-    return NextResponse.redirect(new URL(`/auth/login`, req.url));
+    return NextResponse.redirect(new URL(`/auth/register`, req.url));
   }
 
   try {
@@ -19,7 +19,7 @@ export default async function Proxy(req) {
     return NextResponse.next();
   } catch (err) {
     console.error("Unauthorized access:", err);
-    return NextResponse.redirect(new URL(`/auth/login`, req.url));
+    return NextResponse.redirect(new URL(`/auth/register`, req.url));
   }
 }
 
@@ -30,8 +30,8 @@ export const config = {
     "/wallet/:path*", // all pages under /profile
     "/game/:path",
     "/game/:path/:path",
-    "/torrospins-provider/:path",
-    "/torrospins-game/:path",
+    "/new-provider/:path",
+    "/new-game/:path",
     "/support",
   ],
 };

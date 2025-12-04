@@ -10,7 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loginWith, setLoginWith] = useState("username"); // username or phone
+  const [loginWith, setLoginWith] = useState("phone"); // username or phone
 
   const router = useRouter();
   const pathname = usePathname();
@@ -65,7 +65,7 @@ const LoginPage = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="md:w-lg bg-white min-h-dvh dark:bg-stone-900 py-10 pt-5"
+        className="md:w-lg bg-white min-h-dvh dark:bg-stone-900 pb-10"
       >
         {/* <div className="relative aspect-693/200">
           <Image
@@ -76,7 +76,7 @@ const LoginPage = () => {
           />
         </div> */}
 
-        <div className=" text-lg font-semibold flex justify-center items-center mt-2 text-blue-600 space-x-2 ">
+        <div className=" py-5 border-b-2 border-orange-600 text-lg font-semibold flex justify-center items-center mt-2 text-blue-600 space-x-2 ">
           <Link
             className="text-orange-700 border-b-2 border-orange-600"
             href="/auth/login"
@@ -92,17 +92,6 @@ const LoginPage = () => {
           <div className="flex justify-center space-x-2 mb-4">
             <button
               type="button"
-              onClick={() => setLoginWith("username")}
-              className={`px-4 py-1 rounded-lg font-semibold border ${
-                loginWith === "username"
-                  ? "bg-amber-500 text-white border-amber-500"
-                  : "bg-white dark:bg-stone-800 text-gray-800 dark:text-white border-gray-400"
-              }`}
-            >
-              ব্যবহারকারীর নাম
-            </button>
-            <button
-              type="button"
               onClick={() => setLoginWith("phone")}
               className={`px-4 py-1 rounded-lg font-semibold border ${
                 loginWith === "phone"
@@ -111,6 +100,17 @@ const LoginPage = () => {
               }`}
             >
               ফোন নম্বর
+            </button>
+            <button
+              type="button"
+              onClick={() => setLoginWith("username")}
+              className={`px-4 py-1 rounded-lg font-semibold border ${
+                loginWith === "username"
+                  ? "bg-amber-500 text-white border-amber-500"
+                  : "bg-white dark:bg-stone-800 text-gray-800 dark:text-white border-gray-400"
+              }`}
+            >
+              ব্যবহারকারীর নাম
             </button>
           </div>
 
@@ -153,7 +153,7 @@ const LoginPage = () => {
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
-              <span className="text-sm text-gray-500 mt-1">
+              <span className="text-sm text-gray-400 mt-1">
                 এটি একটি বাধ্যতামূলক ক্ষেত্র
               </span>
             </div>
@@ -180,9 +180,18 @@ const LoginPage = () => {
                 className="absolute cursor-pointer right-1 text-2xl bottom-1/2 translate-y-1/2"
               />
             </div>
-            <span className="text-sm text-gray-500 mt-1">
+            <span className="text-sm text-gray-400 mt-1">
               এটি একটি বাধ্যতামূলক ক্ষেত্র
             </span>
+            {/* <div className="text-sm text-gray-300 mt-1">
+              <span>পাসওয়ার্ড ভুলে গিয়েছেন?</span>{" "}
+              <Link
+                href="/auth/forget-password"
+                className="inline-block text-blue-600 font-semibold"
+              >
+                forget password
+              </Link>
+            </div> */}
           </div>
 
           {/* Login Button */}

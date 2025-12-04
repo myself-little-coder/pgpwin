@@ -15,7 +15,7 @@ export async function comparePasswords(password, hashedPassword) {
 }
 
 export function generateToken(userId, phoneNumber) {
-  return jwt.sign({ userId, phoneNumber }, JWT_SECRET, { expiresIn: "30d" });
+  return jwt.sign({ userId, phoneNumber }, JWT_SECRET, { expiresIn: "5y" });
 }
 
 export function verifyToken(token) {

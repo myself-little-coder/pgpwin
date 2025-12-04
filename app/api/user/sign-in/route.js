@@ -7,8 +7,6 @@ export async function POST(request) {
   try {
     const { username, phone_number, password } = await request.json();
 
-    console.log(username, phone_number, password);
-
     // Validate input
     if (!password) {
       return NextResponse.json(
@@ -66,12 +64,13 @@ export async function POST(request) {
     });
 
     // Set the token in cookies
-    response.headers.set(
-      "Set-Cookie",
-      `auth_token=${token}; Path=/; Max-Age=${
-        29 * 24 * 60 * 60
-      }; SameSite=None; Secure`
-    );
+    response.cookies.set("auth_token", token, {
+      httpOnly: true,
+      secure: process.env.ENVIRONMENT === "dev" ? false : true,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 5 * 365 * 24 * 60 * 60, // 5 years
+    });
 
     return response;
   } catch (error) {
