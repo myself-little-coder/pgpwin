@@ -30,12 +30,13 @@ model User {
 }
 
 model OtpRecord {
-  id        Int      @id @default(autoincrement())
-  phone     String
-  user      User     @relation(fields: [phone], references: [phone_number])
-  otp       String
-  used      Boolean  @default(false)
-  createdAt DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  phone          String
+  user           User     @relation(fields: [phone], references: [phone_number])
+  otp            String
+  fingerprint_id String?
+  used           Boolean  @default(false)
+  createdAt      DateTime @default(now())
 }
 
 model Transaction {

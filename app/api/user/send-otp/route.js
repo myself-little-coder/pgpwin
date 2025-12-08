@@ -6,7 +6,7 @@ import crypto from "crypto";
 export async function POST(request) {
   try {
     const body = await request.json();
-    let { phone } = body;
+    let { phone, fingerprint_id } = body;
     if (!phone) {
       return NextResponse.json(
         { success: false, message: "Phone required" },
@@ -46,12 +46,12 @@ export async function POST(request) {
 
     const todaysCount = await prisma.otpRecord.count({
       where: {
-        phone,
+        fingerprint_id: fingerprint_id,
         createdAt: { gte: startOfDay },
       },
     });
 
-    const MAX_PER_DAY = 10;
+    const MAX_PER_DAY = 3;
     if (todaysCount >= MAX_PER_DAY) {
       return NextResponse.json(
         {
@@ -64,7 +64,7 @@ export async function POST(request) {
 
     // cooldown: check latest OTP
     const lastOtp = await prisma.otpRecord.findFirst({
-      where: { phone },
+      where: { fingerprint_id: fingerprint_id },
       orderBy: { createdAt: "desc" },
     });
 
@@ -94,6 +94,7 @@ export async function POST(request) {
       data: {
         phone,
         otp,
+        fingerprint_id,
         used: false,
       },
     });

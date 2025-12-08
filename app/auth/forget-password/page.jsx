@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 export default function ForgetPasswordPage() {
   const [phone, setPhone] = useState("");
@@ -57,10 +58,14 @@ export default function ForgetPasswordPage() {
     if (!phone || !otp || !newPassword)
       return toast.error("সব ইনপুট পূরণ করুন");
     try {
+      const fp = await FingerprintJS.load();
+      const result = await fp.get();
+      const fingerprint_id = result?.visitorId;
       const res = await axios.post("/api/user/reset-password", {
         phone,
         otp,
         newPassword,
+        fingerprint_id,
       });
       if (res.data?.success) {
         toast.success("পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে");

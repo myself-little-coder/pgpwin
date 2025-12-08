@@ -140,6 +140,7 @@ exports.Prisma.OtpRecordScalarFieldEnum = {
   id: 'id',
   phone: 'phone',
   otp: 'otp',
+  fingerprint_id: 'fingerprint_id',
   used: 'used',
   createdAt: 'createdAt'
 };
