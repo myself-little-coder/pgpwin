@@ -34,7 +34,7 @@ model OtpRecord {
   phone     String
   user      User   @relation(fields: [phone], references: [phone_number])
   otp       String
-  valid     Boolean  @default(true)
+  used      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 

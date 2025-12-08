@@ -38,8 +38,8 @@ const RegisterPage = () => {
     if (!username || username.length < 6 || username.length > 15) {
       return toast.error("ব্যবহারকারীর নাম 6-15 অক্ষর হতে হবে");
     }
-    if (!phone || phone.length !== 10) {
-      return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 1312XXXXXX)");
+    if (!phone || phone.length !== 11) {
+      return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 01312XXXXXX)");
     }
     if (!password || password.length < 6 || password.length > 14) {
       return toast.error("পাসওয়ার্ড ৬-১৪ অক্ষর হতে হবে");
@@ -60,7 +60,7 @@ const RegisterPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
-          phone_number: String(0) + String(phone),
+          phone_number: String(phone),
           password,
           invited_by: referral,
           fingerprint_id,
@@ -70,9 +70,10 @@ const RegisterPage = () => {
       setIsSubmitting(false);
       if (data.success) {
         toast.success("নিবন্ধন সফল হয়েছে!");
-        return router.push("/");
+        window.location.href = "/";
+      } else {
+        return toast.error(data.message || "নিবন্ধন ব্যর্থ");
       }
-      return toast.error(data.message || "নিবন্ধন ব্যর্থ");
     } catch (err) {
       setIsSubmitting(false);
       console.log(err);
@@ -152,7 +153,7 @@ const RegisterPage = () => {
               <input
                 id="countryCode"
                 type="text"
-                value="+880"
+                value="+88"
                 className="px-2 border w-16 outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
                 readOnly
               />
@@ -160,7 +161,7 @@ const RegisterPage = () => {
                 ref={phoneRef}
                 id="phoneNumber"
                 type="number"
-                placeholder="13637XXXX"
+                placeholder="013637XXXX"
                 className="grow px-2 py-1 w-full border outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
                 onWheel={(e) => e.currentTarget.blur()}
               />

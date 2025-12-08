@@ -29,8 +29,8 @@ const LoginPage = () => {
     if (loginWith === "username") {
       if (!username) return toast.error("ব্যবহারকারীর নাম অবশ্যই দিতে হবে");
     } else {
-      if (!phone || phone.length !== 10)
-        return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 134837XXXX)");
+      if (!phone || phone.length !== 11)
+        return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 0134837XXXX)");
     }
 
     if (!password) return toast.error("গোপন নম্বর অবশ্যই দিতে হবে");
@@ -39,13 +39,13 @@ const LoginPage = () => {
       const res = await axios.post("/api/user/sign-in", {
         loginWith,
         username: loginWith === "username" ? username : null,
-        phone_number: loginWith === "phone" ? String(0) + String(phone) : null,
+        phone_number: loginWith === "phone" ? String(phone) : null,
         password,
       });
       if (!res.data.success)
         return toast.error(res.data.message || "লগইন ব্যর্থ");
       toast.success("লগইন সফল হয়েছে!");
-      router.push("/");
+      window.location.href = "/";
     } catch (err) {
       console.log(err);
       toast.error("কিছু ভুল হয়েছে, পরে চেষ্টা করুন");
@@ -140,7 +140,7 @@ const LoginPage = () => {
                 <input
                   id="countryCode"
                   type="text"
-                  value="+880"
+                  value="+88"
                   className="px-2 border w-16 outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
                   readOnly
                 />
@@ -148,7 +148,7 @@ const LoginPage = () => {
                   ref={phoneRef}
                   id="phoneNumber"
                   type="number"
-                  placeholder="131234XXXX"
+                  placeholder="0131234XXXX"
                   className="grow px-2 py-1 w-full border outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
                   onWheel={(e) => e.currentTarget.blur()}
                 />
@@ -180,18 +180,18 @@ const LoginPage = () => {
                 className="absolute cursor-pointer right-1 text-2xl bottom-1/2 translate-y-1/2"
               />
             </div>
-            <span className="text-sm text-gray-400 mt-1">
+            {/* <span className="text-sm text-gray-400 mt-1">
               এটি একটি বাধ্যতামূলক ক্ষেত্র
-            </span>
-            {/* <div className="text-sm text-gray-300 mt-1">
+            </span> */}
+            <div className="text-sm text-gray-300 mt-1">
               <span>পাসওয়ার্ড ভুলে গিয়েছেন?</span>{" "}
               <Link
-                href="/auth/forget-password"
+                href="/auth/forgot-password"
                 className="inline-block text-blue-600 font-semibold"
               >
                 forget password
               </Link>
-            </div> */}
+            </div>
           </div>
 
           {/* Login Button */}

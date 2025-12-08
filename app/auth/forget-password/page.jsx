@@ -42,8 +42,6 @@ export default function ForgetPasswordPage() {
       if (res.data?.success) {
         toast.success("OTP পাঠানো হয়েছে");
         startCountdown(res.data?.cooldown ?? 60);
-        if (res.data?.remaining)
-          toast.success(`OTP বাকি: ${res.data.remaining} বার`);
       } else {
         toast.error(res.data?.message || "Failed to send OTP");
       }
@@ -80,7 +78,7 @@ export default function ForgetPasswordPage() {
   };
 
   return (
-    <div className="h-[calc(100dvh-120px)] p-4 bg-gray-50 dark:bg-gray-900">
+    <div className=" mx-auto md:w-md p-4 bg-gray-50 dark:bg-gray-900">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md sm:p-4">
         <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
           পাসওয়ার্ড রিসেট
@@ -95,7 +93,7 @@ export default function ForgetPasswordPage() {
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="01XXXXXXXXX"
+              placeholder="0131748XXXX দিন"
               className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
             />
           </div>
@@ -122,11 +120,7 @@ export default function ForgetPasswordPage() {
                     : "bg-blue-600 dark:bg-blue-500"
                 }`}
               >
-                {countdown > 0
-                  ? `Sent (${countdown}s)`
-                  : sent
-                  ? "Sent"
-                  : "Get OTP"}
+                {countdown > 0 ? `Sent (${countdown}s)` : "Get OTP"}
               </button>
             </div>
           </div>

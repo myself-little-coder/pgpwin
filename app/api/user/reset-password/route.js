@@ -13,17 +13,23 @@ export async function POST(request) {
     }
 
     let phone = rawPhone.replace(/\s+/g, "");
-    if (phone.startsWith("01")) phone = "88" + phone;
-    if (!phone.startsWith("880")) {
+    if (!phone.startsWith("01") || phone?.length !== 11) {
       return NextResponse.json(
         { success: false, message: "Invalid phone format" },
         { status: 400 }
       );
     }
 
+    const otps = await prisma.otpRecord.findMany({
+      where: { phone, used: false },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+    });
+    console.log("Recent OTPs for phone:", phone, otps);
+
     // find latest matching valid otp
     const otpRecord = await prisma.otpRecord.findFirst({
-      where: { phone, otp, valid: true },
+      where: { phone, otp, used: false },
       orderBy: { createdAt: "desc" },
     });
 
@@ -42,7 +48,7 @@ export async function POST(request) {
       // mark invalid
       await prisma.otpRecord.update({
         where: { id: otpRecord.id },
-        data: { valid: false },
+        data: { used: true },
       });
       return NextResponse.json(
         { success: false, message: "OTP মেয়াদ উত্তীর্ণ হয়েছে" },
@@ -61,7 +67,7 @@ export async function POST(request) {
     // invalidate used otp
     await prisma.otpRecord.update({
       where: { id: otpRecord.id },
-      data: { valid: false },
+      data: { used: true },
     });
 
     return NextResponse.json({

@@ -2730,7 +2730,7 @@ export namespace Prisma {
     id: number | null
     phone: string | null
     otp: string | null
-    valid: boolean | null
+    used: boolean | null
     createdAt: Date | null
   }
 
@@ -2738,7 +2738,7 @@ export namespace Prisma {
     id: number | null
     phone: string | null
     otp: string | null
-    valid: boolean | null
+    used: boolean | null
     createdAt: Date | null
   }
 
@@ -2746,7 +2746,7 @@ export namespace Prisma {
     id: number
     phone: number
     otp: number
-    valid: number
+    used: number
     createdAt: number
     _all: number
   }
@@ -2764,7 +2764,7 @@ export namespace Prisma {
     id?: true
     phone?: true
     otp?: true
-    valid?: true
+    used?: true
     createdAt?: true
   }
 
@@ -2772,7 +2772,7 @@ export namespace Prisma {
     id?: true
     phone?: true
     otp?: true
-    valid?: true
+    used?: true
     createdAt?: true
   }
 
@@ -2780,7 +2780,7 @@ export namespace Prisma {
     id?: true
     phone?: true
     otp?: true
-    valid?: true
+    used?: true
     createdAt?: true
     _all?: true
   }
@@ -2875,7 +2875,7 @@ export namespace Prisma {
     id: number
     phone: string
     otp: string
-    valid: boolean
+    used: boolean
     createdAt: Date
     _count: OtpRecordCountAggregateOutputType | null
     _avg: OtpRecordAvgAggregateOutputType | null
@@ -2902,7 +2902,7 @@ export namespace Prisma {
     id?: boolean
     phone?: boolean
     otp?: boolean
-    valid?: boolean
+    used?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["otpRecord"]>
@@ -2911,7 +2911,7 @@ export namespace Prisma {
     id?: boolean
     phone?: boolean
     otp?: boolean
-    valid?: boolean
+    used?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["otpRecord"]>
@@ -2920,7 +2920,7 @@ export namespace Prisma {
     id?: boolean
     phone?: boolean
     otp?: boolean
-    valid?: boolean
+    used?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["otpRecord"]>
@@ -2929,11 +2929,11 @@ export namespace Prisma {
     id?: boolean
     phone?: boolean
     otp?: boolean
-    valid?: boolean
+    used?: boolean
     createdAt?: boolean
   }
 
-  export type OtpRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phone" | "otp" | "valid" | "createdAt", ExtArgs["result"]["otpRecord"]>
+  export type OtpRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "phone" | "otp" | "used" | "createdAt", ExtArgs["result"]["otpRecord"]>
   export type OtpRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2953,7 +2953,7 @@ export namespace Prisma {
       id: number
       phone: string
       otp: string
-      valid: boolean
+      used: boolean
       createdAt: Date
     }, ExtArgs["result"]["otpRecord"]>
     composites: {}
@@ -3382,7 +3382,7 @@ export namespace Prisma {
     readonly id: FieldRef<"OtpRecord", 'Int'>
     readonly phone: FieldRef<"OtpRecord", 'String'>
     readonly otp: FieldRef<"OtpRecord", 'String'>
-    readonly valid: FieldRef<"OtpRecord", 'Boolean'>
+    readonly used: FieldRef<"OtpRecord", 'Boolean'>
     readonly createdAt: FieldRef<"OtpRecord", 'DateTime'>
   }
     
@@ -8365,7 +8365,7 @@ export namespace Prisma {
     id: 'id',
     phone: 'phone',
     otp: 'otp',
-    valid: 'valid',
+    used: 'used',
     createdAt: 'createdAt'
   };
 
@@ -8680,7 +8680,7 @@ export namespace Prisma {
     id?: IntFilter<"OtpRecord"> | number
     phone?: StringFilter<"OtpRecord"> | string
     otp?: StringFilter<"OtpRecord"> | string
-    valid?: BoolFilter<"OtpRecord"> | boolean
+    used?: BoolFilter<"OtpRecord"> | boolean
     createdAt?: DateTimeFilter<"OtpRecord"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -8689,7 +8689,7 @@ export namespace Prisma {
     id?: SortOrder
     phone?: SortOrder
     otp?: SortOrder
-    valid?: SortOrder
+    used?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -8701,7 +8701,7 @@ export namespace Prisma {
     NOT?: OtpRecordWhereInput | OtpRecordWhereInput[]
     phone?: StringFilter<"OtpRecord"> | string
     otp?: StringFilter<"OtpRecord"> | string
-    valid?: BoolFilter<"OtpRecord"> | boolean
+    used?: BoolFilter<"OtpRecord"> | boolean
     createdAt?: DateTimeFilter<"OtpRecord"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -8710,7 +8710,7 @@ export namespace Prisma {
     id?: SortOrder
     phone?: SortOrder
     otp?: SortOrder
-    valid?: SortOrder
+    used?: SortOrder
     createdAt?: SortOrder
     _count?: OtpRecordCountOrderByAggregateInput
     _avg?: OtpRecordAvgOrderByAggregateInput
@@ -8726,7 +8726,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"OtpRecord"> | number
     phone?: StringWithAggregatesFilter<"OtpRecord"> | string
     otp?: StringWithAggregatesFilter<"OtpRecord"> | string
-    valid?: BoolWithAggregatesFilter<"OtpRecord"> | boolean
+    used?: BoolWithAggregatesFilter<"OtpRecord"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"OtpRecord"> | Date | string
   }
 
@@ -9152,7 +9152,7 @@ export namespace Prisma {
 
   export type OtpRecordCreateInput = {
     otp: string
-    valid?: boolean
+    used?: boolean
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutOtp_recordsInput
   }
@@ -9161,13 +9161,13 @@ export namespace Prisma {
     id?: number
     phone: string
     otp: string
-    valid?: boolean
+    used?: boolean
     createdAt?: Date | string
   }
 
   export type OtpRecordUpdateInput = {
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOtp_recordsNestedInput
   }
@@ -9176,7 +9176,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     phone?: StringFieldUpdateOperationsInput | string
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9184,13 +9184,13 @@ export namespace Prisma {
     id?: number
     phone: string
     otp: string
-    valid?: boolean
+    used?: boolean
     createdAt?: Date | string
   }
 
   export type OtpRecordUpdateManyMutationInput = {
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9198,7 +9198,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     phone?: StringFieldUpdateOperationsInput | string
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9773,7 +9773,7 @@ export namespace Prisma {
     id?: SortOrder
     phone?: SortOrder
     otp?: SortOrder
-    valid?: SortOrder
+    used?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -9785,7 +9785,7 @@ export namespace Prisma {
     id?: SortOrder
     phone?: SortOrder
     otp?: SortOrder
-    valid?: SortOrder
+    used?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -9793,7 +9793,7 @@ export namespace Prisma {
     id?: SortOrder
     phone?: SortOrder
     otp?: SortOrder
-    valid?: SortOrder
+    used?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -10686,14 +10686,14 @@ export namespace Prisma {
 
   export type OtpRecordCreateWithoutUserInput = {
     otp: string
-    valid?: boolean
+    used?: boolean
     createdAt?: Date | string
   }
 
   export type OtpRecordUncheckedCreateWithoutUserInput = {
     id?: number
     otp: string
-    valid?: boolean
+    used?: boolean
     createdAt?: Date | string
   }
 
@@ -10823,7 +10823,7 @@ export namespace Prisma {
     id?: IntFilter<"OtpRecord"> | number
     phone?: StringFilter<"OtpRecord"> | string
     otp?: StringFilter<"OtpRecord"> | string
-    valid?: BoolFilter<"OtpRecord"> | boolean
+    used?: BoolFilter<"OtpRecord"> | boolean
     createdAt?: DateTimeFilter<"OtpRecord"> | Date | string
   }
 
@@ -11243,7 +11243,7 @@ export namespace Prisma {
   export type OtpRecordCreateManyUserInput = {
     id?: number
     otp: string
-    valid?: boolean
+    used?: boolean
     createdAt?: Date | string
   }
 
@@ -11324,21 +11324,21 @@ export namespace Prisma {
 
   export type OtpRecordUpdateWithoutUserInput = {
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OtpRecordUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OtpRecordUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     otp?: StringFieldUpdateOperationsInput | string
-    valid?: BoolFieldUpdateOperationsInput | boolean
+    used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

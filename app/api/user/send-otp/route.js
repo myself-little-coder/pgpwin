@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
 import axios from "axios";
+import crypto from "crypto";
 
 export async function POST(request) {
   try {
@@ -16,9 +17,9 @@ export async function POST(request) {
     // normalize: if starts with 01 -> prepend 88 to make 8801...
     phone = phone.replace(/\s+/g, "");
 
-    if (phone?.length !== 11) {
+    if (phone?.length !== 11 || !phone.startsWith("01")) {
       return NextResponse.json(
-        { success: false, message: "Invalid phone number format!" },
+        { success: false, message: "অবৈধ ফোন নম্বর। ফোন উদাহরণ: 01343XXXXXX" },
         { status: 400 }
       );
     }
@@ -93,35 +94,49 @@ export async function POST(request) {
       data: {
         phone,
         otp,
-        valid: true,
+        used: false,
       },
     });
 
     try {
-      // send SMS
-      const SMS_API_KEY = process.env.SMS_API_KEY;
-      // const SMS_USERNAME = process.env.SMS_USERNAME;
-      const SMS_API_URL = process.env.SMS_API_URL; // e.g. https://api.sms.net.bd
+      const API_KEY = process.env.SMS_API_KEY;
+      const API_SECRET = process.env.SMS_API_SECRET;
+      const API_URL = process.env.SMS_API_URL; // e.g. https://api.laaffic.com/v3
 
-      const otp_res = await axios.post(SMS_API_URL, {
-        api_key: SMS_API_KEY,
-        to: phone,
-        msg: `Your password reset OTP is: ${otp}. Please do not share it with anyone.`,
-      });
+      const timestamp = Math.floor(Date.now() / 1000);
 
-      console.log(otp_res.data);
+      // Create Sign = MD5(api_key + api_secret + timestamp)
+      const raw = `${API_KEY}${API_SECRET}${timestamp}`;
+      const sign = crypto.createHash("md5").update(raw).digest("hex");
+
+      const headers = {
+        "Content-Type": "application/json;charset=utf-8",
+        Sign: sign,
+        Timestamp: String(timestamp),
+        "Api-Key": API_KEY,
+      };
+
+      const url = `${API_URL}`;
+
+      const payload = {
+        appId: "Ri0PrKWH", // replace with your appId
+        numbers: `88${phone}`,
+        content: `Your password reset OTP is: ${otp}. Do not share it with anyone else.`,
+        // senderId: "OTP",
+        // orderId: "order-" + Date.now(),
+      };
+
+      const smsRes = await axios.post(url, payload, { headers });
+
+      console.log("SMS Response:", smsRes.data);
     } catch (smsErr) {
       console.error(
         "SMS send error:",
         smsErr?.response?.data || smsErr.message || smsErr
       );
-      // Do not fail the flow if SMS provider fails — still record OTP so user can try again (or you may prefer to rollback)
+
       return NextResponse.json(
-        {
-          success: false,
-          message: "SMS sending failed",
-          error: smsErr.message,
-        },
+        { success: false, message: "SMS sending failed" },
         { status: 502 }
       );
     }
