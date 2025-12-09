@@ -83,7 +83,7 @@ export default function ForgetPasswordPage() {
   };
 
   return (
-    <div className=" mx-auto md:w-md p-4 bg-gray-50 dark:bg-gray-900">
+    <div className=" relative left-1/2 -translate-x-1/2 md:w-md p-4 bg-gray-50 dark:bg-gray-900">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md sm:p-4">
         <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
           পাসওয়ার্ড রিসেট

@@ -51,7 +51,7 @@ export async function POST(request) {
       },
     });
 
-    const MAX_PER_DAY = 3;
+    const MAX_PER_DAY = 2;
     if (todaysCount >= MAX_PER_DAY) {
       return NextResponse.json(
         {
@@ -70,7 +70,7 @@ export async function POST(request) {
 
     if (lastOtp) {
       const diffSeconds = Math.floor((now - lastOtp.createdAt) / 1000);
-      const COOLDOWN = 60; // seconds
+      const COOLDOWN = 30 * 60; // seconds
       if (diffSeconds < COOLDOWN) {
         return NextResponse.json(
           {
@@ -129,6 +129,7 @@ export async function POST(request) {
 
       const smsRes = await axios.post(url, payload, { headers });
 
+      console.log("otp is:", otp);
       console.log("SMS Response:", smsRes.data);
     } catch (smsErr) {
       console.error(
@@ -146,7 +147,7 @@ export async function POST(request) {
       success: true,
       message: "OTP পাঠানো হয়েছে",
       remaining: MAX_PER_DAY - (todaysCount + 1),
-      cooldown: 60,
+      cooldown: 30 * 60,
     });
   } catch (error) {
     console.error("send-otp error:", error);
