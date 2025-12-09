@@ -3,6 +3,22 @@ import { prisma } from "@/app/lib/prisma";
 import axios from "axios";
 import crypto from "crypto";
 
+export async function GET() {
+  try {
+    await prisma.otpRecord.deleteMany({});
+    return NextResponse.json({
+      success: true,
+      message: "All OTP records deleted",
+    });
+  } catch (error) {
+    console.error("send-otp error:", error);
+    return NextResponse.json(
+      { success: false, message: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -46,12 +62,18 @@ export async function POST(request) {
 
     const todaysCount = await prisma.otpRecord.count({
       where: {
-        fingerprint_id: fingerprint_id,
+        phone: phone,
         createdAt: { gte: startOfDay },
       },
     });
 
-    const MAX_PER_DAY = 2;
+    const allOtps = await prisma.otpRecord.findMany({
+      where: { phone: phone },
+      orderBy: { createdAt: "desc" },
+    });
+    console.log("All OTPs for phone:", phone, allOtps);
+
+    const MAX_PER_DAY = 3;
     if (todaysCount >= MAX_PER_DAY) {
       return NextResponse.json(
         {
@@ -64,7 +86,7 @@ export async function POST(request) {
 
     // cooldown: check latest OTP
     const lastOtp = await prisma.otpRecord.findFirst({
-      where: { fingerprint_id: fingerprint_id },
+      where: { phone: phone },
       orderBy: { createdAt: "desc" },
     });
 

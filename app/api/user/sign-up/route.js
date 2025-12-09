@@ -80,41 +80,41 @@ export async function POST(request) {
       },
     });
 
-    function generateUserResHash(data, SECRET_KEY) {
-      let str = "";
-      for (const key of Object.keys(data)) {
-        if (key === "hash") continue;
-        const value = data[key];
-        if (typeof value === "object") continue;
-        str += value === true ? "1" : value === false ? "0" : value || "";
-      }
-      str += SECRET_KEY;
-      return crypto.createHash("md5").update(str).digest("hex");
-    }
+    // function generateUserResHash(data, SECRET_KEY) {
+    //   let str = "";
+    //   for (const key of Object.keys(data)) {
+    //     if (key === "hash") continue;
+    //     const value = data[key];
+    //     if (typeof value === "object") continue;
+    //     str += value === true ? "1" : value === false ? "0" : value || "";
+    //   }
+    //   str += SECRET_KEY;
+    //   return crypto.createHash("md5").update(str).digest("hex");
+    // }
 
     // Torrospin user registration
-    const userData = {
-      casino_user_id: String(newUser.id),
-      username: newUser.phone_number,
-      hash: "",
-    };
+    // const userData = {
+    //   casino_user_id: String(newUser.id),
+    //   username: newUser.phone_number,
+    //   hash: "",
+    // };
 
-    userData.hash = generateUserResHash(
-      userData,
-      process.env.TORROSPIN_API_SECRET
-    );
+    // userData.hash = generateUserResHash(
+    //   userData,
+    //   process.env.TORROSPIN_API_SECRET
+    // );
 
-    const addUser = await axios.post(
-      `${process.env.TORROSPIN_API_URL}/api/add/user`,
-      userData,
-      {
-        headers: {
-          "x-api-key": process.env.TORROSPIN_API_KEY,
-        },
-      }
-    );
+    // const addUser = await axios.post(
+    //   `${process.env.TORROSPIN_API_URL}/api/add/user`,
+    //   userData,
+    //   {
+    //     headers: {
+    //       "x-api-key": process.env.TORROSPIN_API_KEY,
+    //     },
+    //   }
+    // );
 
-    console.log("addUser:", addUser.data);
+    // console.log("addUser:", addUser.data);
 
     const token = generateToken(newUser.id, newUser.phone_number);
 

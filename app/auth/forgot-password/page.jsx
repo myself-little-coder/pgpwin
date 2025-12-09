@@ -43,7 +43,6 @@ export default function ForgetPasswordPage() {
       if (res.data?.success) {
         toast.success("OTP পাঠানো হয়েছে");
         startCountdown(res.data?.cooldown ?? 60 * 30);
-        window.location.href = "/auth/login";
       } else {
         toast.error(res.data?.message || "Failed to send OTP");
       }
@@ -75,6 +74,7 @@ export default function ForgetPasswordPage() {
         setNewPassword("");
         setSent(false);
         setCountdown(0);
+        window.location.href = "/auth/login";
       } else {
         toast.error(res.data?.message || "Reset failed");
       }
