@@ -42,7 +42,8 @@ export default function ForgetPasswordPage() {
       const res = await axios.post("/api/user/send-otp", { phone });
       if (res.data?.success) {
         toast.success("OTP পাঠানো হয়েছে");
-        startCountdown(res.data?.cooldown ?? 60);
+        startCountdown(res.data?.cooldown ?? 60 * 30);
+        window.location.href = "/auth/login";
       } else {
         toast.error(res.data?.message || "Failed to send OTP");
       }

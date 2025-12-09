@@ -189,7 +189,7 @@ const LoginPage = () => {
                 href="/auth/forgot-password"
                 className="inline-block text-blue-600 font-semibold"
               >
-                forget password
+                forgot password
               </Link>
             </div>
           </div>
