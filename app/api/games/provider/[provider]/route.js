@@ -8,7 +8,10 @@ export async function GET(request, { params }) {
   try {
     const { provider } = await params;
 
-    console.log("Requested provider:", provider);
+    // Parse query parameter
+    const url = new URL(request.url);
+    const type = url.searchParams.get("type"); // get the "type" query param
+    console.log("type :", type);
 
     if (!provider) {
       return NextResponse.json(
@@ -30,7 +33,7 @@ export async function GET(request, { params }) {
         status: "active",
         providers: [provider],
         per_page: 500,
-        game_type: "all",
+        game_type: type ? (type === "others" ? "all" : type) : "all",
       },
     });
 

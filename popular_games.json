@@ -1,0 +1,240 @@
+[
+  {
+    "id": 806549,
+    "game_code": "ax_nft_aviatrix_47059",
+    "game_name": "Aviatrix",
+    "game_type": "crash",
+    "provider": "Aviatrix",
+    "provider_id": 47059,
+    "have_jackpot": false,
+    "have_free_spin": false,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN",
+      "ZH",
+      "ZH-TW",
+      "AR",
+      "AZ",
+      "BN",
+      "BG",
+      "CS",
+      "DE",
+      "FA",
+      "FI",
+      "FR",
+      "NL",
+      "KA",
+      "EL",
+      "HI",
+      "HU",
+      "HY",
+      "ID",
+      "IT",
+      "JA",
+      "RU",
+      "KO",
+      "KK",
+      "LV",
+      "MS",
+      "NO",
+      "PL",
+      "PT",
+      "RO",
+      "SK",
+      "TH",
+      "TR",
+      "UK",
+      "UZ",
+      "VI",
+      "AF",
+      "SW",
+      "SV"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/aviatrix/ax_nft_aviatrix_47059.jpg"
+  },
+  {
+    "id": 806469,
+    "game_code": "rocket_wins_47058",
+    "game_name": "Rocket Wins",
+    "game_type": "slot",
+    "provider": "BOOONGO",
+    "provider_id": 47058,
+    "have_jackpot": true,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN",
+      "ZH",
+      "ZH-TW",
+      "TH",
+      "BG",
+      "DE",
+      "ES",
+      "FI",
+      "FR",
+      "ID",
+      "IT",
+      "JA",
+      "KO",
+      "NL",
+      "PT",
+      "RU",
+      "SV",
+      "TR",
+      "UK",
+      "VI"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/booongo/rocket_wins_47058.jpg"
+  },
+  {
+    "id": 806430,
+    "game_code": "fortune_globe_47058",
+    "game_name": "Fortune Globe",
+    "game_type": "slot",
+    "provider": "BOOONGO",
+    "provider_id": 47058,
+    "have_jackpot": true,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN",
+      "ZH",
+      "ZH-TW",
+      "TH",
+      "BG",
+      "DE",
+      "ES",
+      "FI",
+      "FR",
+      "ID",
+      "IT",
+      "JA",
+      "KO",
+      "NL",
+      "PT",
+      "RU",
+      "SV",
+      "TR",
+      "UK",
+      "VI"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/booongo/fortune_globe_47058.jpg"
+  },
+  {
+    "id": 8181,
+    "game_code": "49_jili",
+    "game_name": "Super Ace",
+    "game_type": "slot",
+    "provider": "jili",
+    "provider_id": 41,
+    "have_jackpot": false,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/jili/49_jili.png"
+  },
+  {
+    "id": 8185,
+    "game_code": "77_jili",
+    "game_name": "Boxing King",
+    "game_type": "slot",
+    "provider": "jili",
+    "provider_id": 41,
+    "have_jackpot": false,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/jili/77_jili.png"
+  },
+  {
+    "id": 8191,
+    "game_code": "103_jili",
+    "game_name": "Golden Empire",
+    "game_type": "slot",
+    "provider": "jili",
+    "provider_id": 41,
+    "have_jackpot": false,
+    "have_free_spin": false,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/jili/103_jili.png"
+  },
+  {
+    "id": 6117,
+    "game_code": "plinko_spribe",
+    "game_name": "Plinko",
+    "game_type": "crash",
+    "provider": "spribe",
+    "provider_id": 22,
+    "have_jackpot": false,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/spribe/spribe-plinko.png"
+  },
+  {
+    "id": 6118,
+    "game_code": "mines_spribe",
+    "game_name": "Mines",
+    "game_type": "crash",
+    "provider": "spribe",
+    "provider_id": 22,
+    "have_jackpot": false,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/spribe/spribe-mines.png"
+  },
+  {
+    "id": 6115,
+    "game_code": "aviator_spribe",
+    "game_name": "Aviator",
+    "game_type": "crash",
+    "provider": "spribe",
+    "provider_id": 22,
+    "have_jackpot": false,
+    "have_free_spin": true,
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "language": [
+      "EN"
+    ],
+    "image_url": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/images/games/spribe/spribe-aviator.png"
+  }
+]

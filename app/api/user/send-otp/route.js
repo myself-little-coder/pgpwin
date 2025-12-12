@@ -73,7 +73,7 @@ export async function POST(request) {
     });
     console.log("All OTPs for phone:", phone, allOtps);
 
-    const MAX_PER_DAY = 3;
+    const MAX_PER_DAY = 10;
     if (todaysCount >= MAX_PER_DAY) {
       return NextResponse.json(
         {
@@ -92,7 +92,8 @@ export async function POST(request) {
 
     if (lastOtp) {
       const diffSeconds = Math.floor((now - lastOtp.createdAt) / 1000);
-      const COOLDOWN = 30 * 60; // seconds
+      // const COOLDOWN = 30 * 60; // seconds
+      const COOLDOWN = 1; // seconds
       if (diffSeconds < COOLDOWN) {
         return NextResponse.json(
           {

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
+import path from "path";
+import fs from "fs";
 
 const TORRO_API_URL = process.env.TORROSPIN_API_URL;
 const TORRO_API_KEY = process.env.TORROSPIN_API_KEY;
@@ -36,20 +38,35 @@ export async function GET(request) {
       },
     });
 
-    console.log(res.data);
-
     const popularGames = res.data?.data?.filter((i) => {
       if (
         i.game_code == "49_jili" ||
         i.game_code == "aviator_spribe" ||
         i.game_code == "77_jili" ||
         i.game_code == "plinko_spribe" ||
+        i.game_code == "103_jili" ||
+        i.game_code == "rocket_wins_47058" ||
+        i.game_code == "mines_spribe" ||
+        i.game_code == "fortune_globe_47058" ||
         i.game_code == "ax_nft_aviatrix_47059"
       ) {
         return i;
       }
       return null;
     });
+
+    // --- Write providers array to a JSON file ---
+    // Use project root in local dev
+    const filePath = path.join(process.cwd(), "popular_games.json");
+
+    // Make it async to be safer
+    await fs.promises.writeFile(
+      filePath,
+      JSON.stringify(popularGames, null, 2),
+      "utf-8"
+    );
+
+    console.log("providers.json file created at:", filePath);
 
     return NextResponse.json({
       success: true,

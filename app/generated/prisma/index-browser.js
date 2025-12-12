@@ -126,6 +126,8 @@ exports.Prisma.UserScalarFieldEnum = {
   phone_number: 'phone_number',
   user_code: 'user_code',
   recovery_code: 'recovery_code',
+  two_fa_secret: 'two_fa_secret',
+  is_2fa_verified: 'is_2fa_verified',
   password: 'password',
   fp_id: 'fp_id',
   ip: 'ip',
@@ -142,6 +144,14 @@ exports.Prisma.OtpRecordScalarFieldEnum = {
   otp: 'otp',
   fingerprint_id: 'fingerprint_id',
   used: 'used',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FormSubmissionRecordScalarFieldEnum = {
+  id: 'id',
+  req_route: 'req_route',
+  fp_id: 'fp_id',
+  ip: 'ip',
   createdAt: 'createdAt'
 };
 
@@ -222,6 +232,7 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
 exports.Prisma.ModelName = {
   User: 'User',
   OtpRecord: 'OtpRecord',
+  FormSubmissionRecord: 'FormSubmissionRecord',
   Transaction: 'Transaction',
   GameTransaction: 'GameTransaction',
   Message: 'Message',

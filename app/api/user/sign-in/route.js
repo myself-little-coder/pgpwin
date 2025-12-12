@@ -22,6 +22,39 @@ export async function POST(request) {
       );
     }
 
+    // Count form submissions today
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
+    const now = new Date();
+    const startOfDay = new Date(now);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const todaysCount = await prisma.formSubmissionRecord.count({
+      where: {
+        fp_id: fp_id,
+        ip: ip,
+        createdAt: { gte: startOfDay },
+      },
+    });
+
+    if (todaysCount > 10) {
+      return NextResponse.json({
+        success: false,
+        message:
+          "Your form submission limit reached! Please try again tomorrow.",
+      });
+    }
+
+    await prisma.formSubmissionRecord.create({
+      data: {
+        req_route: "/api/2fa/verify",
+        fp_id: fp_id,
+        ip: ip,
+      },
+    });
+
+    // /////////////
+
     let user;
 
     // Find user by phone number

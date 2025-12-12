@@ -65,7 +65,7 @@ export default function ForgetPasswordPage() {
         phone,
         otp,
         newPassword,
-        fingerprint_id,
+        fp_id: fingerprint_id,
       });
       if (res.data?.success) {
         toast.success("পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে");
@@ -107,7 +107,7 @@ export default function ForgetPasswordPage() {
           {/* OTP with Get OTP button */}
           <div>
             <label className="block mb-1 text-gray-700 dark:text-gray-200">
-              OTP
+              OTP / 2FA Code
             </label>
             <div className=" flex gap-2">
               <input

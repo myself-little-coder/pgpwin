@@ -15,6 +15,8 @@ model User {
   phone_number      String            @unique
   user_code         String?
   recovery_code     String?
+  two_fa_secret     String?
+  is_2fa_verified   Boolean           @default(false)
   password          String
   fp_id             String
   ip                String
@@ -25,7 +27,7 @@ model User {
   updatedAt         DateTime          @updatedAt
   game_transactions GameTransaction[]
   transactions      Transaction[]
-  otp_records     OtpRecord[]
+  otp_records       OtpRecord[]
   vouchers Voucher[]
 }
 
@@ -36,6 +38,14 @@ model OtpRecord {
   otp       String
   fingerprint_id String?
   used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model FormSubmissionRecord {
+  id        Int     @id @default(autoincrement())
+  req_route String
+  fp_id     String
+  ip        String
   createdAt DateTime @default(now())
 }
 

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,11 +37,15 @@ const LoginPage = () => {
     if (!password) return toast.error("গোপন নম্বর অবশ্যই দিতে হবে");
 
     try {
+      const fp = await FingerprintJS.load();
+      const result = await fp.get();
+      const fp_id = result?.visitorId;
       const res = await axios.post("/api/user/sign-in", {
         loginWith,
         username: loginWith === "username" ? username : null,
         phone_number: loginWith === "phone" ? String(phone) : null,
         password,
+        fp_id,
       });
       if (!res.data.success)
         return toast.error(res.data.message || "লগইন ব্যর্থ");

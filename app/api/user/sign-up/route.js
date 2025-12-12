@@ -12,7 +12,6 @@ export async function POST(request) {
     // Get clean IP
     const ip =
       request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
-    console.log(ip);
 
     if (!phone_number || !username || !password) {
       return NextResponse.json(
@@ -92,7 +91,7 @@ export async function POST(request) {
     //   return crypto.createHash("md5").update(str).digest("hex");
     // }
 
-    // Torrospin user registration
+    // // Torrospin user registration
     // const userData = {
     //   casino_user_id: String(newUser.id),
     //   username: newUser.phone_number,
@@ -105,7 +104,7 @@ export async function POST(request) {
     // );
 
     // const addUser = await axios.post(
-    //   `${process.env.TORROSPIN_API_URL}/api/add/user`,
+    //   `${process.env.TORROSPIN_API_URL}/api/v2/add/user`,
     //   userData,
     //   {
     //     headers: {

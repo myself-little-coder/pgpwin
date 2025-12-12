@@ -66,32 +66,39 @@ const GameCategories = ({
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex gap-5 overflow-x-auto scrollbar-hide px-3 py-2 my-4 mb-6"
+      className="flex gap-2 overflow-x-auto scrollbar-hide px-3 py-2 my-4 mb-6"
     >
-      {slides?.map((slide, index) =>
-        slide.name ? (
-          <button
-            key={index}
-            onClick={() => {
-              setSelectedProvider(slide.name);
-            }}
-            className={`relative w-28 aspect-video border-2 rounded-lg shrink-0 overflow-hidden transition-all
-  ${
-    selectedProvider === slide.name
-      ? "border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.8)] bg-[linear-gradient(to_bottom,rgba(202,138,4,0)_0%,rgba(202,138,4,0.45)_35%,rgba(202,138,4,0.25)_50%,rgba(202,138,4,0.45)_65%,rgba(202,138,4,0)_100%)]"
-      : "border-light dark:border-yellow-400 bg-[linear-gradient(to_bottom,rgba(202,138,4,0)_0%,rgba(202,138,4,0.45)_35%,rgba(202,138,4,1)_50%,rgba(202,138,4,0.45)_65%,rgba(202,138,4,0)_100%)]"
-  }
-`}
+      {slides?.map((slide, index) => (
+        <button
+          key={index}
+          onClick={() => {
+            setSelectedProvider(slide.name);
+          }}
+          className={`relative flex flex-col justify-end items-center w-[70px] aspect-square border-2 rounded-lg shrink-0 overflow-hidden transition-all 
+              ${
+                selectedProvider === slide.name
+                  ? "border-yellow-600 shadow shadow-yellow-400"
+                  : ""
+              }
+              `}
+        >
+          <Image
+            src={slide.icons.icon}
+            alt={slide.display_name}
+            className={` py-2 object-contain z-10 max-h-[80%] 
+              
+               `}
+            fill
+          />
+          <h2
+            className={` text-center text-xs line-clamp-1  ${
+              selectedProvider === slide.name ? "text-yellow-600" : ""
+            } `}
           >
-            <Image
-              src={slide.icons.icon}
-              alt={slide.display_name}
-              className="p-2 object-contain z-10"
-              fill
-            />
-          </button>
-        ) : null
-      )}
+            {slide.display_name}
+          </h2>
+        </button>
+      ))}
     </motion.div>
   );
 };

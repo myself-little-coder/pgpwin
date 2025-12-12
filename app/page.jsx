@@ -7,231 +7,133 @@ import FirstSlider from "../components/FirstSlider";
 import GameCategories from "../components/GameCategories";
 import GameCard from "@/components/GameCard";
 
-// Original server-side code kept commented below for reference
-// import axios from "axios";
-// import { Sparkles, TrendingUp } from "lucide-react";
-// import FirstSlider from "../components/FirstSlider";
-// import GameCategories from "../components/GameCategories";
-// import GameCard from "@/components/GameCard";
-// import crypto from "crypto";
-// import { prisma } from "./lib/prisma";
+import { GiAbstract106, GiAirplane, GiCard10Clubs } from "react-icons/gi";
+import { FaDice, FaDiceD20, FaFire, FaTableTennis } from "react-icons/fa";
+import { TbCardsFilled } from "react-icons/tb";
+import { MdSportsCricket } from "react-icons/md";
+import { IoFish } from "react-icons/io5";
+import { LuCherry } from "react-icons/lu";
 
-// export default async function AppPage() {
-//   const torrospinApiUrl = process.env.TORROSPIN_API_URL || "";
-//   const torrospinApiKey = process.env.TORROSPIN_API_KEY || "";
-//   const torrospinSecretKey = process.env.TORROSPIN_API_SECRET || "";
-
-//   const workingProviders = [
-//     "rubyplay",
-//     "RTG",
-//     "spribe",
-//     "Habanero",
-//     "GMW",
-//     "veliplay",
-//     "playngo",
-//     "EGT",
-//     "jili",
-//     "SimplePlay",
-//     "Pragmatic",
-//     "vivo",
-//     "AMARIX",
-//     "Blue Jack Gaming",
-//     "DSTPLAY",
-//     "Wonwon Games",
-//     "YEEBET LIVE",
-//     "PLAYSON",
-//     "Hacksaw Gaming",
-//     "BOONGO",
-//     "Aviatrix",
-//     "Gamzix",
-//     "BGaming",
-//     "Platipus",
-//     "SA Gaming",
-//   ];
-
-//   const popularGamesCatalog = await axios.get(
-//     `${torrospinApiUrl}/api/games/catalog`,
-//     {
-//       headers: {
-//         "x-api-key": torrospinApiKey,
-//       },
-//       params: {
-//         status: "active",
-//         providers: ["jili", "spribe", "Aviatrix", "BOONGO"],
-//         per_page: 800,
-//         game_type: "all",
-//         // search: "Super Ace",
-//         // provider: "spribe",
-//       },
-//     }
-//   );
-
-//   const popularGames = popularGamesCatalog.data?.data?.filter((i) => {
-//     if (
-//       i.game_code == "49_jili" ||
-//       i.game_code == "aviator_spribe" ||
-//       i.game_code == "77_jili" ||
-//       i.game_code == "plinko_spribe" ||
-//       i.game_code == "ax_nft_aviatrix_47059"
-//     ) {
-//       return i;
-//     }
-//     return null;
-//   });
-
-//   const jiliGamesCatalog = await axios.get(
-//     `${torrospinApiUrl}/api/games/catalog`,
-//     {
-//       headers: {
-//         "x-api-key": torrospinApiKey,
-//       },
-//       params: {
-//         status: "active",
-//         providers: ["jili"],
-//         per_page: 500,
-//         game_type: "all",
-//         // search: "Super Ace",
-//         // provider: "spribe",
-//       },
-//     }
-//   );
-
-//   const providersCatalog = await axios.get(
-//     `${torrospinApiUrl}/api/games/providers`,
-//     {
-//       headers: {
-//         "x-api-key": torrospinApiKey,
-//       },
-//       params: {
-//         status: "active",
-//         providers: workingProviders,
-//       },
-//     }
-//   );
-
-//   return (
-//     <div className="min-h-dvh">
-//       <div className=" mx-auto px-4 py-4">
-//         <FirstSlider />
-
-//         {/* New Games Section */}
-//         <div className="mb-5">
-//           <div className="flex items-center mb-3">
-//             <div className="flex items-center gap-2">
-//               <h2 className="text-2xl font-bold text-gray-800 dark:text-amber-100">
-//                 Popular Games🔥
-//               </h2>
-//             </div>
-//           </div>
-//           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-5 ">
-//             {popularGames.map((game) => (
-//               <GameCard key={game.game_code} game={game} />
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Category Games Section */}
-
-//         <div className="mb-10">
-//           <div className="flex items-center mb-6">
-//             <div className="flex items-center gap-2">
-//               <TrendingUp className="h-6 w-6 text-orange-500" />
-//               <h2 className="text-2xl font-bold text-gray-800 dark:text-orange-100">
-//                 Select Provider
-//               </h2>
-//             </div>
-//           </div>
-//           <GameCategories slides={providersCatalog?.data} />
-
-//           <div className="flex items-center mb-6">
-//             <div className="flex items-center gap-2">
-//               <TrendingUp className="h-6 w-6 text-orange-500" />
-//               <h2 className="text-2xl font-bold text-gray-800 dark:text-orange-100">
-//                 Jili Games🔥
-//               </h2>
-//             </div>
-//           </div>
-
-//           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-5 ">
-//             {jiliGamesCatalog.data?.data.map((game) => (
-//               <GameCard
-//                 key={game.id}
-//                 game={game}
-//                 badgeColor="bg-orange-500"
-//                 badgeText="HOT 🔥"
-//                 borderColor="border-orange-200 dark:border-orange-900"
-//               />
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+import { motion } from "framer-motion";
+import providersList from "@/public/json/providers.json";
+import popularGamesList from "@/public/json/popular_games.json";
 
 export default function AppPage() {
-  const [providers, setProviders] = useState([]);
-  const [loadingProviders, setLoadingProviders] = useState(true);
-  const [popularGames, setPopularGames] = useState([]);
-  const [loadingPopular, setLoadingPopular] = useState(true);
-  const [selectedProvider, setSelectedProvider] = useState("jili");
-  const [providerGames, setProviderGames] = useState([]);
+  const [allProviders, setAllProviders] = useState(providersList);
+  const [providers, setProviders] = useState(providersList);
+  const [loadingProviders, setLoadingProviders] = useState(false);
+  const [selectedProvider, setSelectedProvider] = useState(null);
+  const [providerGames, setProviderGames] = useState(popularGamesList);
   const [loadingProviderGames, setLoadingProviderGames] = useState(false);
 
-  // Fetch providers and popular games on mount
-  useEffect(() => {
-    fetchProviders();
-    fetchPopularGames();
-  }, []);
+  const [selectedType, setSelectedType] = useState("hot");
+
+  const typeSlides = [
+    // {
+    //   name: "জ্যাকপট",
+    //   code: "JP",
+    //   icon: GiAbstract106,
+    // },
+    {
+      name: "হট",
+      code: "hot",
+      icon: FaFire,
+    },
+    {
+      name: "স্লট",
+      code: "slot",
+      icon: LuCherry,
+    },
+    {
+      name: "ক্রাশ",
+      code: "crash",
+      icon: GiAirplane,
+    },
+    {
+      name: "ক্যাসিনো",
+      code: "live",
+      icon: TbCardsFilled,
+    },
+    // {
+    //   name: "ক্রিকেট",
+    //   code: "sports",
+    //   icon: MdSportsCricket,
+    // },
+    // {
+    //   name: "টেবিল",
+    //   code: "table",
+    //   icon: FaDice,
+    // },
+    {
+      name: "মাছধরা",
+      code: "fishing",
+      icon: IoFish,
+    },
+    {
+      name: "কার্ড",
+      code: "poker",
+      icon: GiCard10Clubs,
+    },
+    {
+      name: "অন্যান্য",
+      code: "others", // "blackjack" and "virtual_games" combined as "other"
+      icon: FaDiceD20,
+    },
+  ];
 
   // Fetch provider games when provider is selected
   useEffect(() => {
-    if (selectedProvider) {
-      fetchProviderGames(selectedProvider);
-    } else {
-      setProviderGames([]);
-    }
+    fetchProviderGames(selectedProvider);
   }, [selectedProvider]);
 
-  const fetchProviders = async () => {
-    try {
-      setLoadingProviders(true);
-      const res = await axios.get("/api/games/providers");
-      if (res.data?.success) {
-        const providersList = res.data.data?.data || res.data.data || [];
-        setProviders(providersList);
-      }
-    } catch (err) {
-      console.error("Failed to fetch providers:", err);
-      setProviders([]);
-    } finally {
-      setLoadingProviders(false);
-    }
-  };
+  // const fetchProviders = async () => {
+  //   try {
+  //     setLoadingProviders(true);
+  //     const res = await axios.get("/api/games/providers");
+  //     if (res.data?.success) {
+  //       const providersList = res.data.data?.data || res.data.data || [];
+  //       console.log("Fetched providers:", providersList);
+  //       setAllProviders(providersList);
+  //       setProviders(providersList);
+  //     }
+  //   } catch (err) {
+  //     console.error("Failed to fetch providers:", err);
+  //     setAllProviders([]);
+  //     setProviders([]);
+  //   } finally {
+  //     setLoadingProviders(false);
+  //   }
+  // };
 
-  const fetchPopularGames = async () => {
-    try {
-      setLoadingPopular(true);
-      const res = await axios.get("/api/games/popular");
-      if (res.data?.success) {
-        setPopularGames(res.data.games || []);
-      }
-    } catch (err) {
-      console.error("Failed to fetch popular games:", err);
-      setPopularGames([]);
-    } finally {
-      setLoadingPopular(false);
-    }
-  };
+  // const fetchPopularGames = async () => {
+  //   try {
+  //     setLoadingProviderGames(true);
+  //     const res = await axios.get("/api/games/popular");
+  //     if (res.data?.success) {
+  //       setProviderGames(res.data.games || []);
+  //     }
+  //   } catch (err) {
+  //     console.error("Failed to fetch popular games:", err);
+  //     setProviderGames([]);
+  //   } finally {
+  //     setLoadingProviderGames(false);
+  //   }
+  // };
 
   const fetchProviderGames = async (providerCode) => {
     try {
-      setLoadingProviderGames(true);
-      const res = await axios.get(
-        `/api/games/provider/${encodeURIComponent(providerCode)}`
-      );
-      if (res.data?.success) {
-        setProviderGames(res.data.games || []);
+      if (selectedType === "hot") {
+        setProviderGames(popularGamesList);
+      } else {
+        setLoadingProviderGames(true);
+        const res = await axios.get(
+          `/api/games/provider/${encodeURIComponent(
+            providerCode
+          )}?type=${encodeURIComponent(selectedType)}`
+        );
+        if (res.data?.success) {
+          setProviderGames(res.data.games || []);
+        }
       }
     } catch (err) {
       console.error("Failed to fetch provider games:", err);
@@ -241,49 +143,68 @@ export default function AppPage() {
     }
   };
 
+  useEffect(() => {
+    if (selectedType === "hot") {
+      setProviders(allProviders);
+      return;
+    } else if (selectedType === "others") {
+      setProviders(allProviders);
+      setSelectedProvider(providers[0]?.name || allProviders[0]?.name);
+    } else {
+      setProviders(
+        allProviders.filter((provider) =>
+          selectedType instanceof Array
+            ? provider.game_main_types.some((type) =>
+                selectedType.includes(type)
+              )
+            : provider.game_main_types.includes(selectedType)
+        )
+      );
+      setSelectedProvider(providers[0]?.name || allProviders[0]?.name);
+    }
+  }, [selectedType]);
+
   return (
     <div className="min-h-dvh bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto px-4 py-4">
         <FirstSlider />
 
-        {/* Popular Games Section */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-amber-100">
-              Popular Games 🔥
-            </h2>
-          </div>
-
-          {loadingPopular ? (
-            <div className="flex items-center justify-center py-4">
-              <Loader className="h-8 w-8 animate-spin text-orange-500" />
-              <span className="ml-2 text-gray-600 dark:text-gray-300">
-                লোড হচ্ছে...
-              </span>
-            </div>
-          ) : popularGames.length > 0 ? (
-            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 gap-y-4">
-              {popularGames.map((game) => (
-                <GameCard key={game.game_code || game.id} game={game} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              কোন জনপ্রিয় গেম পাওয়া যায়নি
-            </div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex gap-3 overflow-x-auto scrollbar-hide px-3 py-2 my-4 rounded-2xl"
+        >
+          {typeSlides?.map((slide, index) =>
+            slide.name ? (
+              <div
+                key={index}
+                className={`text-sm cursor-pointer font-semibold flex justify-center items-center p-2 gap-1 rounded-3xl  ${
+                  selectedType === slide.code
+                    ? "bg-yellow-400 dark:bg-yellow-600"
+                    : "bg-gray-200 dark:bg-gray-700"
+                } `}
+                onClick={() => {
+                  setSelectedType(slide.code);
+                }}
+              >
+                {<slide.icon className="text-xl" />}
+                <h2>{slide.name}</h2>
+              </div>
+            ) : null
           )}
-        </div>
+        </motion.div>
 
         {/* Provider Selection & Games Section */}
-        <div className="mb-10">
-          <div className="flex items-center mb-3">
+        <div className="">
+          {/* <div className="flex items-center mb-3">
             <TrendingUp className="h-6 w-6 text-orange-500 mr-2" />
             <h2 className="text-2xl font-bold text-gray-800 dark:text-orange-100">
               Game Providers
             </h2>
-          </div>
+          </div> */}
 
-          {loadingProviders ? (
+          {selectedType !== "hot" && loadingProviders ? (
             <div className="flex items-center justify-center py-2">
               <Loader className="h-6 w-6 animate-spin text-orange-500" />
               <span className="ml-2 text-gray-600 dark:text-gray-300">
@@ -299,35 +220,34 @@ export default function AppPage() {
           )}
 
           {/* Provider Games Section */}
-          {selectedProvider && (
-            <div className="mt-10">
-              <div className="flex items-center mb-6">
+
+          <div className="my-2">
+            {/* <div className="flex items-center mb-6">
                 <TrendingUp className="h-6 w-6 text-orange-500 mr-2" />
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-orange-100 capitalize">
                   {selectedProvider} Games
                 </h2>
-              </div>
+              </div> */}
 
-              {loadingProviderGames ? (
-                <div className="flex items-center justify-center py-6">
-                  <Loader className="h-8 w-8 animate-spin text-orange-500" />
-                  <span className="ml-2 text-gray-600 dark:text-gray-300">
-                    গেম লোড হচ্ছে...
-                  </span>
-                </div>
-              ) : providerGames.length > 0 ? (
-                <div className=" min-h-dvh grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 gap-y-4">
-                  {providerGames.map((game) => (
-                    <GameCard key={game.game_code || game.id} game={game} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-                  এই প্রদানকারীর জন্য কোন গেম পাওয়া যায়নি
-                </div>
-              )}
-            </div>
-          )}
+            {loadingProviderGames ? (
+              <div className="flex items-center justify-center py-6">
+                <Loader className="h-8 w-8 animate-spin text-orange-500" />
+                <span className="ml-2 text-gray-600 dark:text-gray-300">
+                  গেম লোড হচ্ছে...
+                </span>
+              </div>
+            ) : providerGames.length > 0 ? (
+              <div className=" grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 gap-y-4">
+                {providerGames.map((game) => (
+                  <GameCard key={game.game_code || game.id} game={game} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+                এই প্রদানকারীর জন্য কোন গেম পাওয়া যায়নি
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

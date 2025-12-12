@@ -218,6 +218,7 @@ import crypto from "crypto";
 import { getCurrentUser } from "@/app/lib/auth";
 import { v4 as uuidv4 } from "uuid";
 import { NextResponse } from "next/server";
+import { error } from "console";
 
 export async function POST(req) {
   function generateHash(data, SECRET_KEY) {
@@ -240,6 +241,36 @@ export async function POST(req) {
     const API_TOKEN = process.env.TORROSPIN_API_KEY;
     const SECRET_KEY = process.env.TORROSPIN_API_SECRET;
     const BASE_URL = process.env.BASE_URL;
+
+    function generateUserResHash(data, SECRET_KEY) {
+      let str = "";
+      for (const key of Object.keys(data)) {
+        if (key === "hash") continue;
+        const value = data[key];
+        if (typeof value === "object") continue;
+        str += value === true ? "1" : value === false ? "0" : value || "";
+      }
+      str += SECRET_KEY;
+      return crypto.createHash("md5").update(str).digest("hex");
+    }
+
+    // Torrospin user registration
+    // const casinoUserId = "user_" + String(Date.now());
+    const casinoUserId = "user_1765337282679";
+    const userData = {
+      casino_user_id: casinoUserId,
+      username: casinoUserId,
+    };
+
+    userData.hash = generateUserResHash(userData, SECRET_KEY);
+
+    try {
+      const userRes = await axios.post(`${API_URL}/api/v2/add/user`, userData, {
+        headers: {
+          "x-api-key": API_TOKEN,
+        },
+      });
+    } catch (err) {}
 
     // Final working combination
     const gameData = {
@@ -265,6 +296,8 @@ export async function POST(req) {
     );
 
     const data = res.data;
+
+    console.log("Game Launch Response:", data);
 
     if (!data.success && !data.url) {
       return NextResponse.json(

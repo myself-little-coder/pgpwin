@@ -1,5 +1,7 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 export async function GET(request) {
   try {
@@ -47,6 +49,19 @@ export async function GET(request) {
         providers: workingProviders,
       },
     });
+
+    // --- Write providers array to a JSON file ---
+    // Use project root in local dev
+    // const filePath = path.join(process.cwd(), "providers.json");
+
+    // // Make it async to be safer
+    // await fs.promises.writeFile(
+    //   filePath,
+    //   JSON.stringify(res.data, null, 2),
+    //   "utf-8"
+    // );
+
+    // console.log("providers.json file created at:", filePath);
 
     return NextResponse.json({ success: true, data: res.data });
   } catch (err) {
