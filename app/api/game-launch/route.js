@@ -256,10 +256,18 @@ export async function POST(req) {
 
     // Torrospin user registration
     // const casinoUserId = "user_" + String(Date.now());
-    const casinoUserId = "user_1765337282679";
+    // const casinoUserId = "user_1765337282679";
+    // const userData = {
+    //   casino_user_id: casinoUserId,
+    //   username: casinoUserId,
+    // };
+
+    // userData.hash = generateUserResHash(userData, SECRET_KEY);
+
+    // const casinoUserId = "user_1765337282679";
     const userData = {
-      casino_user_id: casinoUserId,
-      username: casinoUserId,
+      casino_user_id: String(currentUser.userId),
+      username: String(currentUser.userId),
     };
 
     userData.hash = generateUserResHash(userData, SECRET_KEY);
@@ -270,7 +278,9 @@ export async function POST(req) {
           "x-api-key": API_TOKEN,
         },
       });
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
     // Final working combination
     const gameData = {
