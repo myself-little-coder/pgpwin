@@ -287,7 +287,8 @@ export async function POST(req) {
       token: uuidv4(),
       game_name: gameId,
       user_id: String(currentUser.userId),
-      bank_id: String(currentUser.userId),
+      // bank_id: String(currentUser.userId),
+      bank_id: 0,
       currency: "BDT",
       quit_link: BASE_URL,
       device: "mobile",
@@ -304,6 +305,12 @@ export async function POST(req) {
       requestBody,
       { headers: { "x-api-key": API_TOKEN } }
     );
+    const curl = `curl -X POST "${API_URL}/api/v2/request_link/real" \
+-H "x-api-key: ${API_TOKEN}" \
+-H "Content-Type: application/json" \
+-d '${JSON.stringify(requestBody)}'`;
+
+    console.log("Equivalent curl command:", curl);
 
     const data = res.data;
 
