@@ -1,5 +1,13 @@
 [
   {
+    "name": "RTG",
+    "display_name": "RTG",
+    "game_main_types": ["slot", "poker"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/rtg.png"
+    }
+  },
+  {
     "name": "jili",
     "display_name": "Jili",
     "game_main_types": ["slot", "poker", "fishing", "table"],
@@ -46,14 +54,6 @@
     "game_main_types": ["slot"],
     "icons": {
       "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/rubyplay.png"
-    }
-  },
-  {
-    "name": "RTG",
-    "display_name": "RTG",
-    "game_main_types": ["slot", "poker"],
-    "icons": {
-      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/rtg.png"
     }
   },
   {

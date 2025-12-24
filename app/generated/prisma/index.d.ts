@@ -48,6 +48,16 @@ export type Message = $Result.DefaultSelection<Prisma.$MessagePayload>
  * 
  */
 export type Voucher = $Result.DefaultSelection<Prisma.$VoucherPayload>
+/**
+ * Model BonusList
+ * 
+ */
+export type BonusList = $Result.DefaultSelection<Prisma.$BonusListPayload>
+/**
+ * Model CommissionList
+ * 
+ */
+export type CommissionList = $Result.DefaultSelection<Prisma.$CommissionListPayload>
 
 /**
  * Enums
@@ -269,6 +279,26 @@ export class PrismaClient<
     * ```
     */
   get voucher(): Prisma.VoucherDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bonusList`: Exposes CRUD operations for the **BonusList** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BonusLists
+    * const bonusLists = await prisma.bonusList.findMany()
+    * ```
+    */
+  get bonusList(): Prisma.BonusListDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.commissionList`: Exposes CRUD operations for the **CommissionList** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommissionLists
+    * const commissionLists = await prisma.commissionList.findMany()
+    * ```
+    */
+  get commissionList(): Prisma.CommissionListDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -327,8 +357,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.18.0
-   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
+   * Prisma Client JS version: 6.19.1
+   * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
    */
   export type PrismaVersion = {
     client: string
@@ -716,7 +746,9 @@ export namespace Prisma {
     Transaction: 'Transaction',
     GameTransaction: 'GameTransaction',
     Message: 'Message',
-    Voucher: 'Voucher'
+    Voucher: 'Voucher',
+    BonusList: 'BonusList',
+    CommissionList: 'CommissionList'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -735,7 +767,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "otpRecord" | "formSubmissionRecord" | "transaction" | "gameTransaction" | "message" | "voucher"
+      modelProps: "user" | "otpRecord" | "formSubmissionRecord" | "transaction" | "gameTransaction" | "message" | "voucher" | "bonusList" | "commissionList"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1257,6 +1289,154 @@ export namespace Prisma {
           }
         }
       }
+      BonusList: {
+        payload: Prisma.$BonusListPayload<ExtArgs>
+        fields: Prisma.BonusListFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BonusListFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BonusListFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>
+          }
+          findFirst: {
+            args: Prisma.BonusListFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BonusListFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>
+          }
+          findMany: {
+            args: Prisma.BonusListFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>[]
+          }
+          create: {
+            args: Prisma.BonusListCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>
+          }
+          createMany: {
+            args: Prisma.BonusListCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BonusListCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>[]
+          }
+          delete: {
+            args: Prisma.BonusListDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>
+          }
+          update: {
+            args: Prisma.BonusListUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>
+          }
+          deleteMany: {
+            args: Prisma.BonusListDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BonusListUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BonusListUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>[]
+          }
+          upsert: {
+            args: Prisma.BonusListUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BonusListPayload>
+          }
+          aggregate: {
+            args: Prisma.BonusListAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBonusList>
+          }
+          groupBy: {
+            args: Prisma.BonusListGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BonusListGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BonusListCountArgs<ExtArgs>
+            result: $Utils.Optional<BonusListCountAggregateOutputType> | number
+          }
+        }
+      }
+      CommissionList: {
+        payload: Prisma.$CommissionListPayload<ExtArgs>
+        fields: Prisma.CommissionListFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommissionListFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommissionListFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>
+          }
+          findFirst: {
+            args: Prisma.CommissionListFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommissionListFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>
+          }
+          findMany: {
+            args: Prisma.CommissionListFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>[]
+          }
+          create: {
+            args: Prisma.CommissionListCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>
+          }
+          createMany: {
+            args: Prisma.CommissionListCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CommissionListCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>[]
+          }
+          delete: {
+            args: Prisma.CommissionListDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>
+          }
+          update: {
+            args: Prisma.CommissionListUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommissionListDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommissionListUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CommissionListUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>[]
+          }
+          upsert: {
+            args: Prisma.CommissionListUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommissionListPayload>
+          }
+          aggregate: {
+            args: Prisma.CommissionListAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCommissionList>
+          }
+          groupBy: {
+            args: Prisma.CommissionListGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommissionListGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommissionListCountArgs<ExtArgs>
+            result: $Utils.Optional<CommissionListCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1360,6 +1540,8 @@ export namespace Prisma {
     gameTransaction?: GameTransactionOmit
     message?: MessageOmit
     voucher?: VoucherOmit
+    bonusList?: BonusListOmit
+    commissionList?: CommissionListOmit
   }
 
   /* Types for Logging */
@@ -9488,6 +9670,2110 @@ export namespace Prisma {
 
 
   /**
+   * Model BonusList
+   */
+
+  export type AggregateBonusList = {
+    _count: BonusListCountAggregateOutputType | null
+    _avg: BonusListAvgAggregateOutputType | null
+    _sum: BonusListSumAggregateOutputType | null
+    _min: BonusListMinAggregateOutputType | null
+    _max: BonusListMaxAggregateOutputType | null
+  }
+
+  export type BonusListAvgAggregateOutputType = {
+    id: number | null
+    deposit: Decimal | null
+    bonus: Decimal | null
+  }
+
+  export type BonusListSumAggregateOutputType = {
+    id: number | null
+    deposit: Decimal | null
+    bonus: Decimal | null
+  }
+
+  export type BonusListMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    deposit: Decimal | null
+    bonus: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BonusListMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    deposit: Decimal | null
+    bonus: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BonusListCountAggregateOutputType = {
+    id: number
+    name: number
+    deposit: number
+    bonus: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BonusListAvgAggregateInputType = {
+    id?: true
+    deposit?: true
+    bonus?: true
+  }
+
+  export type BonusListSumAggregateInputType = {
+    id?: true
+    deposit?: true
+    bonus?: true
+  }
+
+  export type BonusListMinAggregateInputType = {
+    id?: true
+    name?: true
+    deposit?: true
+    bonus?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BonusListMaxAggregateInputType = {
+    id?: true
+    name?: true
+    deposit?: true
+    bonus?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BonusListCountAggregateInputType = {
+    id?: true
+    name?: true
+    deposit?: true
+    bonus?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BonusListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BonusList to aggregate.
+     */
+    where?: BonusListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BonusLists to fetch.
+     */
+    orderBy?: BonusListOrderByWithRelationInput | BonusListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BonusListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BonusLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BonusLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BonusLists
+    **/
+    _count?: true | BonusListCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BonusListAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BonusListSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BonusListMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BonusListMaxAggregateInputType
+  }
+
+  export type GetBonusListAggregateType<T extends BonusListAggregateArgs> = {
+        [P in keyof T & keyof AggregateBonusList]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBonusList[P]>
+      : GetScalarType<T[P], AggregateBonusList[P]>
+  }
+
+
+
+
+  export type BonusListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BonusListWhereInput
+    orderBy?: BonusListOrderByWithAggregationInput | BonusListOrderByWithAggregationInput[]
+    by: BonusListScalarFieldEnum[] | BonusListScalarFieldEnum
+    having?: BonusListScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BonusListCountAggregateInputType | true
+    _avg?: BonusListAvgAggregateInputType
+    _sum?: BonusListSumAggregateInputType
+    _min?: BonusListMinAggregateInputType
+    _max?: BonusListMaxAggregateInputType
+  }
+
+  export type BonusListGroupByOutputType = {
+    id: number
+    name: string
+    deposit: Decimal
+    bonus: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: BonusListCountAggregateOutputType | null
+    _avg: BonusListAvgAggregateOutputType | null
+    _sum: BonusListSumAggregateOutputType | null
+    _min: BonusListMinAggregateOutputType | null
+    _max: BonusListMaxAggregateOutputType | null
+  }
+
+  type GetBonusListGroupByPayload<T extends BonusListGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BonusListGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BonusListGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BonusListGroupByOutputType[P]>
+            : GetScalarType<T[P], BonusListGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BonusListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    deposit?: boolean
+    bonus?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bonusList"]>
+
+  export type BonusListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    deposit?: boolean
+    bonus?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bonusList"]>
+
+  export type BonusListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    deposit?: boolean
+    bonus?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bonusList"]>
+
+  export type BonusListSelectScalar = {
+    id?: boolean
+    name?: boolean
+    deposit?: boolean
+    bonus?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BonusListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "deposit" | "bonus" | "createdAt" | "updatedAt", ExtArgs["result"]["bonusList"]>
+
+  export type $BonusListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BonusList"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      deposit: Prisma.Decimal
+      bonus: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bonusList"]>
+    composites: {}
+  }
+
+  type BonusListGetPayload<S extends boolean | null | undefined | BonusListDefaultArgs> = $Result.GetResult<Prisma.$BonusListPayload, S>
+
+  type BonusListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BonusListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BonusListCountAggregateInputType | true
+    }
+
+  export interface BonusListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BonusList'], meta: { name: 'BonusList' } }
+    /**
+     * Find zero or one BonusList that matches the filter.
+     * @param {BonusListFindUniqueArgs} args - Arguments to find a BonusList
+     * @example
+     * // Get one BonusList
+     * const bonusList = await prisma.bonusList.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BonusListFindUniqueArgs>(args: SelectSubset<T, BonusListFindUniqueArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BonusList that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BonusListFindUniqueOrThrowArgs} args - Arguments to find a BonusList
+     * @example
+     * // Get one BonusList
+     * const bonusList = await prisma.bonusList.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BonusListFindUniqueOrThrowArgs>(args: SelectSubset<T, BonusListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BonusList that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListFindFirstArgs} args - Arguments to find a BonusList
+     * @example
+     * // Get one BonusList
+     * const bonusList = await prisma.bonusList.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BonusListFindFirstArgs>(args?: SelectSubset<T, BonusListFindFirstArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BonusList that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListFindFirstOrThrowArgs} args - Arguments to find a BonusList
+     * @example
+     * // Get one BonusList
+     * const bonusList = await prisma.bonusList.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BonusListFindFirstOrThrowArgs>(args?: SelectSubset<T, BonusListFindFirstOrThrowArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BonusLists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BonusLists
+     * const bonusLists = await prisma.bonusList.findMany()
+     * 
+     * // Get first 10 BonusLists
+     * const bonusLists = await prisma.bonusList.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bonusListWithIdOnly = await prisma.bonusList.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BonusListFindManyArgs>(args?: SelectSubset<T, BonusListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BonusList.
+     * @param {BonusListCreateArgs} args - Arguments to create a BonusList.
+     * @example
+     * // Create one BonusList
+     * const BonusList = await prisma.bonusList.create({
+     *   data: {
+     *     // ... data to create a BonusList
+     *   }
+     * })
+     * 
+     */
+    create<T extends BonusListCreateArgs>(args: SelectSubset<T, BonusListCreateArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BonusLists.
+     * @param {BonusListCreateManyArgs} args - Arguments to create many BonusLists.
+     * @example
+     * // Create many BonusLists
+     * const bonusList = await prisma.bonusList.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BonusListCreateManyArgs>(args?: SelectSubset<T, BonusListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BonusLists and returns the data saved in the database.
+     * @param {BonusListCreateManyAndReturnArgs} args - Arguments to create many BonusLists.
+     * @example
+     * // Create many BonusLists
+     * const bonusList = await prisma.bonusList.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BonusLists and only return the `id`
+     * const bonusListWithIdOnly = await prisma.bonusList.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BonusListCreateManyAndReturnArgs>(args?: SelectSubset<T, BonusListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BonusList.
+     * @param {BonusListDeleteArgs} args - Arguments to delete one BonusList.
+     * @example
+     * // Delete one BonusList
+     * const BonusList = await prisma.bonusList.delete({
+     *   where: {
+     *     // ... filter to delete one BonusList
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BonusListDeleteArgs>(args: SelectSubset<T, BonusListDeleteArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BonusList.
+     * @param {BonusListUpdateArgs} args - Arguments to update one BonusList.
+     * @example
+     * // Update one BonusList
+     * const bonusList = await prisma.bonusList.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BonusListUpdateArgs>(args: SelectSubset<T, BonusListUpdateArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BonusLists.
+     * @param {BonusListDeleteManyArgs} args - Arguments to filter BonusLists to delete.
+     * @example
+     * // Delete a few BonusLists
+     * const { count } = await prisma.bonusList.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BonusListDeleteManyArgs>(args?: SelectSubset<T, BonusListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BonusLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BonusLists
+     * const bonusList = await prisma.bonusList.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BonusListUpdateManyArgs>(args: SelectSubset<T, BonusListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BonusLists and returns the data updated in the database.
+     * @param {BonusListUpdateManyAndReturnArgs} args - Arguments to update many BonusLists.
+     * @example
+     * // Update many BonusLists
+     * const bonusList = await prisma.bonusList.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BonusLists and only return the `id`
+     * const bonusListWithIdOnly = await prisma.bonusList.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BonusListUpdateManyAndReturnArgs>(args: SelectSubset<T, BonusListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BonusList.
+     * @param {BonusListUpsertArgs} args - Arguments to update or create a BonusList.
+     * @example
+     * // Update or create a BonusList
+     * const bonusList = await prisma.bonusList.upsert({
+     *   create: {
+     *     // ... data to create a BonusList
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BonusList we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BonusListUpsertArgs>(args: SelectSubset<T, BonusListUpsertArgs<ExtArgs>>): Prisma__BonusListClient<$Result.GetResult<Prisma.$BonusListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BonusLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListCountArgs} args - Arguments to filter BonusLists to count.
+     * @example
+     * // Count the number of BonusLists
+     * const count = await prisma.bonusList.count({
+     *   where: {
+     *     // ... the filter for the BonusLists we want to count
+     *   }
+     * })
+    **/
+    count<T extends BonusListCountArgs>(
+      args?: Subset<T, BonusListCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BonusListCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BonusList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BonusListAggregateArgs>(args: Subset<T, BonusListAggregateArgs>): Prisma.PrismaPromise<GetBonusListAggregateType<T>>
+
+    /**
+     * Group by BonusList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BonusListGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BonusListGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BonusListGroupByArgs['orderBy'] }
+        : { orderBy?: BonusListGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BonusListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBonusListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BonusList model
+   */
+  readonly fields: BonusListFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BonusList.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BonusListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BonusList model
+   */
+  interface BonusListFieldRefs {
+    readonly id: FieldRef<"BonusList", 'Int'>
+    readonly name: FieldRef<"BonusList", 'String'>
+    readonly deposit: FieldRef<"BonusList", 'Decimal'>
+    readonly bonus: FieldRef<"BonusList", 'Decimal'>
+    readonly createdAt: FieldRef<"BonusList", 'DateTime'>
+    readonly updatedAt: FieldRef<"BonusList", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BonusList findUnique
+   */
+  export type BonusListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * Filter, which BonusList to fetch.
+     */
+    where: BonusListWhereUniqueInput
+  }
+
+  /**
+   * BonusList findUniqueOrThrow
+   */
+  export type BonusListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * Filter, which BonusList to fetch.
+     */
+    where: BonusListWhereUniqueInput
+  }
+
+  /**
+   * BonusList findFirst
+   */
+  export type BonusListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * Filter, which BonusList to fetch.
+     */
+    where?: BonusListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BonusLists to fetch.
+     */
+    orderBy?: BonusListOrderByWithRelationInput | BonusListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BonusLists.
+     */
+    cursor?: BonusListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BonusLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BonusLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BonusLists.
+     */
+    distinct?: BonusListScalarFieldEnum | BonusListScalarFieldEnum[]
+  }
+
+  /**
+   * BonusList findFirstOrThrow
+   */
+  export type BonusListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * Filter, which BonusList to fetch.
+     */
+    where?: BonusListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BonusLists to fetch.
+     */
+    orderBy?: BonusListOrderByWithRelationInput | BonusListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BonusLists.
+     */
+    cursor?: BonusListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BonusLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BonusLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BonusLists.
+     */
+    distinct?: BonusListScalarFieldEnum | BonusListScalarFieldEnum[]
+  }
+
+  /**
+   * BonusList findMany
+   */
+  export type BonusListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * Filter, which BonusLists to fetch.
+     */
+    where?: BonusListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BonusLists to fetch.
+     */
+    orderBy?: BonusListOrderByWithRelationInput | BonusListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BonusLists.
+     */
+    cursor?: BonusListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BonusLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BonusLists.
+     */
+    skip?: number
+    distinct?: BonusListScalarFieldEnum | BonusListScalarFieldEnum[]
+  }
+
+  /**
+   * BonusList create
+   */
+  export type BonusListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BonusList.
+     */
+    data: XOR<BonusListCreateInput, BonusListUncheckedCreateInput>
+  }
+
+  /**
+   * BonusList createMany
+   */
+  export type BonusListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BonusLists.
+     */
+    data: BonusListCreateManyInput | BonusListCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BonusList createManyAndReturn
+   */
+  export type BonusListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * The data used to create many BonusLists.
+     */
+    data: BonusListCreateManyInput | BonusListCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BonusList update
+   */
+  export type BonusListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BonusList.
+     */
+    data: XOR<BonusListUpdateInput, BonusListUncheckedUpdateInput>
+    /**
+     * Choose, which BonusList to update.
+     */
+    where: BonusListWhereUniqueInput
+  }
+
+  /**
+   * BonusList updateMany
+   */
+  export type BonusListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BonusLists.
+     */
+    data: XOR<BonusListUpdateManyMutationInput, BonusListUncheckedUpdateManyInput>
+    /**
+     * Filter which BonusLists to update
+     */
+    where?: BonusListWhereInput
+    /**
+     * Limit how many BonusLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BonusList updateManyAndReturn
+   */
+  export type BonusListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * The data used to update BonusLists.
+     */
+    data: XOR<BonusListUpdateManyMutationInput, BonusListUncheckedUpdateManyInput>
+    /**
+     * Filter which BonusLists to update
+     */
+    where?: BonusListWhereInput
+    /**
+     * Limit how many BonusLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BonusList upsert
+   */
+  export type BonusListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BonusList to update in case it exists.
+     */
+    where: BonusListWhereUniqueInput
+    /**
+     * In case the BonusList found by the `where` argument doesn't exist, create a new BonusList with this data.
+     */
+    create: XOR<BonusListCreateInput, BonusListUncheckedCreateInput>
+    /**
+     * In case the BonusList was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BonusListUpdateInput, BonusListUncheckedUpdateInput>
+  }
+
+  /**
+   * BonusList delete
+   */
+  export type BonusListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+    /**
+     * Filter which BonusList to delete.
+     */
+    where: BonusListWhereUniqueInput
+  }
+
+  /**
+   * BonusList deleteMany
+   */
+  export type BonusListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BonusLists to delete
+     */
+    where?: BonusListWhereInput
+    /**
+     * Limit how many BonusLists to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BonusList without action
+   */
+  export type BonusListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BonusList
+     */
+    select?: BonusListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BonusList
+     */
+    omit?: BonusListOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CommissionList
+   */
+
+  export type AggregateCommissionList = {
+    _count: CommissionListCountAggregateOutputType | null
+    _avg: CommissionListAvgAggregateOutputType | null
+    _sum: CommissionListSumAggregateOutputType | null
+    _min: CommissionListMinAggregateOutputType | null
+    _max: CommissionListMaxAggregateOutputType | null
+  }
+
+  export type CommissionListAvgAggregateOutputType = {
+    id: number | null
+    deposit: Decimal | null
+    bet: Decimal | null
+    salary: Decimal | null
+  }
+
+  export type CommissionListSumAggregateOutputType = {
+    id: number | null
+    deposit: Decimal | null
+    bet: Decimal | null
+    salary: Decimal | null
+  }
+
+  export type CommissionListMinAggregateOutputType = {
+    id: number | null
+    deposit: Decimal | null
+    bet: Decimal | null
+    salary: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommissionListMaxAggregateOutputType = {
+    id: number | null
+    deposit: Decimal | null
+    bet: Decimal | null
+    salary: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommissionListCountAggregateOutputType = {
+    id: number
+    deposit: number
+    bet: number
+    salary: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CommissionListAvgAggregateInputType = {
+    id?: true
+    deposit?: true
+    bet?: true
+    salary?: true
+  }
+
+  export type CommissionListSumAggregateInputType = {
+    id?: true
+    deposit?: true
+    bet?: true
+    salary?: true
+  }
+
+  export type CommissionListMinAggregateInputType = {
+    id?: true
+    deposit?: true
+    bet?: true
+    salary?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommissionListMaxAggregateInputType = {
+    id?: true
+    deposit?: true
+    bet?: true
+    salary?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommissionListCountAggregateInputType = {
+    id?: true
+    deposit?: true
+    bet?: true
+    salary?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CommissionListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommissionList to aggregate.
+     */
+    where?: CommissionListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommissionLists to fetch.
+     */
+    orderBy?: CommissionListOrderByWithRelationInput | CommissionListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommissionListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommissionLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommissionLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommissionLists
+    **/
+    _count?: true | CommissionListCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CommissionListAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CommissionListSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommissionListMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommissionListMaxAggregateInputType
+  }
+
+  export type GetCommissionListAggregateType<T extends CommissionListAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommissionList]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommissionList[P]>
+      : GetScalarType<T[P], AggregateCommissionList[P]>
+  }
+
+
+
+
+  export type CommissionListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommissionListWhereInput
+    orderBy?: CommissionListOrderByWithAggregationInput | CommissionListOrderByWithAggregationInput[]
+    by: CommissionListScalarFieldEnum[] | CommissionListScalarFieldEnum
+    having?: CommissionListScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommissionListCountAggregateInputType | true
+    _avg?: CommissionListAvgAggregateInputType
+    _sum?: CommissionListSumAggregateInputType
+    _min?: CommissionListMinAggregateInputType
+    _max?: CommissionListMaxAggregateInputType
+  }
+
+  export type CommissionListGroupByOutputType = {
+    id: number
+    deposit: Decimal
+    bet: Decimal
+    salary: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: CommissionListCountAggregateOutputType | null
+    _avg: CommissionListAvgAggregateOutputType | null
+    _sum: CommissionListSumAggregateOutputType | null
+    _min: CommissionListMinAggregateOutputType | null
+    _max: CommissionListMaxAggregateOutputType | null
+  }
+
+  type GetCommissionListGroupByPayload<T extends CommissionListGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommissionListGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommissionListGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommissionListGroupByOutputType[P]>
+            : GetScalarType<T[P], CommissionListGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommissionListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    deposit?: boolean
+    bet?: boolean
+    salary?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["commissionList"]>
+
+  export type CommissionListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    deposit?: boolean
+    bet?: boolean
+    salary?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["commissionList"]>
+
+  export type CommissionListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    deposit?: boolean
+    bet?: boolean
+    salary?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["commissionList"]>
+
+  export type CommissionListSelectScalar = {
+    id?: boolean
+    deposit?: boolean
+    bet?: boolean
+    salary?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CommissionListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "deposit" | "bet" | "salary" | "createdAt" | "updatedAt", ExtArgs["result"]["commissionList"]>
+
+  export type $CommissionListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommissionList"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      deposit: Prisma.Decimal
+      bet: Prisma.Decimal
+      salary: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["commissionList"]>
+    composites: {}
+  }
+
+  type CommissionListGetPayload<S extends boolean | null | undefined | CommissionListDefaultArgs> = $Result.GetResult<Prisma.$CommissionListPayload, S>
+
+  type CommissionListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CommissionListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommissionListCountAggregateInputType | true
+    }
+
+  export interface CommissionListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommissionList'], meta: { name: 'CommissionList' } }
+    /**
+     * Find zero or one CommissionList that matches the filter.
+     * @param {CommissionListFindUniqueArgs} args - Arguments to find a CommissionList
+     * @example
+     * // Get one CommissionList
+     * const commissionList = await prisma.commissionList.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CommissionListFindUniqueArgs>(args: SelectSubset<T, CommissionListFindUniqueArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CommissionList that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CommissionListFindUniqueOrThrowArgs} args - Arguments to find a CommissionList
+     * @example
+     * // Get one CommissionList
+     * const commissionList = await prisma.commissionList.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CommissionListFindUniqueOrThrowArgs>(args: SelectSubset<T, CommissionListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommissionList that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListFindFirstArgs} args - Arguments to find a CommissionList
+     * @example
+     * // Get one CommissionList
+     * const commissionList = await prisma.commissionList.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CommissionListFindFirstArgs>(args?: SelectSubset<T, CommissionListFindFirstArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommissionList that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListFindFirstOrThrowArgs} args - Arguments to find a CommissionList
+     * @example
+     * // Get one CommissionList
+     * const commissionList = await prisma.commissionList.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CommissionListFindFirstOrThrowArgs>(args?: SelectSubset<T, CommissionListFindFirstOrThrowArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CommissionLists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommissionLists
+     * const commissionLists = await prisma.commissionList.findMany()
+     * 
+     * // Get first 10 CommissionLists
+     * const commissionLists = await prisma.commissionList.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commissionListWithIdOnly = await prisma.commissionList.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CommissionListFindManyArgs>(args?: SelectSubset<T, CommissionListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CommissionList.
+     * @param {CommissionListCreateArgs} args - Arguments to create a CommissionList.
+     * @example
+     * // Create one CommissionList
+     * const CommissionList = await prisma.commissionList.create({
+     *   data: {
+     *     // ... data to create a CommissionList
+     *   }
+     * })
+     * 
+     */
+    create<T extends CommissionListCreateArgs>(args: SelectSubset<T, CommissionListCreateArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CommissionLists.
+     * @param {CommissionListCreateManyArgs} args - Arguments to create many CommissionLists.
+     * @example
+     * // Create many CommissionLists
+     * const commissionList = await prisma.commissionList.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CommissionListCreateManyArgs>(args?: SelectSubset<T, CommissionListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CommissionLists and returns the data saved in the database.
+     * @param {CommissionListCreateManyAndReturnArgs} args - Arguments to create many CommissionLists.
+     * @example
+     * // Create many CommissionLists
+     * const commissionList = await prisma.commissionList.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CommissionLists and only return the `id`
+     * const commissionListWithIdOnly = await prisma.commissionList.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CommissionListCreateManyAndReturnArgs>(args?: SelectSubset<T, CommissionListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CommissionList.
+     * @param {CommissionListDeleteArgs} args - Arguments to delete one CommissionList.
+     * @example
+     * // Delete one CommissionList
+     * const CommissionList = await prisma.commissionList.delete({
+     *   where: {
+     *     // ... filter to delete one CommissionList
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CommissionListDeleteArgs>(args: SelectSubset<T, CommissionListDeleteArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CommissionList.
+     * @param {CommissionListUpdateArgs} args - Arguments to update one CommissionList.
+     * @example
+     * // Update one CommissionList
+     * const commissionList = await prisma.commissionList.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CommissionListUpdateArgs>(args: SelectSubset<T, CommissionListUpdateArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CommissionLists.
+     * @param {CommissionListDeleteManyArgs} args - Arguments to filter CommissionLists to delete.
+     * @example
+     * // Delete a few CommissionLists
+     * const { count } = await prisma.commissionList.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CommissionListDeleteManyArgs>(args?: SelectSubset<T, CommissionListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommissionLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommissionLists
+     * const commissionList = await prisma.commissionList.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CommissionListUpdateManyArgs>(args: SelectSubset<T, CommissionListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommissionLists and returns the data updated in the database.
+     * @param {CommissionListUpdateManyAndReturnArgs} args - Arguments to update many CommissionLists.
+     * @example
+     * // Update many CommissionLists
+     * const commissionList = await prisma.commissionList.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CommissionLists and only return the `id`
+     * const commissionListWithIdOnly = await prisma.commissionList.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CommissionListUpdateManyAndReturnArgs>(args: SelectSubset<T, CommissionListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CommissionList.
+     * @param {CommissionListUpsertArgs} args - Arguments to update or create a CommissionList.
+     * @example
+     * // Update or create a CommissionList
+     * const commissionList = await prisma.commissionList.upsert({
+     *   create: {
+     *     // ... data to create a CommissionList
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommissionList we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CommissionListUpsertArgs>(args: SelectSubset<T, CommissionListUpsertArgs<ExtArgs>>): Prisma__CommissionListClient<$Result.GetResult<Prisma.$CommissionListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CommissionLists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListCountArgs} args - Arguments to filter CommissionLists to count.
+     * @example
+     * // Count the number of CommissionLists
+     * const count = await prisma.commissionList.count({
+     *   where: {
+     *     // ... the filter for the CommissionLists we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommissionListCountArgs>(
+      args?: Subset<T, CommissionListCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommissionListCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommissionList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommissionListAggregateArgs>(args: Subset<T, CommissionListAggregateArgs>): Prisma.PrismaPromise<GetCommissionListAggregateType<T>>
+
+    /**
+     * Group by CommissionList.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommissionListGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommissionListGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommissionListGroupByArgs['orderBy'] }
+        : { orderBy?: CommissionListGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommissionListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommissionListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommissionList model
+   */
+  readonly fields: CommissionListFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommissionList.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommissionListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CommissionList model
+   */
+  interface CommissionListFieldRefs {
+    readonly id: FieldRef<"CommissionList", 'Int'>
+    readonly deposit: FieldRef<"CommissionList", 'Decimal'>
+    readonly bet: FieldRef<"CommissionList", 'Decimal'>
+    readonly salary: FieldRef<"CommissionList", 'Decimal'>
+    readonly createdAt: FieldRef<"CommissionList", 'DateTime'>
+    readonly updatedAt: FieldRef<"CommissionList", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CommissionList findUnique
+   */
+  export type CommissionListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * Filter, which CommissionList to fetch.
+     */
+    where: CommissionListWhereUniqueInput
+  }
+
+  /**
+   * CommissionList findUniqueOrThrow
+   */
+  export type CommissionListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * Filter, which CommissionList to fetch.
+     */
+    where: CommissionListWhereUniqueInput
+  }
+
+  /**
+   * CommissionList findFirst
+   */
+  export type CommissionListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * Filter, which CommissionList to fetch.
+     */
+    where?: CommissionListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommissionLists to fetch.
+     */
+    orderBy?: CommissionListOrderByWithRelationInput | CommissionListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommissionLists.
+     */
+    cursor?: CommissionListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommissionLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommissionLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommissionLists.
+     */
+    distinct?: CommissionListScalarFieldEnum | CommissionListScalarFieldEnum[]
+  }
+
+  /**
+   * CommissionList findFirstOrThrow
+   */
+  export type CommissionListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * Filter, which CommissionList to fetch.
+     */
+    where?: CommissionListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommissionLists to fetch.
+     */
+    orderBy?: CommissionListOrderByWithRelationInput | CommissionListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommissionLists.
+     */
+    cursor?: CommissionListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommissionLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommissionLists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommissionLists.
+     */
+    distinct?: CommissionListScalarFieldEnum | CommissionListScalarFieldEnum[]
+  }
+
+  /**
+   * CommissionList findMany
+   */
+  export type CommissionListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * Filter, which CommissionLists to fetch.
+     */
+    where?: CommissionListWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommissionLists to fetch.
+     */
+    orderBy?: CommissionListOrderByWithRelationInput | CommissionListOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommissionLists.
+     */
+    cursor?: CommissionListWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommissionLists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommissionLists.
+     */
+    skip?: number
+    distinct?: CommissionListScalarFieldEnum | CommissionListScalarFieldEnum[]
+  }
+
+  /**
+   * CommissionList create
+   */
+  export type CommissionListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CommissionList.
+     */
+    data: XOR<CommissionListCreateInput, CommissionListUncheckedCreateInput>
+  }
+
+  /**
+   * CommissionList createMany
+   */
+  export type CommissionListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CommissionLists.
+     */
+    data: CommissionListCreateManyInput | CommissionListCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CommissionList createManyAndReturn
+   */
+  export type CommissionListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * The data used to create many CommissionLists.
+     */
+    data: CommissionListCreateManyInput | CommissionListCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CommissionList update
+   */
+  export type CommissionListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CommissionList.
+     */
+    data: XOR<CommissionListUpdateInput, CommissionListUncheckedUpdateInput>
+    /**
+     * Choose, which CommissionList to update.
+     */
+    where: CommissionListWhereUniqueInput
+  }
+
+  /**
+   * CommissionList updateMany
+   */
+  export type CommissionListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommissionLists.
+     */
+    data: XOR<CommissionListUpdateManyMutationInput, CommissionListUncheckedUpdateManyInput>
+    /**
+     * Filter which CommissionLists to update
+     */
+    where?: CommissionListWhereInput
+    /**
+     * Limit how many CommissionLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommissionList updateManyAndReturn
+   */
+  export type CommissionListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * The data used to update CommissionLists.
+     */
+    data: XOR<CommissionListUpdateManyMutationInput, CommissionListUncheckedUpdateManyInput>
+    /**
+     * Filter which CommissionLists to update
+     */
+    where?: CommissionListWhereInput
+    /**
+     * Limit how many CommissionLists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommissionList upsert
+   */
+  export type CommissionListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CommissionList to update in case it exists.
+     */
+    where: CommissionListWhereUniqueInput
+    /**
+     * In case the CommissionList found by the `where` argument doesn't exist, create a new CommissionList with this data.
+     */
+    create: XOR<CommissionListCreateInput, CommissionListUncheckedCreateInput>
+    /**
+     * In case the CommissionList was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommissionListUpdateInput, CommissionListUncheckedUpdateInput>
+  }
+
+  /**
+   * CommissionList delete
+   */
+  export type CommissionListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+    /**
+     * Filter which CommissionList to delete.
+     */
+    where: CommissionListWhereUniqueInput
+  }
+
+  /**
+   * CommissionList deleteMany
+   */
+  export type CommissionListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommissionLists to delete
+     */
+    where?: CommissionListWhereInput
+    /**
+     * Limit how many CommissionLists to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommissionList without action
+   */
+  export type CommissionListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommissionList
+     */
+    select?: CommissionListSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommissionList
+     */
+    omit?: CommissionListOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9601,6 +11887,30 @@ export namespace Prisma {
   };
 
   export type VoucherScalarFieldEnum = (typeof VoucherScalarFieldEnum)[keyof typeof VoucherScalarFieldEnum]
+
+
+  export const BonusListScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    deposit: 'deposit',
+    bonus: 'bonus',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BonusListScalarFieldEnum = (typeof BonusListScalarFieldEnum)[keyof typeof BonusListScalarFieldEnum]
+
+
+  export const CommissionListScalarFieldEnum: {
+    id: 'id',
+    deposit: 'deposit',
+    bet: 'bet',
+    salary: 'salary',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CommissionListScalarFieldEnum = (typeof CommissionListScalarFieldEnum)[keyof typeof CommissionListScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10267,6 +12577,124 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Voucher"> | Date | string
   }
 
+  export type BonusListWhereInput = {
+    AND?: BonusListWhereInput | BonusListWhereInput[]
+    OR?: BonusListWhereInput[]
+    NOT?: BonusListWhereInput | BonusListWhereInput[]
+    id?: IntFilter<"BonusList"> | number
+    name?: StringFilter<"BonusList"> | string
+    deposit?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"BonusList"> | Date | string
+    updatedAt?: DateTimeFilter<"BonusList"> | Date | string
+  }
+
+  export type BonusListOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BonusListWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BonusListWhereInput | BonusListWhereInput[]
+    OR?: BonusListWhereInput[]
+    NOT?: BonusListWhereInput | BonusListWhereInput[]
+    name?: StringFilter<"BonusList"> | string
+    deposit?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"BonusList"> | Date | string
+    updatedAt?: DateTimeFilter<"BonusList"> | Date | string
+  }, "id">
+
+  export type BonusListOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BonusListCountOrderByAggregateInput
+    _avg?: BonusListAvgOrderByAggregateInput
+    _max?: BonusListMaxOrderByAggregateInput
+    _min?: BonusListMinOrderByAggregateInput
+    _sum?: BonusListSumOrderByAggregateInput
+  }
+
+  export type BonusListScalarWhereWithAggregatesInput = {
+    AND?: BonusListScalarWhereWithAggregatesInput | BonusListScalarWhereWithAggregatesInput[]
+    OR?: BonusListScalarWhereWithAggregatesInput[]
+    NOT?: BonusListScalarWhereWithAggregatesInput | BonusListScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BonusList"> | number
+    name?: StringWithAggregatesFilter<"BonusList"> | string
+    deposit?: DecimalWithAggregatesFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalWithAggregatesFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"BonusList"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BonusList"> | Date | string
+  }
+
+  export type CommissionListWhereInput = {
+    AND?: CommissionListWhereInput | CommissionListWhereInput[]
+    OR?: CommissionListWhereInput[]
+    NOT?: CommissionListWhereInput | CommissionListWhereInput[]
+    id?: IntFilter<"CommissionList"> | number
+    deposit?: DecimalFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    bet?: DecimalFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    salary?: DecimalFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"CommissionList"> | Date | string
+    updatedAt?: DateTimeFilter<"CommissionList"> | Date | string
+  }
+
+  export type CommissionListOrderByWithRelationInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommissionListWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CommissionListWhereInput | CommissionListWhereInput[]
+    OR?: CommissionListWhereInput[]
+    NOT?: CommissionListWhereInput | CommissionListWhereInput[]
+    deposit?: DecimalFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    bet?: DecimalFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    salary?: DecimalFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"CommissionList"> | Date | string
+    updatedAt?: DateTimeFilter<"CommissionList"> | Date | string
+  }, "id">
+
+  export type CommissionListOrderByWithAggregationInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CommissionListCountOrderByAggregateInput
+    _avg?: CommissionListAvgOrderByAggregateInput
+    _max?: CommissionListMaxOrderByAggregateInput
+    _min?: CommissionListMinOrderByAggregateInput
+    _sum?: CommissionListSumOrderByAggregateInput
+  }
+
+  export type CommissionListScalarWhereWithAggregatesInput = {
+    AND?: CommissionListScalarWhereWithAggregatesInput | CommissionListScalarWhereWithAggregatesInput[]
+    OR?: CommissionListScalarWhereWithAggregatesInput[]
+    NOT?: CommissionListScalarWhereWithAggregatesInput | CommissionListScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CommissionList"> | number
+    deposit?: DecimalWithAggregatesFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    bet?: DecimalWithAggregatesFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    salary?: DecimalWithAggregatesFilter<"CommissionList"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"CommissionList"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CommissionList"> | Date | string
+  }
+
   export type UserCreateInput = {
     status?: string
     phone_number: string
@@ -10823,6 +13251,126 @@ export namespace Prisma {
     collected_by?: NullableIntFieldUpdateOperationsInput | number | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BonusListCreateInput = {
+    name: string
+    deposit: Decimal | DecimalJsLike | number | string
+    bonus: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BonusListUncheckedCreateInput = {
+    id?: number
+    name: string
+    deposit: Decimal | DecimalJsLike | number | string
+    bonus: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BonusListUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BonusListUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BonusListCreateManyInput = {
+    id?: number
+    name: string
+    deposit: Decimal | DecimalJsLike | number | string
+    bonus: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BonusListUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BonusListUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommissionListCreateInput = {
+    deposit: Decimal | DecimalJsLike | number | string
+    bet: Decimal | DecimalJsLike | number | string
+    salary: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommissionListUncheckedCreateInput = {
+    id?: number
+    deposit: Decimal | DecimalJsLike | number | string
+    bet: Decimal | DecimalJsLike | number | string
+    salary: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommissionListUpdateInput = {
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bet?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    salary?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommissionListUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bet?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    salary?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommissionListCreateManyInput = {
+    id?: number
+    deposit: Decimal | DecimalJsLike | number | string
+    bet: Decimal | DecimalJsLike | number | string
+    salary: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommissionListUpdateManyMutationInput = {
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bet?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    salary?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommissionListUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bet?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    salary?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -11437,6 +13985,86 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BonusListCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BonusListAvgOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+  }
+
+  export type BonusListMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BonusListMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BonusListSumOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bonus?: SortOrder
+  }
+
+  export type CommissionListCountOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommissionListAvgOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
+  }
+
+  export type CommissionListMaxOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommissionListMinOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommissionListSumOrderByAggregateInput = {
+    id?: SortOrder
+    deposit?: SortOrder
+    bet?: SortOrder
+    salary?: SortOrder
   }
 
   export type GameTransactionCreateNestedManyWithoutUserInput = {

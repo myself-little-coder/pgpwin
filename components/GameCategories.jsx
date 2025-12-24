@@ -74,26 +74,23 @@ const GameCategories = ({
           onClick={() => {
             setSelectedProvider(slide.name);
           }}
-          className={`relative flex flex-col justify-end items-center w-[70px] aspect-square border-2 rounded-lg shrink-0 overflow-hidden transition-all 
-              ${
-                selectedProvider === slide.name
-                  ? "border-yellow-600 shadow shadow-yellow-400"
-                  : ""
-              }
+          className={`relative flex flex-col justify-end items-center w-16 aspect-square rounded-lg shrink-0 overflow-hidden transition-all 
+              ${selectedProvider === slide.name
+              ? "bg-yellow-400 dark:bg-yellow-700  text-stone-800"
+              : "bg-gray-200 dark:bg-gray-700"
+            }
               `}
         >
           <Image
             src={slide.icons.icon}
             alt={slide.display_name}
-            className={` py-2 object-contain z-10 max-h-[80%] 
-              
+            className={` object-contain z-10 max-h-[90%] max-w-[80%] mx-auto brightness-200 saturate-200
                `}
             fill
           />
           <h2
-            className={` text-center text-xs line-clamp-1  ${
-              selectedProvider === slide.name ? "text-yellow-600" : ""
-            } `}
+            className={` py-px px-1 text-center text-xs line-clamp-1  ${selectedProvider === slide.name ? "text-white" : ""
+              } `}
           >
             {slide.display_name}
           </h2>

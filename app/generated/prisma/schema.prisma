@@ -111,3 +111,21 @@ model Voucher {
   updatedAt    DateTime  @updatedAt
   createdAt    DateTime  @default(now())
 }
+
+model BonusList {
+  id        Int      @id @default(autoincrement())
+  name      String
+  deposit   Decimal  @db.Decimal(10, 2)
+  bonus     Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CommissionList {
+  id        Int      @id @default(autoincrement())
+  deposit   Decimal  @db.Decimal(10, 2)
+  bet       Decimal  @db.Decimal(10, 2)
+  salary    Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

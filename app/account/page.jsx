@@ -165,7 +165,7 @@ export default function AccountPage() {
               <Wallet className="text-orange-600" />
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  ব্যালেন্স
+                  Balance
                 </p>
                 <p className="text-xl font-bold">৳{user?.balance || 0}</p>
               </div>
@@ -176,11 +176,11 @@ export default function AccountPage() {
                 className="flex gap-2 text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
                 onClick={() =>
                   toast.success(
-                    "ব্যালান্স ৫০ এর নিচে থাকলে টাকা জমা দিলে পুরনো টার্নওভার মুছে যাবে।"
+                    "If you deposit when the balance is below 50, the turnover resets to 0."
                   )
                 }
               >
-                টার্নওভার <InfoIcon className="text-orange-600 text-xl" />
+                Turnover <InfoIcon className="text-orange-600 text-xl" />
               </div>
               <p className="font-medium">৳{user?.turn_over || 0}</p>
             </div>
@@ -190,14 +190,14 @@ export default function AccountPage() {
           <div className="space-y-4">
             <InfoRow
               icon={<User2Icon className="text-orange-600" />}
-              label="ইউজারনেম"
+              label="username"
               value={user?.user_code || "N/A"}
             />
 
             <div className="flex justify-between items-center">
               <InfoRow
                 icon={<Phone className="text-orange-600" />}
-                label="ফোন নম্বর (রেফারেল)"
+                label="Phone Number (Referral)"
                 value={user?.phone_number}
               />
               <button
@@ -214,7 +214,7 @@ export default function AccountPage() {
 
             <InfoRow
               icon={<User className="text-orange-600" />}
-              label="আমন্ত্রণকারী"
+              label="Referrer"
               value={user?.invited_by || "N/A"}
             />
           </div>

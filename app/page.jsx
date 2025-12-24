@@ -17,6 +17,7 @@ import { LuCherry } from "react-icons/lu";
 import { motion } from "framer-motion";
 import providersList from "@/public/json/providers.json";
 import popularGamesList from "@/public/json/popular_games.json";
+import Image from "next/image";
 
 export default function AppPage() {
   const [allProviders, setAllProviders] = useState(providersList);
@@ -35,24 +36,28 @@ export default function AppPage() {
     //   icon: GiAbstract106,
     // },
     {
-      name: "হট",
+      name: "Hot",
       code: "hot",
       icon: FaFire,
+      img: "/categories/hot.png",
     },
     {
-      name: "স্লট",
+      name: "Slot",
       code: "slot",
       icon: LuCherry,
+      img: "/categories/slots.png",
     },
     {
-      name: "ক্রাশ",
+      name: "Crash",
       code: "crash",
       icon: GiAirplane,
+      img: "/categories/crash.png",
     },
     {
-      name: "ক্যাসিনো",
+      name: "Live",
       code: "live",
       icon: TbCardsFilled,
+      img: "/categories/live.png",
     },
     // {
     //   name: "ক্রিকেট",
@@ -65,19 +70,22 @@ export default function AppPage() {
     //   icon: FaDice,
     // },
     {
-      name: "মাছধরা",
+      name: "Fish",
       code: "fishing",
       icon: IoFish,
+      img: "/categories/fish.png",
     },
     {
-      name: "কার্ড",
+      name: "Poker",
       code: "poker",
       icon: GiCard10Clubs,
+      img: "/categories/poker.png",
     },
     {
-      name: "অন্যান্য",
+      name: "Other",
       code: "others", // "blackjack" and "virtual_games" combined as "other"
       icon: FaDiceD20,
+      img: "/categories/e_sports.png",
     },
   ];
 
@@ -145,22 +153,27 @@ export default function AppPage() {
 
   useEffect(() => {
     if (selectedType === "hot") {
-      setProviders(allProviders);
+      console.log("reached hot");
+      setProviders(null);
+      setSelectedProvider(null);
+      fetchProviderGames(allProviders[0]?.name);
       return;
     } else if (selectedType === "others") {
       setProviders(allProviders);
-      setSelectedProvider(providers[0]?.name || allProviders[0]?.name);
+      setSelectedProvider(allProviders[0]?.name || allProviders[0]?.name);
+      fetchProviderGames(allProviders[0]?.name);
     } else {
-      setProviders(
-        allProviders.filter((provider) =>
-          selectedType instanceof Array
-            ? provider.game_main_types.some((type) =>
-                selectedType.includes(type)
-              )
-            : provider.game_main_types.includes(selectedType)
-        )
+      console.log("reached else");
+      const providersArrayToSet = allProviders.filter((provider) =>
+        selectedType instanceof Array
+          ? provider.game_main_types.some((type) => selectedType.includes(type))
+          : provider.game_main_types.includes(selectedType)
       );
-      setSelectedProvider(providers[0]?.name || allProviders[0]?.name);
+      setProviders(providersArrayToSet);
+      console.log(providers);
+      setSelectedProvider(providersArrayToSet[0]?.name);
+      console.log("selectedProvider", providersArrayToSet[0]?.name);
+      fetchProviderGames(providersArrayToSet[0]?.name);
     }
   }, [selectedType]);
 
@@ -179,16 +192,24 @@ export default function AppPage() {
             slide.name ? (
               <div
                 key={index}
-                className={`text-sm cursor-pointer font-semibold flex justify-center items-center p-2 gap-1 rounded-3xl  ${
+                className={`text-sm cursor-pointer font-semibold flex flex-col aspect-square! h-16  justify-between items-center px-2 py-1 rounded-lg  ${
                   selectedType === slide.code
-                    ? "bg-yellow-400 dark:bg-yellow-600"
+                    ? "bg-yellow-400 dark:bg-yellow-500 text-stone-800"
                     : "bg-gray-200 dark:bg-gray-700"
                 } `}
                 onClick={() => {
                   setSelectedType(slide.code);
                 }}
               >
-                {<slide.icon className="text-xl" />}
+                {/* {<slide.icon className="text-xl" />} */}
+                <Image
+                  width={40}
+                  height={40}
+                  sizes=""
+                  className=" object-contain w-10! aspect-square! "
+                  src={slide.img}
+                  alt="icon"
+                />
                 <h2>{slide.name}</h2>
               </div>
             ) : null
@@ -197,26 +218,21 @@ export default function AppPage() {
 
         {/* Provider Selection & Games Section */}
         <div className="">
-          {/* <div className="flex items-center mb-3">
-            <TrendingUp className="h-6 w-6 text-orange-500 mr-2" />
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-orange-100">
-              Game Providers
-            </h2>
-          </div> */}
-
           {selectedType !== "hot" && loadingProviders ? (
             <div className="flex items-center justify-center py-2">
               <Loader className="h-6 w-6 animate-spin text-orange-500" />
               <span className="ml-2 text-gray-600 dark:text-gray-300">
-                প্রদানকারী লোড হচ্ছে...
+                Providers loading...
               </span>
             </div>
           ) : (
-            <GameCategories
-              slides={providers}
-              selectedProvider={selectedProvider}
-              setSelectedProvider={setSelectedProvider}
-            />
+            providers && (
+              <GameCategories
+                slides={providers}
+                selectedProvider={selectedProvider}
+                setSelectedProvider={setSelectedProvider}
+              />
+            )
           )}
 
           {/* Provider Games Section */}

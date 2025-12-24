@@ -7,27 +7,25 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const largeSlides = [
-  "/new_first_slider/slide_01.jpg",
-  "/new_first_slider/slide_02.jpg",
-  "/new_first_slider/slide_03.jpg",
-  "/new_first_slider/slide_04.jpg",
-  "/new_first_slider/slide_05.jpg",
-  "/new_first_slider/slide_06.jpg",
-  "/new_first_slider/slide_07.jpg",
+  "/first_slider/slide_01.jpg",
+  "/first_slider/slide_02.jpg",
+  "/first_slider/slide_03.jpg",
+  "/first_slider/slide_04.jpg",
+  "/first_slider/slide_05.jpg",
 ];
 
-const mobileSlides = [
-  "/new_first_slider_mobile/slide_01.jpg",
-  "/new_first_slider_mobile/slide_02.jpg",
-  "/new_first_slider_mobile/slide_03.jpg",
-  "/new_first_slider_mobile/slide_04.jpg",
-  "/new_first_slider_mobile/slide_05.jpg",
-];
+// const mobileSlides = [
+//   "/new_first_slider_mobile/slide_01.jpg",
+//   "/new_first_slider_mobile/slide_02.jpg",
+//   "/new_first_slider_mobile/slide_03.jpg",
+//   "/new_first_slider_mobile/slide_04.jpg",
+//   "/new_first_slider_mobile/slide_05.jpg",
+// ];
 
 export default function FirstSlider() {
   const [current, setCurrent] = useState(0);
 
-  const [slides, setSlides] = useState([]);
+  const [slides, setSlides] = useState(largeSlides);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
   const prevSlide = () =>
@@ -48,15 +46,15 @@ export default function FirstSlider() {
     else if (offset < -100 || velocity < -500) nextSlide();
   };
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const screenWidth = window.innerWidth;
-    if (screenWidth > 768) {
-      setSlides(largeSlides);
-    } else {
-      setSlides(mobileSlides);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window === "undefined") return;
+  //   const screenWidth = window.innerWidth;
+  //   if (screenWidth > 768) {
+  //     setSlides(largeSlides);
+  //   } else {
+  //     setSlides(mobileSlides);
+  //   }
+  // }, []);
 
   const data = [
     {
@@ -96,7 +94,8 @@ export default function FirstSlider() {
             slides?.map((slide, index) => (
               <div
                 key={index}
-                className="relative min-w-full aspect-9/4! md:aspect-96/19! "
+                // className="relative bg-green-500 min-w-full aspect-9/4! md:aspect-96/19! "
+                className="relative min-w-full aspect-36/19 "
               >
                 <Image
                   src={slide}
@@ -132,9 +131,8 @@ export default function FirstSlider() {
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-2 h-2 rounded-full transition ${
-              current === index ? "bg-white" : "bg-white/40"
-            }`}
+            className={`w-2 h-2 rounded-full transition ${current === index ? "bg-white" : "bg-white/40"
+              }`}
           />
         ))}
       </div>
@@ -176,14 +174,14 @@ export default function FirstSlider() {
         </motion.div>
       </div>
 
-      <div className="w-full aspect-8/1 my-6 relative">
+      {/* <div className="w-full aspect-8/1 my-6 relative">
         <Image
           alt="register banner"
           src="/banners/register_banner_home.jpg"
           fill
           className="object-contain"
         />
-      </div>
+      </div> */}
     </>
   );
 }

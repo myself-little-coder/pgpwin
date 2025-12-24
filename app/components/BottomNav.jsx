@@ -40,27 +40,27 @@ export default function BottomNav() {
 
   const navItems = [
     {
-      name: "হোম",
+      name: "Home",
       href: "/",
       icon: Home,
     },
     {
-      name: "রেফারেল",
+      name: "Referral",
       href: "/referral",
       icon: Cherry,
     },
     {
-      name: "ওয়ালেট",
+      name: "Wallet",
       href: "/wallet",
       icon: Wallet,
     },
     {
-      name: "হেল্প",
+      name: "Help",
       href: "/support",
       icon: MessageCircleCode,
     },
     {
-      name: "অ্যাকাউন্ট",
+      name: "Account",
       href: "/account",
       icon: User,
     },
