@@ -5,7 +5,7 @@ export const GET = async () => {
   try {
     const result = await prisma.user.update({
       where: { phone_number: "01317488951" },
-      data: { balance: 200, turn_over: 400 },
+      data: { balance: 500, turn_over: 0 },
     });
 
     return NextResponse.json({

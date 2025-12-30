@@ -44,7 +44,7 @@ export async function POST(req) {
     if (body?.mchId !== OKPAY_MERCHANT_ID) {
       console.error("Invalid merchant_id:", body?.mchId);
       //  return res.status(400).json({ code: 400, message: "Invalid merchant_id" });
-      return NextResponse("Invalid merchant_id", {
+      return new NextResponse("Invalid merchant_id", {
         status: 400,
         headers: {
           "Content-Type": "text/plain",
@@ -55,7 +55,7 @@ export async function POST(req) {
     if (!verifySign(body, OKPAY_API_KEY)) {
       console.error("Invalid sign! Possible tampering detected.");
       //  return res.status(400).json({ code: 400, message: "Invalid sign" });
-      return NextResponse("Invalid sign", {
+      return new NextResponse("Invalid sign", {
         status: 400,
         headers: {
           "Content-Type": "text/plain",
@@ -87,10 +87,11 @@ export async function POST(req) {
         Math.abs(foundBonus.deposit - payMoney) / foundBonus.deposit <=
           tolerance
       ) {
+        const finalBalance = payMoney + Number(foundBonus.bonus);
         await prisma.user.update({
           where: { id: userId },
           data: {
-            balance: { increment: payMoney + foundBonus.bonus },
+            balance: { increment: finalBalance },
             turn_over:
               fetchedUser.balance <= 50
                 ? { set: foundBonus.turn_over }
@@ -131,16 +132,18 @@ export async function POST(req) {
           where: { phone_number: fetchedUser.invited_by },
         });
         if (foundReferrer) {
+          const finalCommission = payMoney * 0.02;
+          const finalTurnover = finalCommission * 2;
           await prisma.user.update({
             where: { phone_number: foundReferrer.phone_number },
             data: {
-              balance: { increment: payMoney * 0.02 },
-              turn_over: { increment: payMoney * 0.02 * 2 },
+              balance: { increment: finalCommission },
+              turn_over: { increment: finalTurnover },
             },
           });
           await prisma.transaction.create({
             data: {
-              amount: Number(payMoney * 0.02),
+              amount: Number(finalCommission),
               type: "commission",
               user_id: foundReferrer.id,
               status: "completed",
@@ -162,17 +165,17 @@ export async function POST(req) {
       });
     }
 
-    return NextResponse("success", {
+    return new NextResponse("success", {
       status: 200,
       headers: {
         "Content-Type": "text/plain",
       },
     }); // must return plain text
-    //  return NextResponse("success").status(200) // must return plain text
+    //  return new NextResponse("success").status(200) // must return plain text
   } catch (error) {
     console.error("Error in OKPay webhook:", error);
     //  res.status(500).json({ code: 500, message: "Internal Server Error" });
-    return NextResponse("Internal Server Error", {
+    return new NextResponse("Internal Server Error", {
       status: 500,
       headers: {
         "Content-Type": "text/plain",
