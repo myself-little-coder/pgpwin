@@ -1,5 +1,4 @@
 import { prisma } from "@/app/lib/prisma";
-import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -148,7 +147,7 @@ export async function POST(req) {
             data: {
               user_id: user.id,
               type: "bonus",
-              amount: new Prisma.Decimal(bonusAmount),
+              amount: new parseFloat(bonusAmount),
               status: "completed",
             },
           });
@@ -156,8 +155,8 @@ export async function POST(req) {
           await tx.user.update({
             where: { id: user.id },
             data: {
-              balance: { increment: new Prisma.Decimal(bonusAmount) },
-              turn_over: { increment: new Prisma.Decimal(bonusAmount) },
+              balance: { increment: new parseFloat(bonusAmount) },
+              turn_over: { increment: new parseFloat(bonusAmount) },
             },
           });
         }
