@@ -19,8 +19,6 @@ export async function GET(req) {
     const take = Math.max(1, Math.min(100, limit));
     const skip = Math.max(0, (Math.max(1, page) - 1) * take) || 0;
 
-    console.log("skip", skip, "take", take);
-
     // total count for this user
     const total = await prisma.transaction.count({
       where: { user_id: userId },
@@ -42,19 +40,15 @@ export async function GET(req) {
       },
     });
 
-    console.log(
-      `Fetched ${transactions.length} transactions for user ${userId}`
-    );
-
     return NextResponse.json(
       { success: true, data: transactions, total },
       { status: 200 }
     );
   } catch (error) {
     console.error("Fetch transactions error:", error);
-    return NextResponse.json(
-      { success: false, message: "Failed to fetch transactions" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      message: "Failed to fetch transactions",
+    });
   }
 }

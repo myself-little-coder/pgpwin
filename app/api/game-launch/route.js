@@ -1,5 +1,5 @@
 // import axios from "axios";
-// import crypto from "crypto";
+// import crypto from "node:crypto";
 // import { getCurrentUser } from "@/app/lib/auth";
 // import { v4 as uuidv4 } from "uuid";
 // import { NextResponse } from "next/server";
@@ -96,7 +96,7 @@
 /////////////////////       Brute Force Version     ///////////////////////
 
 // import axios from "axios";
-// import crypto from "crypto";
+// import crypto from "node:crypto";
 // import { getCurrentUser } from "@/app/lib/auth";
 // import { v4 as uuidv4 } from "uuid";
 // import { NextResponse } from "next/server";
@@ -214,7 +214,7 @@
 // /////////////////////       New Force Version     ///////////////////////
 
 import axios from "axios";
-import crypto from "crypto";
+import crypto from "node:crypto";
 import { getCurrentUser } from "@/app/lib/auth";
 import { v4 as uuidv4 } from "uuid";
 import { NextResponse } from "next/server";

@@ -68,7 +68,6 @@ const SupportPage = () => {
       });
 
       socket.on("message_seen", (msg) => {
-        console.log("reached inside message seen", msg);
         setMessages((prev) =>
           prev.map((m) => (m.id === msg.id ? { ...m, seen: true } : m))
         );

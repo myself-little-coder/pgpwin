@@ -9,8 +9,7 @@ export async function POST(req) {
     const currentUser = await getCurrentUser();
 
     // Count form submissions today
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
     const now = new Date();
     const startOfDay = new Date(now);
     startOfDay.setHours(0, 0, 0, 0);

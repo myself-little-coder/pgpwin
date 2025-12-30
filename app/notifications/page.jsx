@@ -55,17 +55,17 @@ const NotificationsPage = () => {
     <div className="px-2 py-10">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold mb-6 text-gray-800 dark:text-light">
-          বিজ্ঞপ্তি ও ভাউচার
+          Notifications & Vouchers
         </h1>
 
         {loading ? (
           <div className="text-center py-10">
-            <p className="text-gray-600 dark:text-gray-300">লোড হচ্ছে...</p>
+            <p className="text-gray-600 dark:text-gray-300">Loading...</p>
           </div>
         ) : vouchers.length === 0 ? (
           <div className="text-center py-10 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <p className="text-gray-600 dark:text-gray-300">
-              কোনও উপলব্ধ ভাউচার নেই
+              No vouchers available
             </p>
           </div>
         ) : (
@@ -87,8 +87,8 @@ const NotificationsPage = () => {
                   {/* Header */}
                   <div className="flex items-center gap-2">
                     <Gift className="h-4 w-4 text-orange-600" />
-                    <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-                      কোড: {voucher.code}
+                    <p className="font-semibold text-gray-900 dark:text-gray-300 text-sm">
+                      Code: {voucher.code}
                     </p>
                   </div>
 
@@ -102,7 +102,7 @@ const NotificationsPage = () => {
                   {/* Amount */}
                   <p
                     className={`text-lg font-bold text-center ${
-                      collected ? "text-gray-500" : "text-green-600"
+                      collected ? "text-gray-200" : "text-green-600"
                     }`}
                   >
                     ৳{parseFloat(voucher.amount).toFixed(2)}
@@ -116,26 +116,26 @@ const NotificationsPage = () => {
                     className={`w-full py-2 rounded-lg font-semibold text-sm transition
             ${
               collected
-                ? "bg-gray-400 text-white cursor-not-allowed flex items-center justify-center gap-1"
+                ? "bg-gray-600 text-white cursor-not-allowed flex items-center justify-center gap-1"
                 : "bg-orange-600 hover:bg-orange-700 text-white"
             }
           `}
                   >
                     {collected ? (
                       <span className="flex items-center gap-1">
-                        <CheckCircle className="h-4 w-4" /> সংগ্রহিত
+                        <CheckCircle className="h-4 w-4" /> Claimed
                       </span>
                     ) : claiming === voucher.id ? (
-                      "সংগ্রহ..."
+                      "Claiming..."
                     ) : (
-                      "সংগ্রহ করুন"
+                      "Claim"
                     )}
                   </motion.button>
 
                   {/* Date */}
                   <p className="text-xs text-gray-500 flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    {new Date(voucher.createdAt).toLocaleString("bn-BD")}
+                    {new Date(voucher.createdAt).toLocaleString()}
                   </p>
                 </motion.div>
               );

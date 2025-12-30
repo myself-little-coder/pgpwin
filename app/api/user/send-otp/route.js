@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
 import axios from "axios";
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 export async function GET() {
   try {
@@ -40,10 +40,8 @@ export async function POST(request) {
       );
     }
 
-    console.log("Normalized phone:", phone);
     // check user exists
     const auser = await prisma.user.findFirst({});
-    console.log("User lookup result:", auser);
     const user = await prisma.user.findUnique({
       where: { phone_number: String(phone) },
     });
@@ -71,7 +69,6 @@ export async function POST(request) {
       where: { phone: phone },
       orderBy: { createdAt: "desc" },
     });
-    console.log("All OTPs for phone:", phone, allOtps);
 
     const MAX_PER_DAY = 10;
     if (todaysCount >= MAX_PER_DAY) {
@@ -151,9 +148,6 @@ export async function POST(request) {
       };
 
       const smsRes = await axios.post(url, payload, { headers });
-
-      console.log("otp is:", otp);
-      console.log("SMS Response:", smsRes.data);
     } catch (smsErr) {
       console.error(
         "SMS send error:",

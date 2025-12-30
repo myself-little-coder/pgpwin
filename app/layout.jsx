@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "PGP Win বাংলাদেশের সেরা slot & live casino সাইট",
+  title: "PGP Win - Bangladesh's Best Online Casino Slot Site",
   description:
-    "24 ঘন্টা বাংলাভাষী গ্রাহক পরিষেবা, বাংলাদেশের সেরা স্লট সাইট। বাজি খেলায় সেরা ক্যাসিনো স্লট বোনাস। অর্থ প্রদান করুন এবং জয় করুন!",
+    "Play the best online casino slots in Bangladesh at PGP Win. Enjoy top games, secure payments, and exciting bonuses. Join now for endless fun!",
 };
 
 export default function RootLayout({ children }) {

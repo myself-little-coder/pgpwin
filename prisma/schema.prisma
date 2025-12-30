@@ -13,6 +13,8 @@ model User {
   id                Int               @id @default(autoincrement())
   status            String            @default("Active") @map("status")
   phone_number      String            @unique
+  e_wallet_number   String?
+  name_in_wallet    String?
   user_code         String?
   recovery_code     String?
   two_fa_secret     String?
@@ -118,7 +120,7 @@ model BonusList {
   name      String
   deposit   Decimal           @db.Decimal(10, 2)
   bonus     Decimal           @db.Decimal(10, 2)
-  turn_over     Decimal           @db.Decimal(10, 2)
+  turn_over     Decimal       @db.Decimal(10, 2)
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
 }

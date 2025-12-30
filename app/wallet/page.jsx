@@ -16,24 +16,11 @@ import {
 import axios from "axios";
 import { format } from "date-fns";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
-const channels = [
-  {
-    name: "okpay",
-    method: "BKASH",
-    deposit_limit: "100-25K",
-    withdraw_limit: "100-50K",
-    payin_api: "/api/create-payin/okpay",
-    payout_api: "/api/create-payout/okpay",
-  },
-  {
-    name: "okpay",
-    method: "NAGAD",
-    deposit_limit: "100-25K",
-    withdraw_limit: "100-50K",
-    payin_api: "/api/create-payin/okpay",
-    payout_api: "/api/create-payout/okpay",
-  },
+const paymentMapping = [
+  { name: "BKASH", imgUrl: "/bkash.png", channels: ["okpay"] },
+  { name: "NAGAD", imgUrl: "/nagad.png", channels: ["okpay"] },
 ];
 
 // export const payment_server_url = "http://3.111.203.166:4000";
@@ -46,11 +33,14 @@ export default function WalletPage() {
   const [account, setAccount] = useState("");
   const [userName, setUserName] = useState("");
   const [type, setType] = useState("deposit"); // deposit or withdraw
-  const [selectedChannel, setSelectedChannel] = useState(null);
-  const [selectedMethod, setSelectedMethod] = useState(null);
+  const [selectedChannel, setSelectedChannel] = useState("okpay");
+  const [selectedMethod, setSelectedMethod] = useState("BKASH");
+  const [selectedBonus, setSelectedBonus] = useState(null);
+  const [bonuses, setBonuses] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
+  const searchParams = useSearchParams();
 
   // transactions section
   const [transactions, setTransactions] = useState([]);
@@ -60,20 +50,29 @@ export default function WalletPage() {
   const ITEMS_PER_PAGE = 20;
   const [totalTransactions, setTotalTransactions] = useState(0);
 
-  const [showBonus, setShowBonus] = useState(false);
-
-  const bonuses = [
-    { bonus: 150, deposit: 300, percent: "50%" },
-    { bonus: 250, deposit: 500, percent: "50%" },
-    { bonus: 500, deposit: 1000, percent: "50%" },
-    { bonus: 1000, deposit: 2000, percent: "50%" },
-  ];
+  useEffect(() => {
+    const typeParam = searchParams.get("type");
+    if (typeParam === "deposit" || typeParam === "withdraw") {
+      setType(typeParam);
+    }
+  }, []);
 
   useEffect(() => {
     fetchUserData();
     // fetch transactions when page changes
     fetchTransactions(currentPage);
+    fetchBonuses();
   }, [currentPage]);
+
+  const fetchBonuses = async () => {
+    try {
+      const res = await fetch("/api/bonuses");
+      const data = await res.json();
+      if (data?.success) setBonuses(data.data || []);
+    } catch (err) {
+      console.error("Failed to fetch bonuses", err);
+    }
+  };
 
   const fetchTransactions = async (page = 1) => {
     try {
@@ -95,12 +94,6 @@ export default function WalletPage() {
 
   const fetchUserData = async () => {
     try {
-      const depositCount = await axios.get("/api/user/deposit-count");
-
-      if (depositCount.data?.depositCount === 0) {
-        setShowBonus(true);
-      }
-
       setLoadingUser(true);
 
       const response = await fetch("/api/user/profile");
@@ -117,7 +110,6 @@ export default function WalletPage() {
   };
 
   const handleSubmit = async () => {
-    console.log("reached");
     if (!amount || !selectedChannel || !selectedMethod) {
       toast.error("Please fill in all required fields");
       return;
@@ -134,34 +126,17 @@ export default function WalletPage() {
       }
     }
 
-    const channelDetails = channels.find(
-      (ch) => ch.name === selectedChannel.name && ch.method === selectedMethod
-    );
-
     if (type === "deposit") {
-      if (
-        amount < Number(channelDetails.deposit_limit.split("-")[0]) ||
-        amount > parseFloat(channelDetails.deposit_limit.split("-")[1]) * 1000
-      ) {
-        console.log("failed limits");
-        toast.error(
-          `Deposit amount must be between ${channelDetails.deposit_limit}`
-        );
+      if (amount < 100 || amount >= 25000) {
+        toast.error(`Deposit amount must be between 100 to 25k`);
         return;
       }
     } else {
-      if (
-        amount < Number(channelDetails.withdraw_limit.split("-")[0]) ||
-        amount > parseFloat(channelDetails.withdraw_limit.split("-")[1]) * 1000
-      ) {
-        toast.error(
-          `Withdraw amount must be between ${channelDetails.withdraw_limit}`
-        );
+      if (amount < 300 || amount > 25000) {
+        toast.error(`Withdraw amount must be between 300 and 25k`);
         return;
       }
     }
-
-    console.log("passed limits");
 
     if (isNaN(amount) || amount <= 0) {
       toast.error("Please enter a valid amount");
@@ -171,61 +146,55 @@ export default function WalletPage() {
     setLoading(true);
 
     try {
-      const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(";").shift();
-      };
-
-      const token = getCookie("auth_token");
-
       if (type === "deposit") {
-        const response = await fetch(
-          `${payment_server_url}${selectedChannel.payin_api}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              money: amount,
-              pay_type: selectedMethod,
-              token,
-              returnUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/wallet`,
-            }),
-          }
-        );
+        // use local payin endpoint (same as account/deposit)
+        const payinApi =
+          selectedChannel?.name === "okpay"
+            ? "/api/payin/okpay"
+            : "/api/payin/okpay";
+
+        const response = await fetch(payinApi, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            money: amount,
+            pay_type: selectedMethod,
+            bonus_id: selectedBonus?.id || null,
+          }),
+        });
 
         const data = await response.json();
-        console.log("response data:", data, data?.success, data?.url);
         if (data?.success && data?.url) {
           window.location.href = data.url;
         } else {
-          toast.error(data.message);
+          toast.error(data?.message || "Failed to initiate deposit");
         }
       } else if (type === "withdraw") {
-        const response = await fetch(
-          `${payment_server_url}${selectedChannel.payout_api}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              money: amount,
-              pay_type: selectedMethod,
-              account: account,
-              userName: userName,
-              token,
-            }),
-          }
-        );
+        // use local payout endpoint (same as account/withdraw)
+        const payoutApi =
+          selectedChannel?.name === "okpay"
+            ? "/api/payout/okpay"
+            : "/api/payout/okpay";
+
+        const response = await fetch(payoutApi, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            money: amount,
+            pay_type: selectedMethod,
+            account: account,
+            userName: userName,
+          }),
+        });
         const data = await response.json();
-        console.log("withdraw response data:", data);
         if (data?.success) {
           toast.success("Payout request created successfully");
         } else {
-          toast.error(data.message || "Failed to create payout");
+          toast.error(data?.message || "Failed to create payout");
         }
       }
     } catch (error) {
@@ -267,67 +236,17 @@ export default function WalletPage() {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Balance
               </p>
-              <p className="text-2xl font-bold">৳{user?.balance || 0}</p>
+              <p className="text-xl font-bold">৳{user?.balance || 0}</p>
             </div>
             <div className="bg-orange-50 dark:bg-gray-700 p-4 rounded-lg">
               <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                 <TrendingUp className="w-4 h-4 mr-1" />
                 <span>Turnover</span>
               </div>
-              <p className="text-2xl font-bold">৳{user?.turn_over || 0}</p>
+              <p className="text-xl font-bold">৳{user?.turn_over || 0}</p>
             </div>
           </div>
         </div>
-
-        {/* Bonus Offers */}
-        {showBonus && (
-          <div className="h-dvh w-full bg-black/40 dark:bg-white/10 fixed top-0 left-0 ">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white fixed max-w-[400px] w-[95vw] min-w-[310px] -translate-1/2 top-1/2 left-1/2 dark:bg-slate-900 rounded-xl p-6 mb-6 shadow-lg"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-orange-600">
-                  Welcome Bonus Offers! 🎉
-                </h3>
-                <button
-                  onClick={() => setShowBonus(false)}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
-                >
-                  <X className="w-7 h-7 rounded-full border-2 border-red-600 text-red-600" />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {bonuses.map((b, i) => (
-                  <div
-                    onClick={() => {
-                      setAmount(b.deposit);
-                      setShowBonus(false);
-                    }}
-                    key={i}
-                    className="bg-linear-to-br from-orange-100 to-orange-50 dark:from-gray-700 dark:to-gray-800 p-4 rounded-lg border-2 border-orange-200 dark:border-orange-800"
-                  >
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-xl font-bold text-orange-600 dark:text-orange-400">
-                          ৳{b.bonus}
-                        </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          Bonus on ৳{b.deposit}
-                        </p>
-                      </div>
-                      <div className="bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
-                        {b.percent} Bonus
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        )}
 
         {/* Transaction Type */}
         <div className="grid grid-cols-2 gap-4 mb-6">
@@ -355,137 +274,151 @@ export default function WalletPage() {
           </button>
         </div>
 
-        {/* Amount Input */}
+        {/* Method -> Channel -> Amount -> Bonus card */}
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6 shadow-lg">
-          {/* <div>
-            <label className="block text-sm font-medium mt-2 mb-1">
-              Amount (৳)
-            </label>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="Enter amount"
-              onWheel={(e) => {
-                e.currentTarget.blur();
-              }}
-              className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
-            />
-          </div> */}
-          <div>
-            <label className="block text-sm font-medium mt-2 mb-1">
-              Amount (৳)
-            </label>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="Enter amount"
-              onWheel={(e) => {
-                e.currentTarget.blur();
-              }}
-              className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
-            />
-            <div className="flex justify-around space-x-2 mt-5">
-              {[100, 300, 500, 1000].map((item, idx) => {
-                return (
-                  <div
-                    className="font-semibold p-2 rounded-lg bg-gray-200 dark:bg-slate-700  "
-                    key={idx}
-                    onClick={() => setAmount(item)}
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Payment Method
+              </label>
+              <div className="flex gap-3">
+                {paymentMapping.map((pm) => (
+                  <button
+                    key={pm.name}
+                    onClick={() => {
+                      setSelectedChannel(pm.channels[0]);
+                      setSelectedMethod(pm.name);
+                    }}
+                    className={`px-3 py-2 aspect-square h-20 rounded-lg border-2 relative ${
+                      selectedMethod === pm.name
+                        ? "border-orange-500 "
+                        : "border-gray-200 dark:border-gray-700"
+                    }`}
                   >
-                    {item}৳
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          {type == "withdraw" && (
-            <>
-              <div>
-                <label className="block text-sm font-medium mt-2 mb-1">
-                  Account Number
-                </label>
-                <input
-                  type="number"
-                  value={account}
-                  onChange={(e) => setAccount(e.target.value)}
-                  placeholder="eg. 01747-032XXX"
-                  onWheel={(e) => {
-                    e.currentTarget.blur();
-                  }}
-                  className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mt-2 mb-1">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  placeholder="eg. Rahim Badsah"
-                  onWheel={(e) => {
-                    e.currentTarget.blur();
-                  }}
-                  className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
-                />
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* Payment Channels */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
-          <h3 className="text-lg font-semibold mb-4 text-orange-600">
-            Select Payment Channel
-          </h3>
-          <div className="flex justify-center items-center gap-4">
-            {channels.map((channel, idx) => (
-              <div key={idx} className="space-y-3 w-32 max-w-40">
-                <button
-                  onClick={() => {
-                    setSelectedChannel(channel);
-                    setSelectedMethod(channel.method);
-                    setShowConfirmation(true);
-                  }}
-                  className={` p-2 py-4 rounded-lg border-2 transition-all ${
-                    selectedChannel?.name === channel.name &&
-                    selectedMethod.method === channel.method
-                      ? "border-orange-500 bg-orange-50 dark:bg-gray-700"
-                      : "border-gray-200 dark:border-gray-700"
-                  }`}
-                >
-                  <div className="flex flex-col justify-cehnter items-center">
+                    {/* {pm.name} */}
                     <Image
-                      alt="img"
-                      src={
-                        channel.method == "BKASH"
-                          ? "/bkash.png"
-                          : channel.method == "NAGAD"
-                          ? "/nagad.png"
-                          : ""
-                      }
-                      width={60}
-                      height={60}
-                      className=" aspect-square object-cover "
+                      src={pm.imgUrl}
+                      alt={pm.name}
+                      className="w-full object-contain"
+                      fill
                     />
-                    <span className="text-xs uppercase flex justify-center">
-                      {channel.name}-{channel.method}
-                    </span>
-                    <span className="text-sm">
-                      {type === "deposit"
-                        ? channel.deposit_limit
-                        : channel.withdraw_limit}
-                    </span>
-                    {/* {selectedChannel?.name === channel.name && (
-                      <Check className="w-5 h-5 text-orange-500" />
-                    )} */}
-                  </div>
-                </button>
+                  </button>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Channel :
+              </label>
+              {selectedMethod ? (
+                paymentMapping
+                  .find((p) => p.name === selectedMethod)
+                  .channels.map((ch) => (
+                    <button
+                      key={ch}
+                      onClick={() => setSelectedChannel(ch)}
+                      className={`px-3 py-2 rounded-lg border-2 ${
+                        selectedChannel === ch
+                          ? "border-orange-500 "
+                          : "border-gray-200 dark:border-gray-700"
+                      }`}
+                    >
+                      {ch}
+                    </button>
+                  ))
+              ) : (
+                <p className="text-sm text-gray-500">
+                  Select a payment method first
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Amount (৳)
+              </label>
+              <input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="Enter amount"
+                className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
+              />
+              <div className="flex gap-2 mt-3 flex-wrap">
+                {[100, 200, 500, 5000, 10000].map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => setAmount(q)}
+                    className="px-3 py-2 rounded-lg bg-gray-200 dark:bg-slate-700 font-semibold"
+                  >
+                    {q}৳
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {type === "deposit" && (
+              <div>
+                <label className="block text-sm font-medium mb-2">Bonus</label>
+                <select
+                  value={selectedBonus?.id || ""}
+                  onChange={(e) =>
+                    setSelectedBonus(
+                      bonuses.find((b) => String(b.id) === e.target.value) ||
+                        null
+                    )
+                  }
+                  className="w-full p-2 rounded-lg bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"
+                >
+                  <option value="">No bonus</option>
+                  {bonuses.map((b) => (
+                    <option
+                      key={b.id}
+                      value={b.id}
+                    >{`${b.name} — ৳${b.deposit} (+৳${b.bonus})`}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {type === "withdraw" && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium mt-2 mb-1">
+                    Account Number
+                  </label>
+                  <input
+                    type="text"
+                    value={account}
+                    onChange={(e) => setAccount(e.target.value)}
+                    placeholder="eg. 01747-032XXX"
+                    className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mt-2 mb-1">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    placeholder="eg. Rahim Badsah"
+                    className="w-full p-2 rounded-lg bg-orange-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-orange-500 outline-none"
+                  />
+                </div>
+              </>
+            )}
+
+            <div>
+              <button
+                onClick={() => setShowConfirmation(true)}
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg"
+              >
+                {type === "deposit" ? "Deposit" : "Withdraw"}
+              </button>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -530,7 +463,7 @@ export default function WalletPage() {
                             : "text-orange-600 dark:text-orange-400"
                         }`}
                       >
-                        {transaction.type === "deposit" ? "+" : "-"}৳
+                        {transaction.type === "withdraw" ? "-" : "+"}৳
                         {transaction.amount}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -548,7 +481,7 @@ export default function WalletPage() {
                             : "text-orange-600 dark:text-orange-400"
                         }`}
                       >
-                        {transaction.type === "deposit" ? "+" : "-"}৳
+                        {transaction.type === "withdraw" ? "-" : "+"}৳
                         {transaction.amount}
                       </p>
                       <div
@@ -779,9 +712,7 @@ export default function WalletPage() {
                       Limit
                     </span>
                     <span className="font-semibold">
-                      {type === "deposit"
-                        ? selectedChannel?.deposit_limit
-                        : selectedChannel?.withdraw_limit}
+                      {type === "deposit" ? "100 to 25k" : "300 to 25k"}
                     </span>
                   </div>
                 </div>

@@ -5,7 +5,7 @@ import axios from "axios";
 
 export async function POST(request) {
   try {
-    const { username, phone_number, password } = await request.json();
+    const { username, phone_number, password, fp_id } = await request.json();
 
     // Validate input
     if (!password) {
@@ -67,19 +67,13 @@ export async function POST(request) {
         }));
 
     if (!user) {
-      return NextResponse.json(
-        { message: "Invalid phone number or password" },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "Invalid credentials" });
     }
 
     // Verify password
     const isValidPassword = await comparePasswords(password, user.password);
     if (!isValidPassword) {
-      return NextResponse.json(
-        { message: "Invalid phone number or password" },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "Invalid credentials" });
     }
 
     // Generate JWT token

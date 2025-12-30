@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/prisma";
 import { hashPassword, generateToken } from "@/app/lib/auth";
 import { NextResponse } from "next/server";
 import axios from "axios";
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 export async function POST(request) {
   try {
@@ -14,20 +14,16 @@ export async function POST(request) {
       request.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
 
     if (!phone_number || !username || !password) {
-      return NextResponse.json(
-        { message: "Phone number and password are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        message: "Phone number and password are required",
+      });
     }
 
     if (phone_number == invited_by) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "You can not use your phone as invite code.",
-        },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        success: false,
+        message: "You can not use your phone as invite code.",
+      });
     }
 
     const existingUser = await prisma.user.findFirst({
@@ -39,17 +35,15 @@ export async function POST(request) {
     });
 
     if (existingUserWithSameUsername) {
-      return NextResponse.json(
-        { message: "User with this username already exists" },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        message: "User with this username already exists",
+      });
     }
 
     if (existingUser) {
-      return NextResponse.json(
-        { message: "User with this phone number already exists" },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        message: "User with this phone number already exists",
+      });
     }
 
     // const existingUserWithSameFPAndIp = await prisma.user.findFirst({
@@ -62,7 +56,6 @@ export async function POST(request) {
     // if (existingUserWithSameFPAndIp) {
     //   return NextResponse.json(
     //     { message: "You already have an account with this device." },
-    //     { status: 400 }
     //   );
     // }
 
@@ -140,9 +133,8 @@ export async function POST(request) {
     return response;
   } catch (error) {
     console.error("Registration error:", error);
-    return NextResponse.json(
-      { message: "An error occurred during registration" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      message: "An error occurred during registration",
+    });
   }
 }

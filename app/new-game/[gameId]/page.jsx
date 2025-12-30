@@ -56,8 +56,6 @@ export default function GamePage() {
           gameId,
         });
 
-        console.log(res.data);
-
         if (isMounted && res.data.url) {
           setUrl(res.data.url); // set iframe only after receiving fresh token
         }

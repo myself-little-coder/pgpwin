@@ -2,11 +2,11 @@
 
 import { CircleQuestionMark, Eye } from "lucide-react";
 import Image from "next/image";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, use, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,10 +24,17 @@ const RegisterPage = () => {
   const pathname = usePathname();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const invite_code = searchParams?.get("invite_code");
+    if (invite_code?.length == 11 && referralRef.current) {
+      referralRef.current.value = invite_code;
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Submitting registration form");
 
     const username = usernameRef.current?.value.trim();
     const phone = phoneRef.current?.value.trim();
@@ -36,16 +43,16 @@ const RegisterPage = () => {
     const referral = referralRef.current?.value.trim();
 
     if (!username || username.length < 6 || username.length > 15) {
-      return toast.error("ব্যবহারকারীর নাম 6-15 অক্ষর হতে হবে");
+      return toast.error("Username must be 6–15 characters long");
     }
     if (!phone || phone.length !== 11) {
-      return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 01312XXXXXX)");
+      return toast.error("Enter a valid mobile number (example: 01312XXXXXX)");
     }
     if (!password || password.length < 6 || password.length > 14) {
-      return toast.error("পাসওয়ার্ড ৬-১৪ অক্ষর হতে হবে");
+      return toast.error("Password must be 6–14 characters long");
     }
     if (password !== confirmPassword) {
-      return toast.error("পাসওয়ার্ড মিলছে না");
+      return toast.error("Passwords do not match");
     }
 
     try {
@@ -69,31 +76,20 @@ const RegisterPage = () => {
       const data = await res.json();
       setIsSubmitting(false);
       if (data.success) {
-        toast.success("নিবন্ধন সফল হয়েছে!");
+        toast.success("Registration successful!");
         window.location.href = "/";
       } else {
-        return toast.error(data.message || "নিবন্ধন ব্যর্থ");
+        return toast.error(data.message || "Registration failed");
       }
     } catch (err) {
       setIsSubmitting(false);
       console.log(err);
-      toast.error("কিছু ভুল হয়েছে, পরে চেষ্টা করুন");
+      toast.error("Something went wrong, please try again later");
     }
   };
 
   return (
     <div className="mx-auto md:my-10 w-full md:w-auto">
-      <div className="md:block hidden text-center space-y-2 mb-5">
-        <h2 className="text-xl font-semibold">একাউন্ট তৈরি করুন</h2>
-        <p>
-          আসুন আপনাকে No.1 ক্যাসিনো এবং বেটিং প্ল্যাটফর্মে নিবন্ধন করিয়ে দিই
-        </p>
-      </div>
-
-      <p className="block md:hidden py-2 text-center bg-black dark:bg-white text-white dark:text-black w-full">
-        নিবন্ধন করুন
-      </p>
-
       <form
         onSubmit={handleSubmit}
         className="md:w-lg bg-white min-h-dvh dark:bg-stone-900 pb-10"
@@ -108,13 +104,13 @@ const RegisterPage = () => {
         </div> */}
 
         <div className=" py-5 border-b-2 border-orange-600 text-lg font-semibold flex justify-center items-center mt-2 text-blue-600 space-x-2 ">
-          <Link href="/auth/login">লগইন</Link>
+          <Link href="/auth/login">Login</Link>
           <p className="text-dark dark:text-light">|</p>
           <Link
             className="text-orange-700 border-b-2 border-orange-600"
             href="/auth/register"
           >
-            রেজিস্টার
+            Register
           </Link>
         </div>
 
@@ -122,7 +118,7 @@ const RegisterPage = () => {
           {/* Username */}
           <div className="flex flex-col relative">
             <label htmlFor="username" className="relative">
-              ব্যবহারকারীর নাম{" "}
+              Username{" "}
               <span className="text-red-600 font-semibold text-lg">*</span>
               <CircleQuestionMark
                 className="absolute text-lg right-0 top-0 cursor-pointer"
@@ -131,22 +127,22 @@ const RegisterPage = () => {
             </label>
             {showUsernameTooltip && (
               <span className="bg-black/70 dark:bg-white/70 py-0.5 px-2 rounded-sm text-sm text-white dark:text-black absolute right-6 top-0 z-10">
-                কমপক্ষে ৬ থেকে ১১টি অক্ষর থাকতে হবে
+                Must be at least 6 to 11 characters
               </span>
             )}
             <input
               ref={usernameRef}
               id="username"
               type="text"
-              placeholder="এখানে ইউজারনেম পূরণ করুন"
-              className="px-2 py-1 border outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+              placeholder="Enter username here"
+              className="px-2 py-1 border outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
             />
           </div>
 
           {/* Phone */}
           <div className="flex flex-col relative">
             <label htmlFor="phoneNumber" className="relative">
-              মোবাইল নম্বর{" "}
+              Mobile Number{" "}
               <span className="text-red-600 font-semibold text-lg">*</span>
             </label>
             <div className="flex space-x-2">
@@ -154,7 +150,7 @@ const RegisterPage = () => {
                 id="countryCode"
                 type="text"
                 value="+88"
-                className="px-2 border w-16 outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                className="px-2 border w-16 outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
                 readOnly
               />
               <input
@@ -162,7 +158,7 @@ const RegisterPage = () => {
                 id="phoneNumber"
                 type="number"
                 placeholder="013637XXXX"
-                className="grow px-2 py-1 w-full border outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                className="grow px-2 py-1 w-full border outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
                 onWheel={(e) => e.currentTarget.blur()}
               />
             </div>
@@ -171,7 +167,7 @@ const RegisterPage = () => {
           {/* Password */}
           <div className="flex flex-col relative">
             <label htmlFor="password" className="relative">
-              পাসওয়ার্ড{" "}
+              Password{" "}
               <span className="text-red-600 font-semibold text-lg">*</span>
               <CircleQuestionMark
                 className="absolute text-lg right-0 top-0 cursor-pointer"
@@ -180,7 +176,7 @@ const RegisterPage = () => {
             </label>
             {showPasswordTooltip && (
               <span className="bg-black/70 dark:bg-white/70 py-0.5 px-2 rounded-sm text-sm text-white dark:text-black absolute right-6 top-0 z-10">
-                কমপক্ষে ৬ থেকে ১৪টি অক্ষর থাকতে হবে
+                Must be at least 6 to 14 characters
               </span>
             )}
             <div className="relative w-full">
@@ -188,8 +184,8 @@ const RegisterPage = () => {
                 ref={passwordRef}
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="এখানে পাসওয়ার্ড পূরণ করুন"
-                className="px-2 py-1 border w-full outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                placeholder="Enter password here"
+                className="px-2 py-1 border w-full outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
               />
               <Eye
                 onClick={() => {
@@ -204,7 +200,7 @@ const RegisterPage = () => {
           {/* Confirm Password */}
           <div className="flex flex-col relative">
             <label htmlFor="confirmPassword" className="relative">
-              পাসওয়ার্ড নিশ্চিত করুন{" "}
+              Confirm Password{" "}
               <span className="text-red-600 font-semibold text-lg">*</span>
             </label>
             <div className="relative w-full">
@@ -212,8 +208,8 @@ const RegisterPage = () => {
                 ref={confirmPasswordRef}
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
-                placeholder="এখানে পাসওয়ার্ড নিশ্চিত করুন"
-                className="px-2 py-1 border w-full outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                placeholder="Confirm password here"
+                className="px-2 py-1 border w-full outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
               />
               <Eye
                 onClick={() => {
@@ -228,15 +224,15 @@ const RegisterPage = () => {
           {/* Referral */}
           <div className="flex flex-col relative">
             <label htmlFor="referral" className="relative">
-              রেফারেল কোড
+              Referral Code
             </label>
             <div className="relative w-full">
               <input
                 ref={referralRef}
                 id="referral"
                 type="text"
-                placeholder="( ঐচ্ছিক )"
-                className="px-2 py-1 border w-full outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                placeholder="( Optional )"
+                className="px-2 py-1 border w-full outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
               />
             </div>
           </div>
@@ -245,9 +241,9 @@ const RegisterPage = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-4 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition disabled:opacity-50"
+            className="w-full mt-4 py-2 bg-orange-700 text-white font-semibold rounded-lg hover:bg-orange-600 transition disabled:opacity-50"
           >
-            নিবন্ধন
+            Register
           </button>
         </div>
       </form>

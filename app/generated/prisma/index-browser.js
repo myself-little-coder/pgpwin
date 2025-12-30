@@ -125,6 +125,8 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   status: 'status',
   phone_number: 'phone_number',
+  e_wallet_number: 'e_wallet_number',
+  name_in_wallet: 'name_in_wallet',
   user_code: 'user_code',
   recovery_code: 'recovery_code',
   two_fa_secret: 'two_fa_secret',
@@ -207,6 +209,7 @@ exports.Prisma.BonusListScalarFieldEnum = {
   name: 'name',
   deposit: 'deposit',
   bonus: 'bonus',
+  turn_over: 'turn_over',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

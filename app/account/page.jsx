@@ -14,11 +14,43 @@ import {
   EyeOff,
   Check,
   CheckCircle,
+  Settings,
+  ArrowRight,
+  Lock,
+  Gift,
+  Link2,
+  UserRoundPen,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { SecurityMeter } from "./SecurityMeter";
+import Link from "next/link";
 import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import { GoArrowUpRight } from "react-icons/go";
+import { AiFillDashboard } from "react-icons/ai";
+import {
+  MdOutlineLockPerson,
+  MdOutlineWorkspacePremium,
+  MdWorkspacePremium,
+} from "react-icons/md";
+import { GiWallet } from "react-icons/gi";
+import {
+  FaBell,
+  FaCheckCircle,
+  FaComment,
+  FaComments,
+  FaFileInvoiceDollar,
+  FaGift,
+  FaInfoCircle,
+  FaLink,
+  FaLock,
+  FaWallet,
+  FaEdit,
+  FaUserEdit,
+} from "react-icons/fa";
+import Image from "next/image";
+import { IoCopy, IoWalletSharp } from "react-icons/io5";
+import { HiMiniUsers } from "react-icons/hi2";
 
 export default function AccountPage() {
   const router = useRouter();
@@ -46,6 +78,12 @@ export default function AccountPage() {
   const [success, setSuccess] = useState("");
   const [copying, setCopying] = useState(false);
 
+  const [currentUserPic, setCurrentUserPic] = useState(
+    "/user_pics/user_img_02.jpg"
+  );
+
+  const [showPicPicker, setShowPicPicker] = useState(false);
+
   useEffect(() => {
     if (my2fa && displayName && verifiedHuman) {
       setScore(4);
@@ -66,9 +104,10 @@ export default function AccountPage() {
 
   useEffect(() => {
     fetchUserData();
-
     setDisplayName(localStorage.getItem("displayName") || "");
     setVerifiedHuman(localStorage.getItem("verifiedHuman") === "true");
+    const saved = localStorage.getItem("profilePic");
+    if (saved) setCurrentUserPic(saved);
     // setMy2fa(localStorage.getItem("my2fa") === "true");
   }, []);
 
@@ -86,11 +125,13 @@ export default function AccountPage() {
     }
   };
 
-  const copyInviteCode = async () => {
+  const copyInviteLink = async () => {
     if (!user?.phone_number) return;
 
     try {
-      await navigator.clipboard.writeText(user.phone_number);
+      await navigator.clipboard.writeText(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/register/?invite_code=${user?.phone_number}`
+      );
       setCopying(true);
       setTimeout(() => setCopying(false), 1800);
     } catch (e) {
@@ -132,6 +173,15 @@ export default function AccountPage() {
     }
   };
 
+  const allUserPics = [
+    "/user_pics/user_img_01.jpg",
+    "/user_pics/user_img_02.jpg",
+    "/user_pics/user_img_03.jpg",
+    "/user_pics/user_img_04.jpg",
+    "/user_pics/user_img_05.jpg",
+    "/user_pics/user_img_06.jpg",
+  ];
+
   if (loading) {
     return (
       <div className="grow h-full p-4 flex items-center justify-center">
@@ -148,21 +198,49 @@ export default function AccountPage() {
         animate={{ opacity: 1, y: 0 }}
         className="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-lg"
       >
-        <div className="bg-orange-600 p-2 text-white flex items-center gap-4">
-          <div className="bg-white/10 p-3 rounded-full">
-            <User size={24} />
+        <div className=" p-6 pb-0 pt-4 text-stone-800 dark:text-white flex items-center gap-4">
+          <div className="bg-white/10 p-1 rounded-full overflow-hidden relative">
+            {/* <User size={24} /> */}
+            <button
+              onClick={() => setShowPicPicker(true)}
+              aria-label="Change profile picture"
+              className="rounded-full overflow-hidden block"
+            >
+              <Image
+                width={60}
+                height={60}
+                src={currentUserPic}
+                alt="user_pic"
+                className=" rounded-full overflow-hidden bg-white cursor-pointer"
+                sizes=""
+              />
+            </button>
+
+            {/* Pencil edit icon */}
+            <button
+              onClick={() => setShowPicPicker(true)}
+              className="absolute bottom-2 right-2   "
+              aria-label="Edit profile picture"
+            >
+              <UserRoundPen
+                strokeWidth={3}
+                className="text-orange-600 bg-white p-1 rounded-full "
+              />
+            </button>
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Profile</h1>
-            <p className="text-orange-100">Manage Your Account</p>
+            <h1 className="text-lg font-bold">{user?.phone_number}</h1>
+            <p className="dark:text-orange-100 font-semibold">
+              {user?.user_code || "N / A"}
+            </p>
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 pt-2 space-y-3">
           {/* Balance */}
           <div className="bg-orange-50 dark:bg-gray-700 p-4 flex justify-between">
             <div className="flex items-center gap-3">
-              <Wallet className="text-orange-600" />
+              <FaWallet className="text-orange-600" />
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
                   Balance
@@ -180,36 +258,45 @@ export default function AccountPage() {
                   )
                 }
               >
-                Turnover <InfoIcon className="text-orange-600 text-xl" />
+                Turnover{" "}
+                <FaInfoCircle className="text-orange-600 text-xl animate-bounce-twice " />
               </div>
-              <p className="font-medium">৳{user?.turn_over || 0}</p>
+              <p className="font-medium">৳ {user?.turn_over || 0}</p>
             </div>
           </div>
 
           {/* User info */}
           <div className="space-y-4">
-            <InfoRow
+            {/* <InfoRow
               icon={<User2Icon className="text-orange-600" />}
               label="username"
               value={user?.user_code || "N/A"}
-            />
+            /> */}
 
             <div className="flex justify-between items-center">
-              <InfoRow
-                icon={<Phone className="text-orange-600" />}
-                label="Phone Number (Referral)"
-                value={user?.phone_number}
-              />
-              <button
-                onClick={copyInviteCode}
-                className="p-2 hover:bg-orange-100 dark:hover:bg-gray-700 rounded-full"
-              >
-                {copying ? (
-                  <Check className="text-green-500" />
-                ) : (
-                  <Copy className="text-orange-600" />
-                )}
-              </button>
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">
+                  <FaLink className="text-orange-600 " />
+                </div>
+                <div>
+                  <div className="flex gap-x-2 items-center">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      Refer Link
+                    </p>
+                    <button
+                      onClick={copyInviteLink}
+                      className=" hover:bg-orange-100 dark:hover:bg-gray-700 rounded-full text-xl"
+                    >
+                      {copying ? (
+                        <FaCheckCircle className="text-green-500" />
+                      ) : (
+                        <IoCopy className="text-orange-600" />
+                      )}
+                    </button>
+                  </div>
+                  <p className="font-medium line-clamp-1 ">{`${process.env.NEXT_PUBLIC_BASE_URL}/auth/register/?invite_code=${user?.phone_number}`}</p>
+                </div>
+              </div>
             </div>
 
             <InfoRow
@@ -221,42 +308,148 @@ export default function AccountPage() {
         </div>
       </motion.div>
 
-      {/* Security Section */}
-      <div className="max-w-md mx-auto mt-6 bg-white dark:bg-gray-800 rounded shadow-sm">
-        <div className="p-4 border-b dark:border-gray-700">
-          {/* Show here a circle security meter, devided in 4 parts, 2 dashed will be filled 2nd one with yellow color and first one with red color if meterStatus === 2, three will be filled and third one will be green if meterStatus === 3 and all of 4 parts will be filled and last one will be dark green if meterStatus === 4   */}
-          <SecurityMeter meterStatus={score} />
+      {/* DP, WD, Section */}
 
-          <h2 className="font-semibold text-center pt-4">Account Security</h2>
-        </div>
-
-        <div className="p-4 space-y-4">
-          {/* Open Password Modal */}
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-sm font-medium">1. Change Password</p>
-              <p className="text-xs text-gray-500">This is a critical field.</p>
-            </div>
-            <button
-              onClick={() => setShowChangePassword(true)}
-              className=" w-[70px] h-8 text-sm bg-orange-500 text-white rounded"
+      <div className="grid grid-cols-4 gap-1 mt-5 max-w-sm mx-auto">
+        {[
+          {
+            icon: GiWallet,
+            name: "Deposit",
+            href: "/wallet",
+          },
+          {
+            icon: IoWalletSharp,
+            name: "Withdraw",
+            href: "/wallet/?type=withdraw",
+          },
+          {
+            icon: MdOutlineLockPerson,
+            name: "Security",
+            href: "/account/account-security",
+          },
+          {
+            icon: HiMiniUsers,
+            name: "Invite",
+            href: "/referral",
+          },
+        ].map((item, idx) => {
+          return (
+            <div
+              key={idx}
+              className="flex flex-col gap-1 items-center rounded-full w-full"
             >
-              Change
-            </button>
-          </div>
+              <Link
+                className={`  aspect-square p-3 bg-orange-600 rounded-full text-white `}
+                href={item.href}
+              >
+                <item.icon className="text-3xl" />
+              </Link>
+              <h2 className=" text-sm font-semibold">{item.name}</h2>
+            </div>
+          );
+        })}
+      </div>
 
-          <ChangeNameRow
-            displayName={displayName}
-            setDisplayName={setDisplayName}
-          />
-
-          <VerifyHumanRow
-            verifiedHuman={verifiedHuman}
-            setVerifiedHuman={setVerifiedHuman}
-          />
-
-          <MyToggleRow my2fa={my2fa} setMy2fa={setMy2fa} />
+      {/* Link to Security Page */}
+      <div className="max-w-md mx-auto my-6 bg-white dark:bg-gray-800 rounded shadow-sm">
+        <div className="p-4 bg-orange-600 ">
+          <h2 className="font-semibold flex justify-center items-center text-white gap-1">
+            <Settings /> Account Options
+          </h2>
         </div>
+
+        <Link
+          href="/account/account-security"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-y border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <FaLock className="text-2xl text-orange-600" /> Security Settings
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/referral"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <FaGift className="text-2xl text-orange-600 animate-bounce-twice " />{" "}
+            Reward Center
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/wallet"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <FaFileInvoiceDollar className="text-2xl text-orange-600" /> Deposit
+            Record
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/wallet"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <FaFileInvoiceDollar className="text-2xl text-orange-600" />{" "}
+            Withdraw Record
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/notifications"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <FaBell className="text-2xl text-orange-600 animate-bounce-twice " />{" "}
+            Your Notifications
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/support"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <FaComments className="text-2xl text-orange-600" /> Help & Support
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/missions"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <AiFillDashboard className="text-2xl text-orange-600" /> Missions
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
+
+        <Link
+          href="/subscriptions"
+          className="px-4 py-3 dark:bg-slate-800 bg-white border-b border-orange-600 flex justify-between items-center font-semibold"
+        >
+          <h3 className="flex gap-2 items-center">
+            {" "}
+            <MdWorkspacePremium className="text-2xl text-orange-600" />{" "}
+            Subscriptions
+          </h3>{" "}
+          <ArrowRight className="text-xl" />
+        </Link>
       </div>
 
       {/* Password Modal */}
@@ -274,6 +467,52 @@ export default function AccountPage() {
           onSubmit={handlePasswordChange}
         />
       )}
+
+      {/* Picture picker modal */}
+      {showPicPicker && (
+        <div
+          onClick={() => setShowPicPicker(false)}
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+        >
+          <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg p-4">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="font-semibold">Select Profile Picture</h3>
+              <button
+                onClick={() => setShowPicPicker(false)}
+                className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <X />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+              {allUserPics.map((p) => (
+                <button
+                  key={p}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentUserPic(p);
+                    localStorage.setItem("profilePic", p);
+                    toast.success("Profile picture updated");
+                    setShowPicPicker(false);
+                  }}
+                  className={`rounded overflow-hidden border ${
+                    currentUserPic === p ? "ring-2 ring-orange-500" : ""
+                  }`}
+                >
+                  <Image
+                    src={p}
+                    alt={p}
+                    width={120}
+                    height={120}
+                    className="object-cover block w-full h-24 sm:h-28"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -283,10 +522,10 @@ export default function AccountPage() {
 function InfoRow({ icon, label, value }) {
   return (
     <div className="flex items-center gap-3">
-      {icon}
+      <div className="text-2xl">{icon}</div>
       <div>
         <p className="text-sm text-gray-600 dark:text-gray-300">{label}</p>
-        <p className="font-medium">{value}</p>
+        <p className="font-medium line-clamp-1 ">{value}</p>
       </div>
     </div>
   );
@@ -418,8 +657,8 @@ function MyToggleRow({ my2fa, setMy2fa }) {
         }
       }
     } catch (error) {
-      toast.error("unable to enable 2fa!");
       console.log(error?.message);
+      toast.error("unable to enable 2fa!");
     }
   };
 

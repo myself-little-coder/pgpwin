@@ -11,7 +11,6 @@ export async function GET(request, { params }) {
     // Parse query parameter
     const url = new URL(request.url);
     const type = url.searchParams.get("type"); // get the "type" query param
-    console.log("type :", type);
 
     if (!provider) {
       return NextResponse.json(

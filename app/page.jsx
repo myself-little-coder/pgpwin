@@ -153,7 +153,6 @@ export default function AppPage() {
 
   useEffect(() => {
     if (selectedType === "hot") {
-      console.log("reached hot");
       setProviders(null);
       setSelectedProvider(null);
       fetchProviderGames(allProviders[0]?.name);
@@ -163,16 +162,13 @@ export default function AppPage() {
       setSelectedProvider(allProviders[0]?.name || allProviders[0]?.name);
       fetchProviderGames(allProviders[0]?.name);
     } else {
-      console.log("reached else");
       const providersArrayToSet = allProviders.filter((provider) =>
         selectedType instanceof Array
           ? provider.game_main_types.some((type) => selectedType.includes(type))
           : provider.game_main_types.includes(selectedType)
       );
       setProviders(providersArrayToSet);
-      console.log(providers);
       setSelectedProvider(providersArrayToSet[0]?.name);
-      console.log("selectedProvider", providersArrayToSet[0]?.name);
       fetchProviderGames(providersArrayToSet[0]?.name);
     }
   }, [selectedType]);

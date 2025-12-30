@@ -1707,6 +1707,8 @@ export namespace Prisma {
     id: number | null
     status: string | null
     phone_number: string | null
+    e_wallet_number: string | null
+    name_in_wallet: string | null
     user_code: string | null
     recovery_code: string | null
     two_fa_secret: string | null
@@ -1725,6 +1727,8 @@ export namespace Prisma {
     id: number | null
     status: string | null
     phone_number: string | null
+    e_wallet_number: string | null
+    name_in_wallet: string | null
     user_code: string | null
     recovery_code: string | null
     two_fa_secret: string | null
@@ -1743,6 +1747,8 @@ export namespace Prisma {
     id: number
     status: number
     phone_number: number
+    e_wallet_number: number
+    name_in_wallet: number
     user_code: number
     recovery_code: number
     two_fa_secret: number
@@ -1775,6 +1781,8 @@ export namespace Prisma {
     id?: true
     status?: true
     phone_number?: true
+    e_wallet_number?: true
+    name_in_wallet?: true
     user_code?: true
     recovery_code?: true
     two_fa_secret?: true
@@ -1793,6 +1801,8 @@ export namespace Prisma {
     id?: true
     status?: true
     phone_number?: true
+    e_wallet_number?: true
+    name_in_wallet?: true
     user_code?: true
     recovery_code?: true
     two_fa_secret?: true
@@ -1811,6 +1821,8 @@ export namespace Prisma {
     id?: true
     status?: true
     phone_number?: true
+    e_wallet_number?: true
+    name_in_wallet?: true
     user_code?: true
     recovery_code?: true
     two_fa_secret?: true
@@ -1916,6 +1928,8 @@ export namespace Prisma {
     id: number
     status: string
     phone_number: string
+    e_wallet_number: string | null
+    name_in_wallet: string | null
     user_code: string | null
     recovery_code: string | null
     two_fa_secret: string | null
@@ -1953,6 +1967,8 @@ export namespace Prisma {
     id?: boolean
     status?: boolean
     phone_number?: boolean
+    e_wallet_number?: boolean
+    name_in_wallet?: boolean
     user_code?: boolean
     recovery_code?: boolean
     two_fa_secret?: boolean
@@ -1976,6 +1992,8 @@ export namespace Prisma {
     id?: boolean
     status?: boolean
     phone_number?: boolean
+    e_wallet_number?: boolean
+    name_in_wallet?: boolean
     user_code?: boolean
     recovery_code?: boolean
     two_fa_secret?: boolean
@@ -1994,6 +2012,8 @@ export namespace Prisma {
     id?: boolean
     status?: boolean
     phone_number?: boolean
+    e_wallet_number?: boolean
+    name_in_wallet?: boolean
     user_code?: boolean
     recovery_code?: boolean
     two_fa_secret?: boolean
@@ -2012,6 +2032,8 @@ export namespace Prisma {
     id?: boolean
     status?: boolean
     phone_number?: boolean
+    e_wallet_number?: boolean
+    name_in_wallet?: boolean
     user_code?: boolean
     recovery_code?: boolean
     two_fa_secret?: boolean
@@ -2026,7 +2048,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "phone_number" | "user_code" | "recovery_code" | "two_fa_secret" | "is_2fa_verified" | "password" | "fp_id" | "ip" | "balance" | "turn_over" | "invited_by" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "phone_number" | "e_wallet_number" | "name_in_wallet" | "user_code" | "recovery_code" | "two_fa_secret" | "is_2fa_verified" | "password" | "fp_id" | "ip" | "balance" | "turn_over" | "invited_by" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     game_transactions?: boolean | User$game_transactionsArgs<ExtArgs>
     transactions?: boolean | User$transactionsArgs<ExtArgs>
@@ -2049,6 +2071,8 @@ export namespace Prisma {
       id: number
       status: string
       phone_number: string
+      e_wallet_number: string | null
+      name_in_wallet: string | null
       user_code: string | null
       recovery_code: string | null
       two_fa_secret: string | null
@@ -2491,6 +2515,8 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly status: FieldRef<"User", 'String'>
     readonly phone_number: FieldRef<"User", 'String'>
+    readonly e_wallet_number: FieldRef<"User", 'String'>
+    readonly name_in_wallet: FieldRef<"User", 'String'>
     readonly user_code: FieldRef<"User", 'String'>
     readonly recovery_code: FieldRef<"User", 'String'>
     readonly two_fa_secret: FieldRef<"User", 'String'>
@@ -9685,12 +9711,14 @@ export namespace Prisma {
     id: number | null
     deposit: Decimal | null
     bonus: Decimal | null
+    turn_over: Decimal | null
   }
 
   export type BonusListSumAggregateOutputType = {
     id: number | null
     deposit: Decimal | null
     bonus: Decimal | null
+    turn_over: Decimal | null
   }
 
   export type BonusListMinAggregateOutputType = {
@@ -9698,6 +9726,7 @@ export namespace Prisma {
     name: string | null
     deposit: Decimal | null
     bonus: Decimal | null
+    turn_over: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9707,6 +9736,7 @@ export namespace Prisma {
     name: string | null
     deposit: Decimal | null
     bonus: Decimal | null
+    turn_over: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9716,6 +9746,7 @@ export namespace Prisma {
     name: number
     deposit: number
     bonus: number
+    turn_over: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9726,12 +9757,14 @@ export namespace Prisma {
     id?: true
     deposit?: true
     bonus?: true
+    turn_over?: true
   }
 
   export type BonusListSumAggregateInputType = {
     id?: true
     deposit?: true
     bonus?: true
+    turn_over?: true
   }
 
   export type BonusListMinAggregateInputType = {
@@ -9739,6 +9772,7 @@ export namespace Prisma {
     name?: true
     deposit?: true
     bonus?: true
+    turn_over?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9748,6 +9782,7 @@ export namespace Prisma {
     name?: true
     deposit?: true
     bonus?: true
+    turn_over?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9757,6 +9792,7 @@ export namespace Prisma {
     name?: true
     deposit?: true
     bonus?: true
+    turn_over?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -9853,6 +9889,7 @@ export namespace Prisma {
     name: string
     deposit: Decimal
     bonus: Decimal
+    turn_over: Decimal
     createdAt: Date
     updatedAt: Date
     _count: BonusListCountAggregateOutputType | null
@@ -9881,6 +9918,7 @@ export namespace Prisma {
     name?: boolean
     deposit?: boolean
     bonus?: boolean
+    turn_over?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["bonusList"]>
@@ -9890,6 +9928,7 @@ export namespace Prisma {
     name?: boolean
     deposit?: boolean
     bonus?: boolean
+    turn_over?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["bonusList"]>
@@ -9899,6 +9938,7 @@ export namespace Prisma {
     name?: boolean
     deposit?: boolean
     bonus?: boolean
+    turn_over?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["bonusList"]>
@@ -9908,11 +9948,12 @@ export namespace Prisma {
     name?: boolean
     deposit?: boolean
     bonus?: boolean
+    turn_over?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BonusListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "deposit" | "bonus" | "createdAt" | "updatedAt", ExtArgs["result"]["bonusList"]>
+  export type BonusListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "deposit" | "bonus" | "turn_over" | "createdAt" | "updatedAt", ExtArgs["result"]["bonusList"]>
 
   export type $BonusListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BonusList"
@@ -9922,6 +9963,7 @@ export namespace Prisma {
       name: string
       deposit: Prisma.Decimal
       bonus: Prisma.Decimal
+      turn_over: Prisma.Decimal
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["bonusList"]>
@@ -10351,6 +10393,7 @@ export namespace Prisma {
     readonly name: FieldRef<"BonusList", 'String'>
     readonly deposit: FieldRef<"BonusList", 'Decimal'>
     readonly bonus: FieldRef<"BonusList", 'Decimal'>
+    readonly turn_over: FieldRef<"BonusList", 'Decimal'>
     readonly createdAt: FieldRef<"BonusList", 'DateTime'>
     readonly updatedAt: FieldRef<"BonusList", 'DateTime'>
   }
@@ -11791,6 +11834,8 @@ export namespace Prisma {
     id: 'id',
     status: 'status',
     phone_number: 'phone_number',
+    e_wallet_number: 'e_wallet_number',
+    name_in_wallet: 'name_in_wallet',
     user_code: 'user_code',
     recovery_code: 'recovery_code',
     two_fa_secret: 'two_fa_secret',
@@ -11894,6 +11939,7 @@ export namespace Prisma {
     name: 'name',
     deposit: 'deposit',
     bonus: 'bonus',
+    turn_over: 'turn_over',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12057,6 +12103,8 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     status?: StringFilter<"User"> | string
     phone_number?: StringFilter<"User"> | string
+    e_wallet_number?: StringNullableFilter<"User"> | string | null
+    name_in_wallet?: StringNullableFilter<"User"> | string | null
     user_code?: StringNullableFilter<"User"> | string | null
     recovery_code?: StringNullableFilter<"User"> | string | null
     two_fa_secret?: StringNullableFilter<"User"> | string | null
@@ -12079,6 +12127,8 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     phone_number?: SortOrder
+    e_wallet_number?: SortOrderInput | SortOrder
+    name_in_wallet?: SortOrderInput | SortOrder
     user_code?: SortOrderInput | SortOrder
     recovery_code?: SortOrderInput | SortOrder
     two_fa_secret?: SortOrderInput | SortOrder
@@ -12104,6 +12154,8 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     status?: StringFilter<"User"> | string
+    e_wallet_number?: StringNullableFilter<"User"> | string | null
+    name_in_wallet?: StringNullableFilter<"User"> | string | null
     user_code?: StringNullableFilter<"User"> | string | null
     recovery_code?: StringNullableFilter<"User"> | string | null
     two_fa_secret?: StringNullableFilter<"User"> | string | null
@@ -12126,6 +12178,8 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     phone_number?: SortOrder
+    e_wallet_number?: SortOrderInput | SortOrder
+    name_in_wallet?: SortOrderInput | SortOrder
     user_code?: SortOrderInput | SortOrder
     recovery_code?: SortOrderInput | SortOrder
     two_fa_secret?: SortOrderInput | SortOrder
@@ -12152,6 +12206,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"User"> | number
     status?: StringWithAggregatesFilter<"User"> | string
     phone_number?: StringWithAggregatesFilter<"User"> | string
+    e_wallet_number?: StringNullableWithAggregatesFilter<"User"> | string | null
+    name_in_wallet?: StringNullableWithAggregatesFilter<"User"> | string | null
     user_code?: StringNullableWithAggregatesFilter<"User"> | string | null
     recovery_code?: StringNullableWithAggregatesFilter<"User"> | string | null
     two_fa_secret?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -12585,6 +12641,7 @@ export namespace Prisma {
     name?: StringFilter<"BonusList"> | string
     deposit?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
     bonus?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"BonusList"> | Date | string
     updatedAt?: DateTimeFilter<"BonusList"> | Date | string
   }
@@ -12594,6 +12651,7 @@ export namespace Prisma {
     name?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12606,6 +12664,7 @@ export namespace Prisma {
     name?: StringFilter<"BonusList"> | string
     deposit?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
     bonus?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"BonusList"> | Date | string
     updatedAt?: DateTimeFilter<"BonusList"> | Date | string
   }, "id">
@@ -12615,6 +12674,7 @@ export namespace Prisma {
     name?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BonusListCountOrderByAggregateInput
@@ -12632,6 +12692,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"BonusList"> | string
     deposit?: DecimalWithAggregatesFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
     bonus?: DecimalWithAggregatesFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalWithAggregatesFilter<"BonusList"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeWithAggregatesFilter<"BonusList"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"BonusList"> | Date | string
   }
@@ -12698,6 +12759,8 @@ export namespace Prisma {
   export type UserCreateInput = {
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -12720,6 +12783,8 @@ export namespace Prisma {
     id?: number
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -12741,6 +12806,8 @@ export namespace Prisma {
   export type UserUpdateInput = {
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12763,6 +12830,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12785,6 +12854,8 @@ export namespace Prisma {
     id?: number
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -12802,6 +12873,8 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12820,6 +12893,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13257,6 +13332,7 @@ export namespace Prisma {
     name: string
     deposit: Decimal | DecimalJsLike | number | string
     bonus: Decimal | DecimalJsLike | number | string
+    turn_over: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13266,6 +13342,7 @@ export namespace Prisma {
     name: string
     deposit: Decimal | DecimalJsLike | number | string
     bonus: Decimal | DecimalJsLike | number | string
+    turn_over: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13274,6 +13351,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13283,6 +13361,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13292,6 +13371,7 @@ export namespace Prisma {
     name: string
     deposit: Decimal | DecimalJsLike | number | string
     bonus: Decimal | DecimalJsLike | number | string
+    turn_over: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13300,6 +13380,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13309,6 +13390,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     deposit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     bonus?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13490,6 +13572,8 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     phone_number?: SortOrder
+    e_wallet_number?: SortOrder
+    name_in_wallet?: SortOrder
     user_code?: SortOrder
     recovery_code?: SortOrder
     two_fa_secret?: SortOrder
@@ -13514,6 +13598,8 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     phone_number?: SortOrder
+    e_wallet_number?: SortOrder
+    name_in_wallet?: SortOrder
     user_code?: SortOrder
     recovery_code?: SortOrder
     two_fa_secret?: SortOrder
@@ -13532,6 +13618,8 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     phone_number?: SortOrder
+    e_wallet_number?: SortOrder
+    name_in_wallet?: SortOrder
     user_code?: SortOrder
     recovery_code?: SortOrder
     two_fa_secret?: SortOrder
@@ -13992,6 +14080,7 @@ export namespace Prisma {
     name?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14000,6 +14089,7 @@ export namespace Prisma {
     id?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
   }
 
   export type BonusListMaxOrderByAggregateInput = {
@@ -14007,6 +14097,7 @@ export namespace Prisma {
     name?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14016,6 +14107,7 @@ export namespace Prisma {
     name?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14024,6 +14116,7 @@ export namespace Prisma {
     id?: SortOrder
     deposit?: SortOrder
     bonus?: SortOrder
+    turn_over?: SortOrder
   }
 
   export type CommissionListCountOrderByAggregateInput = {
@@ -14849,6 +14942,8 @@ export namespace Prisma {
   export type UserCreateWithoutOtp_recordsInput = {
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -14870,6 +14965,8 @@ export namespace Prisma {
     id?: number
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -14906,6 +15003,8 @@ export namespace Prisma {
   export type UserUpdateWithoutOtp_recordsInput = {
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14927,6 +15026,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14947,6 +15048,8 @@ export namespace Prisma {
   export type UserCreateWithoutTransactionsInput = {
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -14968,6 +15071,8 @@ export namespace Prisma {
     id?: number
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -15004,6 +15109,8 @@ export namespace Prisma {
   export type UserUpdateWithoutTransactionsInput = {
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15025,6 +15132,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15045,6 +15154,8 @@ export namespace Prisma {
   export type UserCreateWithoutGame_transactionsInput = {
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -15066,6 +15177,8 @@ export namespace Prisma {
     id?: number
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -15102,6 +15215,8 @@ export namespace Prisma {
   export type UserUpdateWithoutGame_transactionsInput = {
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15123,6 +15238,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15143,6 +15260,8 @@ export namespace Prisma {
   export type UserCreateWithoutVouchersInput = {
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -15164,6 +15283,8 @@ export namespace Prisma {
     id?: number
     status?: string
     phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
     user_code?: string | null
     recovery_code?: string | null
     two_fa_secret?: string | null
@@ -15200,6 +15321,8 @@ export namespace Prisma {
   export type UserUpdateWithoutVouchersInput = {
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15221,6 +15344,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
     user_code?: NullableStringFieldUpdateOperationsInput | string | null
     recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null

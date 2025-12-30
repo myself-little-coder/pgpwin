@@ -28,13 +28,13 @@ const LoginPage = () => {
     const password = passwordRef.current?.value;
 
     if (loginWith === "username") {
-      if (!username) return toast.error("ব্যবহারকারীর নাম অবশ্যই দিতে হবে");
+      if (!username) return toast.error("username is required");
     } else {
-      if (!phone || phone.length !== 11)
-        return toast.error("সঠিক মোবাইল নম্বর দিন (উদাহরণ: 0134837XXXX)");
+      if (!phone || phone.length !== 11 || !phone?.startsWith("01"))
+        return toast.error("Wrong Phone Number Format (EX: 0134837XXXX)");
     }
 
-    if (!password) return toast.error("গোপন নম্বর অবশ্যই দিতে হবে");
+    if (!password) return toast.error("password is required");
 
     try {
       const fp = await FingerprintJS.load();
@@ -48,26 +48,17 @@ const LoginPage = () => {
         fp_id,
       });
       if (!res.data.success)
-        return toast.error(res.data.message || "লগইন ব্যর্থ");
-      toast.success("লগইন সফল হয়েছে!");
+        return toast.error(res.data.message || "Login Failed");
+      toast.success("Login Succeed!");
       window.location.href = "/";
     } catch (err) {
       console.log(err);
-      toast.error("কিছু ভুল হয়েছে, পরে চেষ্টা করুন");
+      toast.error("Something went wrong! Try again.");
     }
   };
 
   return (
     <div className="mx-auto md:my-10 w-full md:w-auto">
-      <div className="md:block hidden text-center space-y-2 mb-5">
-        <h2 className="text-xl font-semibold">লগ ইন করুন</h2>
-        <p>আপনার অ্যাকাউন্টে প্রবেশ করতে তথ্য পূরণ করুন</p>
-      </div>
-
-      <p className="block md:hidden py-2 text-center bg-black dark:bg-white text-white dark:text-black w-full">
-        লগইন করুন
-      </p>
-
       <form
         onSubmit={handleSubmit}
         className="md:w-lg bg-white min-h-dvh dark:bg-stone-900 pb-10"
@@ -81,15 +72,15 @@ const LoginPage = () => {
           />
         </div> */}
 
-        <div className=" py-5 border-b-2 border-orange-600 text-lg font-semibold flex justify-center items-center mt-2 text-blue-600 space-x-2 ">
+        <div className=" py-5 border-b-2 border-orange-700 text-lg  flex justify-center items-center mt-2 text-blue-500 space-x-2 font-semibold ">
           <Link
-            className="text-orange-700 border-b-2 border-orange-600"
+            className="text-orange-700 border-b-2 border-orange-700"
             href="/auth/login"
           >
-            লগইন
+            Login
           </Link>
           <p className="text-dark dark:text-light">|</p>
-          <Link href="/auth/register">রেজিস্টার</Link>
+          <Link href="/auth/register">Register</Link>
         </div>
 
         <div className="w-[90%] max-w-88 md:w-[70%] mx-auto my-5 space-y-2 md:space-y-2">
@@ -98,55 +89,55 @@ const LoginPage = () => {
             <button
               type="button"
               onClick={() => setLoginWith("phone")}
-              className={`px-4 py-1 rounded-lg font-semibold border ${
+              className={`px-4 py-1 rounded-lg  border ${
                 loginWith === "phone"
-                  ? "bg-amber-500 text-white border-amber-500"
-                  : "bg-white dark:bg-stone-800 text-gray-800 dark:text-white border-gray-400"
+                  ? "bg-orange-700 text-stone-200 border-orange-700"
+                  : "bg-white dark:bg-stone-800 text-gray-800 dark:text-stone-200 border-gray-400"
               }`}
             >
-              ফোন নম্বর
+              phone
             </button>
             <button
               type="button"
               onClick={() => setLoginWith("username")}
-              className={`px-4 py-1 rounded-lg font-semibold border ${
+              className={`px-4 py-1 rounded-lg  border ${
                 loginWith === "username"
-                  ? "bg-amber-500 text-white border-amber-500"
-                  : "bg-white dark:bg-stone-800 text-gray-800 dark:text-white border-gray-400"
+                  ? "bg-orange-700 text-stone-200 border-orange-700"
+                  : "bg-white dark:bg-stone-800 text-gray-800 dark:text-stone-200 border-gray-400"
               }`}
             >
-              ব্যবহারকারীর নাম
+              username
             </button>
           </div>
 
           {/* Username or Phone Input */}
           {loginWith === "username" ? (
             <div className="flex flex-col">
-              <label htmlFor="username" className="relative font-semibold">
-                ব্যবহারকারীর নাম <span className="text-red-600">*</span>
+              <label htmlFor="username" className="relative ">
+                Username <span className="text-red-600">*</span>
               </label>
               <input
                 ref={usernameRef}
                 id="username"
                 type="text"
-                placeholder="এখানে পূরণ করুন"
-                className="px-2 py-1 border outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                placeholder="Provide Username"
+                className="px-2 py-1 border outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-stone-200 dark:border-white text-lg"
               />
               <span className="text-sm text-gray-500 mt-1">
-                এটি একটি বাধ্যতামূলক ক্ষেত্র
+                This field is required
               </span>
             </div>
           ) : (
             <div className="flex flex-col">
-              <label htmlFor="phoneNumber" className="relative font-semibold">
-                মোবাইল নম্বর <span className="text-red-600">*</span>
+              <label htmlFor="phoneNumber" className="relative ">
+                Phone Number <span className="text-red-600">*</span>
               </label>
               <div className="flex space-x-2">
                 <input
                   id="countryCode"
                   type="text"
                   value="+88"
-                  className="px-2 border w-16 outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                  className="px-2 border w-16 outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-stone-200 dark:border-white text-lg"
                   readOnly
                 />
                 <input
@@ -154,28 +145,28 @@ const LoginPage = () => {
                   id="phoneNumber"
                   type="number"
                   placeholder="0131234XXXX"
-                  className="grow px-2 py-1 w-full border outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                  className="grow px-2 py-1 w-full border outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-stone-200 dark:border-white text-lg"
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <span className="text-sm text-gray-400 mt-1">
-                এটি একটি বাধ্যতামূলক ক্ষেত্র
+                This field is required
               </span>
             </div>
           )}
 
           {/* Password */}
           <div className="flex flex-col relative">
-            <label htmlFor="password" className="relative font-semibold">
-              গোপন নম্বর <span className="text-red-600">*</span>
+            <label htmlFor="password" className="relative ">
+              Password <span className="text-red-600">*</span>
             </label>
             <div className="relative w-full">
               <input
                 ref={passwordRef}
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="এখানে পূরণ করুন"
-                className="px-2 py-1 border w-full outline-amber-400 border-gray-800 rounded-lg text-gray-800 dark:text-white dark:border-white text-lg"
+                placeholder="Provide Password"
+                className="px-2 py-1 border w-full outline-orange-400 border-gray-800 rounded-lg text-gray-800 dark:text-stone-200 dark:border-white text-lg"
               />
               <Eye
                 onClick={() => {
@@ -188,11 +179,11 @@ const LoginPage = () => {
             {/* <span className="text-sm text-gray-400 mt-1">
               এটি একটি বাধ্যতামূলক ক্ষেত্র
             </span> */}
-            <div className="text-sm text-gray-300 mt-1">
-              <span>পাসওয়ার্ড ভুলে গিয়েছেন?</span>{" "}
+            <div className="text-sm text-stone-200 mt-1">
+              <span>Lost Your Password?</span>{" "}
               <Link
                 href="/auth/forgot-password"
-                className="inline-block text-blue-600 font-semibold"
+                className="inline-block text-blue-600 "
               >
                 forgot password
               </Link>
@@ -202,19 +193,16 @@ const LoginPage = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full mt-4 py-2 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition"
+            className="w-full mt-4 py-2 bg-orange-700 text-stone-200  rounded-lg hover:bg-orange-700 transition"
           >
-            লগইন
+            Login
           </button>
 
           {/* Links */}
           <div className="text-center text-sm mt-4 space-y-2">
             <p>
-              কোনো একাউন্ট এখনও নেই?{" "}
-              <Link
-                href="/auth/register"
-                className="text-amber-500 font-semibold"
-              >
+              Don't have any account?{" "}
+              <Link href="/auth/register" className="text-orange-700 ">
                 Register here
               </Link>
             </p>

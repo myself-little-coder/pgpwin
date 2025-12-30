@@ -36,7 +36,6 @@ export default function ForgetPasswordPage() {
 
   const handleSendOtp = async () => {
     if (!phone) return toast.error("ফোন নম্বর দিন");
-    console.log("Sending OTP to phone:", phone);
     setSending(true);
     try {
       const res = await axios.post("/api/user/send-otp", { phone });

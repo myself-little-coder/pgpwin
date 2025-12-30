@@ -5,7 +5,7 @@ import { Copy, CopyCheck, X, Users, DollarSign } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaUserTie } from "react-icons/fa";
+import { FaInfoCircle, FaUserTie } from "react-icons/fa";
 
 const ReferralPage = () => {
   const [selectedState, setSelectedState] = useState("agent");
@@ -268,7 +268,7 @@ const ReferralPage = () => {
                   time.
                 </p>
                 <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">
-                  Share your referral code, track your invited users, and
+                  *** Share your referral code, track your invited users, and
                   monitor their betting activities directly from your dashboard.
                 </p>
               </div>
@@ -340,26 +340,30 @@ const ReferralPage = () => {
           </p>
 
           <div className="font-semibold text-gray-800 dark:text-gray-100 my-2">
-            Referral Code:
+            Referral Link:
           </div>
 
-          <div className="flex items-center gap-5 text-lg font-semibold text-gray-900 dark:text-gray-100">
-            <span className="py-1 px-3 border-2 border-dashed border-orange-600 rounded-4xl">
-              {user && user.phone_number}
+          <div className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            <span className="py-1 line-clamp-1 px-3 border-2 border-dashed border-orange-600 rounded-4xl">
+              {`${process.env.NEXT_PUBLIC_BASE_URL}/auth/register/?invite_code=${user?.phone_number}`}
             </span>
 
-            {isCopied ? (
-              <CopyCheck className="text-green-500" />
-            ) : (
-              <Copy
-                className="cursor-pointer text-gray-700 dark:text-gray-200"
-                onClick={() => {
-                  navigator.clipboard.writeText(user.phone_number);
-                  setIsCopied(true);
-                  toast.success("Copied!");
-                }}
-              />
-            )}
+            <div className="mx-2">
+              {isCopied ? (
+                <CopyCheck className="text-green-500 w-6 h-6 " />
+              ) : (
+                <Copy
+                  className="cursor-pointer w-6 h-6 text-gray-700 dark:text-gray-200"
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/register/?invite_code=${user?.phone_number}`
+                    );
+                    setIsCopied(true);
+                    toast.success("Copied!");
+                  }}
+                />
+              )}
+            </div>
           </div>
 
           {/* REFERRED USERS */}
@@ -374,7 +378,7 @@ const ReferralPage = () => {
               </p>
             ) : referredUsers.length === 0 ? (
               <p className="text-center py-8 text-gray-600 dark:text-gray-400">
-                You haven’t referred anyone yet
+                You haven't referred anyone yet
               </p>
             ) : (
               <div className="space-y-3">
@@ -420,8 +424,16 @@ const ReferralPage = () => {
       ) : (
         selectedState === "commission" && (
           <>
+            <div className="flex gap-2 text-sm my-5">
+              <FaInfoCircle className="animate-bounce-twice text-xl" />{" "}
+              <p className="">
+                Your commissions and salaries will be automatically added to
+                your wallet at 11:30 pm.
+              </p>
+            </div>
+
             {/* COMMISSION AREA */}
-            <div className="mt-10">
+            <div className="mt-5">
               <div className="font-semibold mb-1">Redeem Voucher:</div>
 
               <form className="flex flex-col items-center space-y-2">

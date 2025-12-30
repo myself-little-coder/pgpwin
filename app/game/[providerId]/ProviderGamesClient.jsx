@@ -9,8 +9,6 @@ export default function ProviderGamesClient({ providerId }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log("games");
-
   useEffect(() => {
     const fetchGames = async () => {
       setLoading(true);
@@ -19,7 +17,6 @@ export default function ProviderGamesClient({ providerId }) {
           `/api/game/games?provider_id=${providerId}&category=0`
         );
         const data = await res.json();
-        console.log(data.data);
         if (data && data.data) {
           setGames(data.data);
         } else {

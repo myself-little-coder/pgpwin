@@ -33,16 +33,15 @@ export default function Navbar() {
       document.documentElement.classList.remove("dark");
       setTheme("light");
     }
-    console.log(document.documentElement.className);
   };
 
   useEffect(() => {
-    let deviceTheme;
     if (typeof window != "undefined") {
       // deviceTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
       //   ? "light"
       //   : "dark";
       // setTheme(deviceTheme);
+      document.documentElement.classList.add("dark");
       const userAgent = navigator.userAgent;
       const isFromApp = userAgent.split(" ").includes("req_from_app");
       setShowDownApp(!isFromApp);
@@ -83,6 +82,8 @@ export default function Navbar() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const handleScroll = () => {
       if (window.scrollY < scrollY) {
         setPlaceNav(true);
@@ -158,7 +159,7 @@ export default function Navbar() {
                 </button>
               )}
 
-              <button
+              {/* <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label={
@@ -168,7 +169,7 @@ export default function Navbar() {
                 }
               >
                 {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-              </button>
+              </button> */}
 
               {/* <button
                 onClick={toggleAudioPlay}

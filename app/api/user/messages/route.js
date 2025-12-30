@@ -19,8 +19,6 @@ export async function GET(req) {
       orderBy: { createdAt: "desc" },
     });
 
-    console.log(`Fetched ${messages.length} messages for user ${userId}`);
-
     return NextResponse.json(
       { success: true, data: messages },
       { status: 200 }
