@@ -58,6 +58,16 @@ export type BonusList = $Result.DefaultSelection<Prisma.$BonusListPayload>
  * 
  */
 export type CommissionList = $Result.DefaultSelection<Prisma.$CommissionListPayload>
+/**
+ * Model LuckySpinLog
+ * 
+ */
+export type LuckySpinLog = $Result.DefaultSelection<Prisma.$LuckySpinLogPayload>
+/**
+ * Model OfferClaimLog
+ * 
+ */
+export type OfferClaimLog = $Result.DefaultSelection<Prisma.$OfferClaimLogPayload>
 
 /**
  * Enums
@@ -82,6 +92,13 @@ export const TransactionType: {
 
 export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
 
+
+export const OfferCode: {
+  DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN'
+};
+
+export type OfferCode = (typeof OfferCode)[keyof typeof OfferCode]
+
 }
 
 export type TransactionStatus = $Enums.TransactionStatus
@@ -91,6 +108,10 @@ export const TransactionStatus: typeof $Enums.TransactionStatus
 export type TransactionType = $Enums.TransactionType
 
 export const TransactionType: typeof $Enums.TransactionType
+
+export type OfferCode = $Enums.OfferCode
+
+export const OfferCode: typeof $Enums.OfferCode
 
 /**
  * ##  Prisma Client ʲˢ
@@ -299,6 +320,26 @@ export class PrismaClient<
     * ```
     */
   get commissionList(): Prisma.CommissionListDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.luckySpinLog`: Exposes CRUD operations for the **LuckySpinLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LuckySpinLogs
+    * const luckySpinLogs = await prisma.luckySpinLog.findMany()
+    * ```
+    */
+  get luckySpinLog(): Prisma.LuckySpinLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.offerClaimLog`: Exposes CRUD operations for the **OfferClaimLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OfferClaimLogs
+    * const offerClaimLogs = await prisma.offerClaimLog.findMany()
+    * ```
+    */
+  get offerClaimLog(): Prisma.OfferClaimLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -748,7 +789,9 @@ export namespace Prisma {
     Message: 'Message',
     Voucher: 'Voucher',
     BonusList: 'BonusList',
-    CommissionList: 'CommissionList'
+    CommissionList: 'CommissionList',
+    LuckySpinLog: 'LuckySpinLog',
+    OfferClaimLog: 'OfferClaimLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -767,7 +810,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "otpRecord" | "formSubmissionRecord" | "transaction" | "gameTransaction" | "message" | "voucher" | "bonusList" | "commissionList"
+      modelProps: "user" | "otpRecord" | "formSubmissionRecord" | "transaction" | "gameTransaction" | "message" | "voucher" | "bonusList" | "commissionList" | "luckySpinLog" | "offerClaimLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1437,6 +1480,154 @@ export namespace Prisma {
           }
         }
       }
+      LuckySpinLog: {
+        payload: Prisma.$LuckySpinLogPayload<ExtArgs>
+        fields: Prisma.LuckySpinLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LuckySpinLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LuckySpinLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>
+          }
+          findFirst: {
+            args: Prisma.LuckySpinLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LuckySpinLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>
+          }
+          findMany: {
+            args: Prisma.LuckySpinLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>[]
+          }
+          create: {
+            args: Prisma.LuckySpinLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>
+          }
+          createMany: {
+            args: Prisma.LuckySpinLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LuckySpinLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>[]
+          }
+          delete: {
+            args: Prisma.LuckySpinLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>
+          }
+          update: {
+            args: Prisma.LuckySpinLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.LuckySpinLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LuckySpinLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LuckySpinLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.LuckySpinLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LuckySpinLogPayload>
+          }
+          aggregate: {
+            args: Prisma.LuckySpinLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLuckySpinLog>
+          }
+          groupBy: {
+            args: Prisma.LuckySpinLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LuckySpinLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LuckySpinLogCountArgs<ExtArgs>
+            result: $Utils.Optional<LuckySpinLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      OfferClaimLog: {
+        payload: Prisma.$OfferClaimLogPayload<ExtArgs>
+        fields: Prisma.OfferClaimLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OfferClaimLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OfferClaimLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>
+          }
+          findFirst: {
+            args: Prisma.OfferClaimLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OfferClaimLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>
+          }
+          findMany: {
+            args: Prisma.OfferClaimLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>[]
+          }
+          create: {
+            args: Prisma.OfferClaimLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>
+          }
+          createMany: {
+            args: Prisma.OfferClaimLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OfferClaimLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>[]
+          }
+          delete: {
+            args: Prisma.OfferClaimLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>
+          }
+          update: {
+            args: Prisma.OfferClaimLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.OfferClaimLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OfferClaimLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OfferClaimLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.OfferClaimLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OfferClaimLogPayload>
+          }
+          aggregate: {
+            args: Prisma.OfferClaimLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOfferClaimLog>
+          }
+          groupBy: {
+            args: Prisma.OfferClaimLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OfferClaimLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OfferClaimLogCountArgs<ExtArgs>
+            result: $Utils.Optional<OfferClaimLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1542,6 +1733,8 @@ export namespace Prisma {
     voucher?: VoucherOmit
     bonusList?: BonusListOmit
     commissionList?: CommissionListOmit
+    luckySpinLog?: LuckySpinLogOmit
+    offerClaimLog?: OfferClaimLogOmit
   }
 
   /* Types for Logging */
@@ -1626,6 +1819,8 @@ export namespace Prisma {
     transactions: number
     otp_records: number
     vouchers: number
+    lucky_spin_logs: number
+    offer_claim_logs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1633,6 +1828,8 @@ export namespace Prisma {
     transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
     otp_records?: boolean | UserCountOutputTypeCountOtp_recordsArgs
     vouchers?: boolean | UserCountOutputTypeCountVouchersArgs
+    lucky_spin_logs?: boolean | UserCountOutputTypeCountLucky_spin_logsArgs
+    offer_claim_logs?: boolean | UserCountOutputTypeCountOffer_claim_logsArgs
   }
 
   // Custom InputTypes
@@ -1674,6 +1871,20 @@ export namespace Prisma {
     where?: VoucherWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLucky_spin_logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LuckySpinLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountOffer_claim_logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OfferClaimLogWhereInput
+  }
+
 
   /**
    * Models
@@ -1693,12 +1904,14 @@ export namespace Prisma {
 
   export type UserAvgAggregateOutputType = {
     id: number | null
+    lucky_spin: number | null
     balance: Decimal | null
     turn_over: Decimal | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
+    lucky_spin: number | null
     balance: Decimal | null
     turn_over: Decimal | null
   }
@@ -1716,6 +1929,7 @@ export namespace Prisma {
     password: string | null
     fp_id: string | null
     ip: string | null
+    lucky_spin: number | null
     balance: Decimal | null
     turn_over: Decimal | null
     invited_by: string | null
@@ -1736,6 +1950,7 @@ export namespace Prisma {
     password: string | null
     fp_id: string | null
     ip: string | null
+    lucky_spin: number | null
     balance: Decimal | null
     turn_over: Decimal | null
     invited_by: string | null
@@ -1756,6 +1971,7 @@ export namespace Prisma {
     password: number
     fp_id: number
     ip: number
+    lucky_spin: number
     balance: number
     turn_over: number
     invited_by: number
@@ -1767,12 +1983,14 @@ export namespace Prisma {
 
   export type UserAvgAggregateInputType = {
     id?: true
+    lucky_spin?: true
     balance?: true
     turn_over?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
+    lucky_spin?: true
     balance?: true
     turn_over?: true
   }
@@ -1790,6 +2008,7 @@ export namespace Prisma {
     password?: true
     fp_id?: true
     ip?: true
+    lucky_spin?: true
     balance?: true
     turn_over?: true
     invited_by?: true
@@ -1810,6 +2029,7 @@ export namespace Prisma {
     password?: true
     fp_id?: true
     ip?: true
+    lucky_spin?: true
     balance?: true
     turn_over?: true
     invited_by?: true
@@ -1830,6 +2050,7 @@ export namespace Prisma {
     password?: true
     fp_id?: true
     ip?: true
+    lucky_spin?: true
     balance?: true
     turn_over?: true
     invited_by?: true
@@ -1937,6 +2158,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin: number
     balance: Decimal
     turn_over: Decimal
     invited_by: string | null
@@ -1976,6 +2198,7 @@ export namespace Prisma {
     password?: boolean
     fp_id?: boolean
     ip?: boolean
+    lucky_spin?: boolean
     balance?: boolean
     turn_over?: boolean
     invited_by?: boolean
@@ -1985,6 +2208,8 @@ export namespace Prisma {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     otp_records?: boolean | User$otp_recordsArgs<ExtArgs>
     vouchers?: boolean | User$vouchersArgs<ExtArgs>
+    lucky_spin_logs?: boolean | User$lucky_spin_logsArgs<ExtArgs>
+    offer_claim_logs?: boolean | User$offer_claim_logsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2001,6 +2226,7 @@ export namespace Prisma {
     password?: boolean
     fp_id?: boolean
     ip?: boolean
+    lucky_spin?: boolean
     balance?: boolean
     turn_over?: boolean
     invited_by?: boolean
@@ -2021,6 +2247,7 @@ export namespace Prisma {
     password?: boolean
     fp_id?: boolean
     ip?: boolean
+    lucky_spin?: boolean
     balance?: boolean
     turn_over?: boolean
     invited_by?: boolean
@@ -2041,6 +2268,7 @@ export namespace Prisma {
     password?: boolean
     fp_id?: boolean
     ip?: boolean
+    lucky_spin?: boolean
     balance?: boolean
     turn_over?: boolean
     invited_by?: boolean
@@ -2048,12 +2276,14 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "phone_number" | "e_wallet_number" | "name_in_wallet" | "user_code" | "recovery_code" | "two_fa_secret" | "is_2fa_verified" | "password" | "fp_id" | "ip" | "balance" | "turn_over" | "invited_by" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "phone_number" | "e_wallet_number" | "name_in_wallet" | "user_code" | "recovery_code" | "two_fa_secret" | "is_2fa_verified" | "password" | "fp_id" | "ip" | "lucky_spin" | "balance" | "turn_over" | "invited_by" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     game_transactions?: boolean | User$game_transactionsArgs<ExtArgs>
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     otp_records?: boolean | User$otp_recordsArgs<ExtArgs>
     vouchers?: boolean | User$vouchersArgs<ExtArgs>
+    lucky_spin_logs?: boolean | User$lucky_spin_logsArgs<ExtArgs>
+    offer_claim_logs?: boolean | User$offer_claim_logsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2066,6 +2296,8 @@ export namespace Prisma {
       transactions: Prisma.$TransactionPayload<ExtArgs>[]
       otp_records: Prisma.$OtpRecordPayload<ExtArgs>[]
       vouchers: Prisma.$VoucherPayload<ExtArgs>[]
+      lucky_spin_logs: Prisma.$LuckySpinLogPayload<ExtArgs>[]
+      offer_claim_logs: Prisma.$OfferClaimLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2080,6 +2312,7 @@ export namespace Prisma {
       password: string
       fp_id: string
       ip: string
+      lucky_spin: number
       balance: Prisma.Decimal
       turn_over: Prisma.Decimal
       invited_by: string | null
@@ -2483,6 +2716,8 @@ export namespace Prisma {
     transactions<T extends User$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     otp_records<T extends User$otp_recordsArgs<ExtArgs> = {}>(args?: Subset<T, User$otp_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OtpRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     vouchers<T extends User$vouchersArgs<ExtArgs> = {}>(args?: Subset<T, User$vouchersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    lucky_spin_logs<T extends User$lucky_spin_logsArgs<ExtArgs> = {}>(args?: Subset<T, User$lucky_spin_logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    offer_claim_logs<T extends User$offer_claim_logsArgs<ExtArgs> = {}>(args?: Subset<T, User$offer_claim_logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2524,6 +2759,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly fp_id: FieldRef<"User", 'String'>
     readonly ip: FieldRef<"User", 'String'>
+    readonly lucky_spin: FieldRef<"User", 'Int'>
     readonly balance: FieldRef<"User", 'Decimal'>
     readonly turn_over: FieldRef<"User", 'Decimal'>
     readonly invited_by: FieldRef<"User", 'String'>
@@ -3010,6 +3246,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: VoucherScalarFieldEnum | VoucherScalarFieldEnum[]
+  }
+
+  /**
+   * User.lucky_spin_logs
+   */
+  export type User$lucky_spin_logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    where?: LuckySpinLogWhereInput
+    orderBy?: LuckySpinLogOrderByWithRelationInput | LuckySpinLogOrderByWithRelationInput[]
+    cursor?: LuckySpinLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LuckySpinLogScalarFieldEnum | LuckySpinLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.offer_claim_logs
+   */
+  export type User$offer_claim_logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    where?: OfferClaimLogWhereInput
+    orderBy?: OfferClaimLogOrderByWithRelationInput | OfferClaimLogOrderByWithRelationInput[]
+    cursor?: OfferClaimLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OfferClaimLogScalarFieldEnum | OfferClaimLogScalarFieldEnum[]
   }
 
   /**
@@ -11817,6 +12101,2185 @@ export namespace Prisma {
 
 
   /**
+   * Model LuckySpinLog
+   */
+
+  export type AggregateLuckySpinLog = {
+    _count: LuckySpinLogCountAggregateOutputType | null
+    _avg: LuckySpinLogAvgAggregateOutputType | null
+    _sum: LuckySpinLogSumAggregateOutputType | null
+    _min: LuckySpinLogMinAggregateOutputType | null
+    _max: LuckySpinLogMaxAggregateOutputType | null
+  }
+
+  export type LuckySpinLogAvgAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+  }
+
+  export type LuckySpinLogSumAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+  }
+
+  export type LuckySpinLogMinAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    winning_index: string | null
+    prize_label: string | null
+    createdAt: Date | null
+  }
+
+  export type LuckySpinLogMaxAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    winning_index: string | null
+    prize_label: string | null
+    createdAt: Date | null
+  }
+
+  export type LuckySpinLogCountAggregateOutputType = {
+    id: number
+    user_id: number
+    winning_index: number
+    prize_label: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LuckySpinLogAvgAggregateInputType = {
+    id?: true
+    user_id?: true
+  }
+
+  export type LuckySpinLogSumAggregateInputType = {
+    id?: true
+    user_id?: true
+  }
+
+  export type LuckySpinLogMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    winning_index?: true
+    prize_label?: true
+    createdAt?: true
+  }
+
+  export type LuckySpinLogMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    winning_index?: true
+    prize_label?: true
+    createdAt?: true
+  }
+
+  export type LuckySpinLogCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    winning_index?: true
+    prize_label?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LuckySpinLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LuckySpinLog to aggregate.
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LuckySpinLogs to fetch.
+     */
+    orderBy?: LuckySpinLogOrderByWithRelationInput | LuckySpinLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LuckySpinLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LuckySpinLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LuckySpinLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LuckySpinLogs
+    **/
+    _count?: true | LuckySpinLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LuckySpinLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LuckySpinLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LuckySpinLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LuckySpinLogMaxAggregateInputType
+  }
+
+  export type GetLuckySpinLogAggregateType<T extends LuckySpinLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateLuckySpinLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLuckySpinLog[P]>
+      : GetScalarType<T[P], AggregateLuckySpinLog[P]>
+  }
+
+
+
+
+  export type LuckySpinLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LuckySpinLogWhereInput
+    orderBy?: LuckySpinLogOrderByWithAggregationInput | LuckySpinLogOrderByWithAggregationInput[]
+    by: LuckySpinLogScalarFieldEnum[] | LuckySpinLogScalarFieldEnum
+    having?: LuckySpinLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LuckySpinLogCountAggregateInputType | true
+    _avg?: LuckySpinLogAvgAggregateInputType
+    _sum?: LuckySpinLogSumAggregateInputType
+    _min?: LuckySpinLogMinAggregateInputType
+    _max?: LuckySpinLogMaxAggregateInputType
+  }
+
+  export type LuckySpinLogGroupByOutputType = {
+    id: number
+    user_id: number
+    winning_index: string
+    prize_label: string
+    createdAt: Date
+    _count: LuckySpinLogCountAggregateOutputType | null
+    _avg: LuckySpinLogAvgAggregateOutputType | null
+    _sum: LuckySpinLogSumAggregateOutputType | null
+    _min: LuckySpinLogMinAggregateOutputType | null
+    _max: LuckySpinLogMaxAggregateOutputType | null
+  }
+
+  type GetLuckySpinLogGroupByPayload<T extends LuckySpinLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LuckySpinLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LuckySpinLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LuckySpinLogGroupByOutputType[P]>
+            : GetScalarType<T[P], LuckySpinLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LuckySpinLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    winning_index?: boolean
+    prize_label?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["luckySpinLog"]>
+
+  export type LuckySpinLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    winning_index?: boolean
+    prize_label?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["luckySpinLog"]>
+
+  export type LuckySpinLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    winning_index?: boolean
+    prize_label?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["luckySpinLog"]>
+
+  export type LuckySpinLogSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    winning_index?: boolean
+    prize_label?: boolean
+    createdAt?: boolean
+  }
+
+  export type LuckySpinLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "winning_index" | "prize_label" | "createdAt", ExtArgs["result"]["luckySpinLog"]>
+  export type LuckySpinLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LuckySpinLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LuckySpinLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LuckySpinLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LuckySpinLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      user_id: number
+      winning_index: string
+      prize_label: string
+      createdAt: Date
+    }, ExtArgs["result"]["luckySpinLog"]>
+    composites: {}
+  }
+
+  type LuckySpinLogGetPayload<S extends boolean | null | undefined | LuckySpinLogDefaultArgs> = $Result.GetResult<Prisma.$LuckySpinLogPayload, S>
+
+  type LuckySpinLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LuckySpinLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LuckySpinLogCountAggregateInputType | true
+    }
+
+  export interface LuckySpinLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LuckySpinLog'], meta: { name: 'LuckySpinLog' } }
+    /**
+     * Find zero or one LuckySpinLog that matches the filter.
+     * @param {LuckySpinLogFindUniqueArgs} args - Arguments to find a LuckySpinLog
+     * @example
+     * // Get one LuckySpinLog
+     * const luckySpinLog = await prisma.luckySpinLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LuckySpinLogFindUniqueArgs>(args: SelectSubset<T, LuckySpinLogFindUniqueArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LuckySpinLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LuckySpinLogFindUniqueOrThrowArgs} args - Arguments to find a LuckySpinLog
+     * @example
+     * // Get one LuckySpinLog
+     * const luckySpinLog = await prisma.luckySpinLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LuckySpinLogFindUniqueOrThrowArgs>(args: SelectSubset<T, LuckySpinLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LuckySpinLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogFindFirstArgs} args - Arguments to find a LuckySpinLog
+     * @example
+     * // Get one LuckySpinLog
+     * const luckySpinLog = await prisma.luckySpinLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LuckySpinLogFindFirstArgs>(args?: SelectSubset<T, LuckySpinLogFindFirstArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LuckySpinLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogFindFirstOrThrowArgs} args - Arguments to find a LuckySpinLog
+     * @example
+     * // Get one LuckySpinLog
+     * const luckySpinLog = await prisma.luckySpinLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LuckySpinLogFindFirstOrThrowArgs>(args?: SelectSubset<T, LuckySpinLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LuckySpinLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LuckySpinLogs
+     * const luckySpinLogs = await prisma.luckySpinLog.findMany()
+     * 
+     * // Get first 10 LuckySpinLogs
+     * const luckySpinLogs = await prisma.luckySpinLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const luckySpinLogWithIdOnly = await prisma.luckySpinLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LuckySpinLogFindManyArgs>(args?: SelectSubset<T, LuckySpinLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LuckySpinLog.
+     * @param {LuckySpinLogCreateArgs} args - Arguments to create a LuckySpinLog.
+     * @example
+     * // Create one LuckySpinLog
+     * const LuckySpinLog = await prisma.luckySpinLog.create({
+     *   data: {
+     *     // ... data to create a LuckySpinLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends LuckySpinLogCreateArgs>(args: SelectSubset<T, LuckySpinLogCreateArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LuckySpinLogs.
+     * @param {LuckySpinLogCreateManyArgs} args - Arguments to create many LuckySpinLogs.
+     * @example
+     * // Create many LuckySpinLogs
+     * const luckySpinLog = await prisma.luckySpinLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LuckySpinLogCreateManyArgs>(args?: SelectSubset<T, LuckySpinLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LuckySpinLogs and returns the data saved in the database.
+     * @param {LuckySpinLogCreateManyAndReturnArgs} args - Arguments to create many LuckySpinLogs.
+     * @example
+     * // Create many LuckySpinLogs
+     * const luckySpinLog = await prisma.luckySpinLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LuckySpinLogs and only return the `id`
+     * const luckySpinLogWithIdOnly = await prisma.luckySpinLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LuckySpinLogCreateManyAndReturnArgs>(args?: SelectSubset<T, LuckySpinLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LuckySpinLog.
+     * @param {LuckySpinLogDeleteArgs} args - Arguments to delete one LuckySpinLog.
+     * @example
+     * // Delete one LuckySpinLog
+     * const LuckySpinLog = await prisma.luckySpinLog.delete({
+     *   where: {
+     *     // ... filter to delete one LuckySpinLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LuckySpinLogDeleteArgs>(args: SelectSubset<T, LuckySpinLogDeleteArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LuckySpinLog.
+     * @param {LuckySpinLogUpdateArgs} args - Arguments to update one LuckySpinLog.
+     * @example
+     * // Update one LuckySpinLog
+     * const luckySpinLog = await prisma.luckySpinLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LuckySpinLogUpdateArgs>(args: SelectSubset<T, LuckySpinLogUpdateArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LuckySpinLogs.
+     * @param {LuckySpinLogDeleteManyArgs} args - Arguments to filter LuckySpinLogs to delete.
+     * @example
+     * // Delete a few LuckySpinLogs
+     * const { count } = await prisma.luckySpinLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LuckySpinLogDeleteManyArgs>(args?: SelectSubset<T, LuckySpinLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LuckySpinLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LuckySpinLogs
+     * const luckySpinLog = await prisma.luckySpinLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LuckySpinLogUpdateManyArgs>(args: SelectSubset<T, LuckySpinLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LuckySpinLogs and returns the data updated in the database.
+     * @param {LuckySpinLogUpdateManyAndReturnArgs} args - Arguments to update many LuckySpinLogs.
+     * @example
+     * // Update many LuckySpinLogs
+     * const luckySpinLog = await prisma.luckySpinLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LuckySpinLogs and only return the `id`
+     * const luckySpinLogWithIdOnly = await prisma.luckySpinLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LuckySpinLogUpdateManyAndReturnArgs>(args: SelectSubset<T, LuckySpinLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LuckySpinLog.
+     * @param {LuckySpinLogUpsertArgs} args - Arguments to update or create a LuckySpinLog.
+     * @example
+     * // Update or create a LuckySpinLog
+     * const luckySpinLog = await prisma.luckySpinLog.upsert({
+     *   create: {
+     *     // ... data to create a LuckySpinLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LuckySpinLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LuckySpinLogUpsertArgs>(args: SelectSubset<T, LuckySpinLogUpsertArgs<ExtArgs>>): Prisma__LuckySpinLogClient<$Result.GetResult<Prisma.$LuckySpinLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LuckySpinLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogCountArgs} args - Arguments to filter LuckySpinLogs to count.
+     * @example
+     * // Count the number of LuckySpinLogs
+     * const count = await prisma.luckySpinLog.count({
+     *   where: {
+     *     // ... the filter for the LuckySpinLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends LuckySpinLogCountArgs>(
+      args?: Subset<T, LuckySpinLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LuckySpinLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LuckySpinLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LuckySpinLogAggregateArgs>(args: Subset<T, LuckySpinLogAggregateArgs>): Prisma.PrismaPromise<GetLuckySpinLogAggregateType<T>>
+
+    /**
+     * Group by LuckySpinLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LuckySpinLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LuckySpinLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LuckySpinLogGroupByArgs['orderBy'] }
+        : { orderBy?: LuckySpinLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LuckySpinLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLuckySpinLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LuckySpinLog model
+   */
+  readonly fields: LuckySpinLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LuckySpinLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LuckySpinLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LuckySpinLog model
+   */
+  interface LuckySpinLogFieldRefs {
+    readonly id: FieldRef<"LuckySpinLog", 'Int'>
+    readonly user_id: FieldRef<"LuckySpinLog", 'Int'>
+    readonly winning_index: FieldRef<"LuckySpinLog", 'String'>
+    readonly prize_label: FieldRef<"LuckySpinLog", 'String'>
+    readonly createdAt: FieldRef<"LuckySpinLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LuckySpinLog findUnique
+   */
+  export type LuckySpinLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * Filter, which LuckySpinLog to fetch.
+     */
+    where: LuckySpinLogWhereUniqueInput
+  }
+
+  /**
+   * LuckySpinLog findUniqueOrThrow
+   */
+  export type LuckySpinLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * Filter, which LuckySpinLog to fetch.
+     */
+    where: LuckySpinLogWhereUniqueInput
+  }
+
+  /**
+   * LuckySpinLog findFirst
+   */
+  export type LuckySpinLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * Filter, which LuckySpinLog to fetch.
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LuckySpinLogs to fetch.
+     */
+    orderBy?: LuckySpinLogOrderByWithRelationInput | LuckySpinLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LuckySpinLogs.
+     */
+    cursor?: LuckySpinLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LuckySpinLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LuckySpinLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LuckySpinLogs.
+     */
+    distinct?: LuckySpinLogScalarFieldEnum | LuckySpinLogScalarFieldEnum[]
+  }
+
+  /**
+   * LuckySpinLog findFirstOrThrow
+   */
+  export type LuckySpinLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * Filter, which LuckySpinLog to fetch.
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LuckySpinLogs to fetch.
+     */
+    orderBy?: LuckySpinLogOrderByWithRelationInput | LuckySpinLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LuckySpinLogs.
+     */
+    cursor?: LuckySpinLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LuckySpinLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LuckySpinLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LuckySpinLogs.
+     */
+    distinct?: LuckySpinLogScalarFieldEnum | LuckySpinLogScalarFieldEnum[]
+  }
+
+  /**
+   * LuckySpinLog findMany
+   */
+  export type LuckySpinLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * Filter, which LuckySpinLogs to fetch.
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LuckySpinLogs to fetch.
+     */
+    orderBy?: LuckySpinLogOrderByWithRelationInput | LuckySpinLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LuckySpinLogs.
+     */
+    cursor?: LuckySpinLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LuckySpinLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LuckySpinLogs.
+     */
+    skip?: number
+    distinct?: LuckySpinLogScalarFieldEnum | LuckySpinLogScalarFieldEnum[]
+  }
+
+  /**
+   * LuckySpinLog create
+   */
+  export type LuckySpinLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LuckySpinLog.
+     */
+    data: XOR<LuckySpinLogCreateInput, LuckySpinLogUncheckedCreateInput>
+  }
+
+  /**
+   * LuckySpinLog createMany
+   */
+  export type LuckySpinLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LuckySpinLogs.
+     */
+    data: LuckySpinLogCreateManyInput | LuckySpinLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LuckySpinLog createManyAndReturn
+   */
+  export type LuckySpinLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many LuckySpinLogs.
+     */
+    data: LuckySpinLogCreateManyInput | LuckySpinLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LuckySpinLog update
+   */
+  export type LuckySpinLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LuckySpinLog.
+     */
+    data: XOR<LuckySpinLogUpdateInput, LuckySpinLogUncheckedUpdateInput>
+    /**
+     * Choose, which LuckySpinLog to update.
+     */
+    where: LuckySpinLogWhereUniqueInput
+  }
+
+  /**
+   * LuckySpinLog updateMany
+   */
+  export type LuckySpinLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LuckySpinLogs.
+     */
+    data: XOR<LuckySpinLogUpdateManyMutationInput, LuckySpinLogUncheckedUpdateManyInput>
+    /**
+     * Filter which LuckySpinLogs to update
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * Limit how many LuckySpinLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LuckySpinLog updateManyAndReturn
+   */
+  export type LuckySpinLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * The data used to update LuckySpinLogs.
+     */
+    data: XOR<LuckySpinLogUpdateManyMutationInput, LuckySpinLogUncheckedUpdateManyInput>
+    /**
+     * Filter which LuckySpinLogs to update
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * Limit how many LuckySpinLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LuckySpinLog upsert
+   */
+  export type LuckySpinLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LuckySpinLog to update in case it exists.
+     */
+    where: LuckySpinLogWhereUniqueInput
+    /**
+     * In case the LuckySpinLog found by the `where` argument doesn't exist, create a new LuckySpinLog with this data.
+     */
+    create: XOR<LuckySpinLogCreateInput, LuckySpinLogUncheckedCreateInput>
+    /**
+     * In case the LuckySpinLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LuckySpinLogUpdateInput, LuckySpinLogUncheckedUpdateInput>
+  }
+
+  /**
+   * LuckySpinLog delete
+   */
+  export type LuckySpinLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+    /**
+     * Filter which LuckySpinLog to delete.
+     */
+    where: LuckySpinLogWhereUniqueInput
+  }
+
+  /**
+   * LuckySpinLog deleteMany
+   */
+  export type LuckySpinLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LuckySpinLogs to delete
+     */
+    where?: LuckySpinLogWhereInput
+    /**
+     * Limit how many LuckySpinLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LuckySpinLog without action
+   */
+  export type LuckySpinLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LuckySpinLog
+     */
+    select?: LuckySpinLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LuckySpinLog
+     */
+    omit?: LuckySpinLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LuckySpinLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model OfferClaimLog
+   */
+
+  export type AggregateOfferClaimLog = {
+    _count: OfferClaimLogCountAggregateOutputType | null
+    _avg: OfferClaimLogAvgAggregateOutputType | null
+    _sum: OfferClaimLogSumAggregateOutputType | null
+    _min: OfferClaimLogMinAggregateOutputType | null
+    _max: OfferClaimLogMaxAggregateOutputType | null
+  }
+
+  export type OfferClaimLogAvgAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+  }
+
+  export type OfferClaimLogSumAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+  }
+
+  export type OfferClaimLogMinAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    offer_code: $Enums.OfferCode | null
+    createdAt: Date | null
+  }
+
+  export type OfferClaimLogMaxAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    offer_code: $Enums.OfferCode | null
+    createdAt: Date | null
+  }
+
+  export type OfferClaimLogCountAggregateOutputType = {
+    id: number
+    user_id: number
+    offer_code: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type OfferClaimLogAvgAggregateInputType = {
+    id?: true
+    user_id?: true
+  }
+
+  export type OfferClaimLogSumAggregateInputType = {
+    id?: true
+    user_id?: true
+  }
+
+  export type OfferClaimLogMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    offer_code?: true
+    createdAt?: true
+  }
+
+  export type OfferClaimLogMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    offer_code?: true
+    createdAt?: true
+  }
+
+  export type OfferClaimLogCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    offer_code?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type OfferClaimLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OfferClaimLog to aggregate.
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OfferClaimLogs to fetch.
+     */
+    orderBy?: OfferClaimLogOrderByWithRelationInput | OfferClaimLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OfferClaimLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OfferClaimLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OfferClaimLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OfferClaimLogs
+    **/
+    _count?: true | OfferClaimLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OfferClaimLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OfferClaimLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OfferClaimLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OfferClaimLogMaxAggregateInputType
+  }
+
+  export type GetOfferClaimLogAggregateType<T extends OfferClaimLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateOfferClaimLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOfferClaimLog[P]>
+      : GetScalarType<T[P], AggregateOfferClaimLog[P]>
+  }
+
+
+
+
+  export type OfferClaimLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OfferClaimLogWhereInput
+    orderBy?: OfferClaimLogOrderByWithAggregationInput | OfferClaimLogOrderByWithAggregationInput[]
+    by: OfferClaimLogScalarFieldEnum[] | OfferClaimLogScalarFieldEnum
+    having?: OfferClaimLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OfferClaimLogCountAggregateInputType | true
+    _avg?: OfferClaimLogAvgAggregateInputType
+    _sum?: OfferClaimLogSumAggregateInputType
+    _min?: OfferClaimLogMinAggregateInputType
+    _max?: OfferClaimLogMaxAggregateInputType
+  }
+
+  export type OfferClaimLogGroupByOutputType = {
+    id: number
+    user_id: number
+    offer_code: $Enums.OfferCode
+    createdAt: Date
+    _count: OfferClaimLogCountAggregateOutputType | null
+    _avg: OfferClaimLogAvgAggregateOutputType | null
+    _sum: OfferClaimLogSumAggregateOutputType | null
+    _min: OfferClaimLogMinAggregateOutputType | null
+    _max: OfferClaimLogMaxAggregateOutputType | null
+  }
+
+  type GetOfferClaimLogGroupByPayload<T extends OfferClaimLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OfferClaimLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OfferClaimLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OfferClaimLogGroupByOutputType[P]>
+            : GetScalarType<T[P], OfferClaimLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OfferClaimLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    offer_code?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["offerClaimLog"]>
+
+  export type OfferClaimLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    offer_code?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["offerClaimLog"]>
+
+  export type OfferClaimLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    offer_code?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["offerClaimLog"]>
+
+  export type OfferClaimLogSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    offer_code?: boolean
+    createdAt?: boolean
+  }
+
+  export type OfferClaimLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "offer_code" | "createdAt", ExtArgs["result"]["offerClaimLog"]>
+  export type OfferClaimLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type OfferClaimLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type OfferClaimLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $OfferClaimLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OfferClaimLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      user_id: number
+      offer_code: $Enums.OfferCode
+      createdAt: Date
+    }, ExtArgs["result"]["offerClaimLog"]>
+    composites: {}
+  }
+
+  type OfferClaimLogGetPayload<S extends boolean | null | undefined | OfferClaimLogDefaultArgs> = $Result.GetResult<Prisma.$OfferClaimLogPayload, S>
+
+  type OfferClaimLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OfferClaimLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OfferClaimLogCountAggregateInputType | true
+    }
+
+  export interface OfferClaimLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OfferClaimLog'], meta: { name: 'OfferClaimLog' } }
+    /**
+     * Find zero or one OfferClaimLog that matches the filter.
+     * @param {OfferClaimLogFindUniqueArgs} args - Arguments to find a OfferClaimLog
+     * @example
+     * // Get one OfferClaimLog
+     * const offerClaimLog = await prisma.offerClaimLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OfferClaimLogFindUniqueArgs>(args: SelectSubset<T, OfferClaimLogFindUniqueArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OfferClaimLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OfferClaimLogFindUniqueOrThrowArgs} args - Arguments to find a OfferClaimLog
+     * @example
+     * // Get one OfferClaimLog
+     * const offerClaimLog = await prisma.offerClaimLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OfferClaimLogFindUniqueOrThrowArgs>(args: SelectSubset<T, OfferClaimLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OfferClaimLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogFindFirstArgs} args - Arguments to find a OfferClaimLog
+     * @example
+     * // Get one OfferClaimLog
+     * const offerClaimLog = await prisma.offerClaimLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OfferClaimLogFindFirstArgs>(args?: SelectSubset<T, OfferClaimLogFindFirstArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OfferClaimLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogFindFirstOrThrowArgs} args - Arguments to find a OfferClaimLog
+     * @example
+     * // Get one OfferClaimLog
+     * const offerClaimLog = await prisma.offerClaimLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OfferClaimLogFindFirstOrThrowArgs>(args?: SelectSubset<T, OfferClaimLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OfferClaimLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OfferClaimLogs
+     * const offerClaimLogs = await prisma.offerClaimLog.findMany()
+     * 
+     * // Get first 10 OfferClaimLogs
+     * const offerClaimLogs = await prisma.offerClaimLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const offerClaimLogWithIdOnly = await prisma.offerClaimLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OfferClaimLogFindManyArgs>(args?: SelectSubset<T, OfferClaimLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OfferClaimLog.
+     * @param {OfferClaimLogCreateArgs} args - Arguments to create a OfferClaimLog.
+     * @example
+     * // Create one OfferClaimLog
+     * const OfferClaimLog = await prisma.offerClaimLog.create({
+     *   data: {
+     *     // ... data to create a OfferClaimLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends OfferClaimLogCreateArgs>(args: SelectSubset<T, OfferClaimLogCreateArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OfferClaimLogs.
+     * @param {OfferClaimLogCreateManyArgs} args - Arguments to create many OfferClaimLogs.
+     * @example
+     * // Create many OfferClaimLogs
+     * const offerClaimLog = await prisma.offerClaimLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OfferClaimLogCreateManyArgs>(args?: SelectSubset<T, OfferClaimLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OfferClaimLogs and returns the data saved in the database.
+     * @param {OfferClaimLogCreateManyAndReturnArgs} args - Arguments to create many OfferClaimLogs.
+     * @example
+     * // Create many OfferClaimLogs
+     * const offerClaimLog = await prisma.offerClaimLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OfferClaimLogs and only return the `id`
+     * const offerClaimLogWithIdOnly = await prisma.offerClaimLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OfferClaimLogCreateManyAndReturnArgs>(args?: SelectSubset<T, OfferClaimLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OfferClaimLog.
+     * @param {OfferClaimLogDeleteArgs} args - Arguments to delete one OfferClaimLog.
+     * @example
+     * // Delete one OfferClaimLog
+     * const OfferClaimLog = await prisma.offerClaimLog.delete({
+     *   where: {
+     *     // ... filter to delete one OfferClaimLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OfferClaimLogDeleteArgs>(args: SelectSubset<T, OfferClaimLogDeleteArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OfferClaimLog.
+     * @param {OfferClaimLogUpdateArgs} args - Arguments to update one OfferClaimLog.
+     * @example
+     * // Update one OfferClaimLog
+     * const offerClaimLog = await prisma.offerClaimLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OfferClaimLogUpdateArgs>(args: SelectSubset<T, OfferClaimLogUpdateArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OfferClaimLogs.
+     * @param {OfferClaimLogDeleteManyArgs} args - Arguments to filter OfferClaimLogs to delete.
+     * @example
+     * // Delete a few OfferClaimLogs
+     * const { count } = await prisma.offerClaimLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OfferClaimLogDeleteManyArgs>(args?: SelectSubset<T, OfferClaimLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OfferClaimLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OfferClaimLogs
+     * const offerClaimLog = await prisma.offerClaimLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OfferClaimLogUpdateManyArgs>(args: SelectSubset<T, OfferClaimLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OfferClaimLogs and returns the data updated in the database.
+     * @param {OfferClaimLogUpdateManyAndReturnArgs} args - Arguments to update many OfferClaimLogs.
+     * @example
+     * // Update many OfferClaimLogs
+     * const offerClaimLog = await prisma.offerClaimLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OfferClaimLogs and only return the `id`
+     * const offerClaimLogWithIdOnly = await prisma.offerClaimLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OfferClaimLogUpdateManyAndReturnArgs>(args: SelectSubset<T, OfferClaimLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OfferClaimLog.
+     * @param {OfferClaimLogUpsertArgs} args - Arguments to update or create a OfferClaimLog.
+     * @example
+     * // Update or create a OfferClaimLog
+     * const offerClaimLog = await prisma.offerClaimLog.upsert({
+     *   create: {
+     *     // ... data to create a OfferClaimLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OfferClaimLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OfferClaimLogUpsertArgs>(args: SelectSubset<T, OfferClaimLogUpsertArgs<ExtArgs>>): Prisma__OfferClaimLogClient<$Result.GetResult<Prisma.$OfferClaimLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OfferClaimLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogCountArgs} args - Arguments to filter OfferClaimLogs to count.
+     * @example
+     * // Count the number of OfferClaimLogs
+     * const count = await prisma.offerClaimLog.count({
+     *   where: {
+     *     // ... the filter for the OfferClaimLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends OfferClaimLogCountArgs>(
+      args?: Subset<T, OfferClaimLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OfferClaimLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OfferClaimLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OfferClaimLogAggregateArgs>(args: Subset<T, OfferClaimLogAggregateArgs>): Prisma.PrismaPromise<GetOfferClaimLogAggregateType<T>>
+
+    /**
+     * Group by OfferClaimLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OfferClaimLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OfferClaimLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OfferClaimLogGroupByArgs['orderBy'] }
+        : { orderBy?: OfferClaimLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OfferClaimLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOfferClaimLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OfferClaimLog model
+   */
+  readonly fields: OfferClaimLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OfferClaimLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OfferClaimLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OfferClaimLog model
+   */
+  interface OfferClaimLogFieldRefs {
+    readonly id: FieldRef<"OfferClaimLog", 'Int'>
+    readonly user_id: FieldRef<"OfferClaimLog", 'Int'>
+    readonly offer_code: FieldRef<"OfferClaimLog", 'OfferCode'>
+    readonly createdAt: FieldRef<"OfferClaimLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OfferClaimLog findUnique
+   */
+  export type OfferClaimLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * Filter, which OfferClaimLog to fetch.
+     */
+    where: OfferClaimLogWhereUniqueInput
+  }
+
+  /**
+   * OfferClaimLog findUniqueOrThrow
+   */
+  export type OfferClaimLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * Filter, which OfferClaimLog to fetch.
+     */
+    where: OfferClaimLogWhereUniqueInput
+  }
+
+  /**
+   * OfferClaimLog findFirst
+   */
+  export type OfferClaimLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * Filter, which OfferClaimLog to fetch.
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OfferClaimLogs to fetch.
+     */
+    orderBy?: OfferClaimLogOrderByWithRelationInput | OfferClaimLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OfferClaimLogs.
+     */
+    cursor?: OfferClaimLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OfferClaimLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OfferClaimLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OfferClaimLogs.
+     */
+    distinct?: OfferClaimLogScalarFieldEnum | OfferClaimLogScalarFieldEnum[]
+  }
+
+  /**
+   * OfferClaimLog findFirstOrThrow
+   */
+  export type OfferClaimLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * Filter, which OfferClaimLog to fetch.
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OfferClaimLogs to fetch.
+     */
+    orderBy?: OfferClaimLogOrderByWithRelationInput | OfferClaimLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OfferClaimLogs.
+     */
+    cursor?: OfferClaimLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OfferClaimLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OfferClaimLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OfferClaimLogs.
+     */
+    distinct?: OfferClaimLogScalarFieldEnum | OfferClaimLogScalarFieldEnum[]
+  }
+
+  /**
+   * OfferClaimLog findMany
+   */
+  export type OfferClaimLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * Filter, which OfferClaimLogs to fetch.
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OfferClaimLogs to fetch.
+     */
+    orderBy?: OfferClaimLogOrderByWithRelationInput | OfferClaimLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OfferClaimLogs.
+     */
+    cursor?: OfferClaimLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OfferClaimLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OfferClaimLogs.
+     */
+    skip?: number
+    distinct?: OfferClaimLogScalarFieldEnum | OfferClaimLogScalarFieldEnum[]
+  }
+
+  /**
+   * OfferClaimLog create
+   */
+  export type OfferClaimLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OfferClaimLog.
+     */
+    data: XOR<OfferClaimLogCreateInput, OfferClaimLogUncheckedCreateInput>
+  }
+
+  /**
+   * OfferClaimLog createMany
+   */
+  export type OfferClaimLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OfferClaimLogs.
+     */
+    data: OfferClaimLogCreateManyInput | OfferClaimLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OfferClaimLog createManyAndReturn
+   */
+  export type OfferClaimLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many OfferClaimLogs.
+     */
+    data: OfferClaimLogCreateManyInput | OfferClaimLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OfferClaimLog update
+   */
+  export type OfferClaimLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OfferClaimLog.
+     */
+    data: XOR<OfferClaimLogUpdateInput, OfferClaimLogUncheckedUpdateInput>
+    /**
+     * Choose, which OfferClaimLog to update.
+     */
+    where: OfferClaimLogWhereUniqueInput
+  }
+
+  /**
+   * OfferClaimLog updateMany
+   */
+  export type OfferClaimLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OfferClaimLogs.
+     */
+    data: XOR<OfferClaimLogUpdateManyMutationInput, OfferClaimLogUncheckedUpdateManyInput>
+    /**
+     * Filter which OfferClaimLogs to update
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * Limit how many OfferClaimLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OfferClaimLog updateManyAndReturn
+   */
+  export type OfferClaimLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * The data used to update OfferClaimLogs.
+     */
+    data: XOR<OfferClaimLogUpdateManyMutationInput, OfferClaimLogUncheckedUpdateManyInput>
+    /**
+     * Filter which OfferClaimLogs to update
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * Limit how many OfferClaimLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OfferClaimLog upsert
+   */
+  export type OfferClaimLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OfferClaimLog to update in case it exists.
+     */
+    where: OfferClaimLogWhereUniqueInput
+    /**
+     * In case the OfferClaimLog found by the `where` argument doesn't exist, create a new OfferClaimLog with this data.
+     */
+    create: XOR<OfferClaimLogCreateInput, OfferClaimLogUncheckedCreateInput>
+    /**
+     * In case the OfferClaimLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OfferClaimLogUpdateInput, OfferClaimLogUncheckedUpdateInput>
+  }
+
+  /**
+   * OfferClaimLog delete
+   */
+  export type OfferClaimLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+    /**
+     * Filter which OfferClaimLog to delete.
+     */
+    where: OfferClaimLogWhereUniqueInput
+  }
+
+  /**
+   * OfferClaimLog deleteMany
+   */
+  export type OfferClaimLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OfferClaimLogs to delete
+     */
+    where?: OfferClaimLogWhereInput
+    /**
+     * Limit how many OfferClaimLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OfferClaimLog without action
+   */
+  export type OfferClaimLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferClaimLog
+     */
+    select?: OfferClaimLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferClaimLog
+     */
+    omit?: OfferClaimLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferClaimLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11843,6 +14306,7 @@ export namespace Prisma {
     password: 'password',
     fp_id: 'fp_id',
     ip: 'ip',
+    lucky_spin: 'lucky_spin',
     balance: 'balance',
     turn_over: 'turn_over',
     invited_by: 'invited_by',
@@ -11957,6 +14421,27 @@ export namespace Prisma {
   };
 
   export type CommissionListScalarFieldEnum = (typeof CommissionListScalarFieldEnum)[keyof typeof CommissionListScalarFieldEnum]
+
+
+  export const LuckySpinLogScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    winning_index: 'winning_index',
+    prize_label: 'prize_label',
+    createdAt: 'createdAt'
+  };
+
+  export type LuckySpinLogScalarFieldEnum = (typeof LuckySpinLogScalarFieldEnum)[keyof typeof LuckySpinLogScalarFieldEnum]
+
+
+  export const OfferClaimLogScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    offer_code: 'offer_code',
+    createdAt: 'createdAt'
+  };
+
+  export type OfferClaimLogScalarFieldEnum = (typeof OfferClaimLogScalarFieldEnum)[keyof typeof OfferClaimLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12080,6 +14565,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'OfferCode'
+   */
+  export type EnumOfferCodeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OfferCode'>
+    
+
+
+  /**
+   * Reference to a field of type 'OfferCode[]'
+   */
+  export type ListEnumOfferCodeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OfferCode[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12112,6 +14611,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     fp_id?: StringFilter<"User"> | string
     ip?: StringFilter<"User"> | string
+    lucky_spin?: IntFilter<"User"> | number
     balance?: DecimalFilter<"User"> | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFilter<"User"> | Decimal | DecimalJsLike | number | string
     invited_by?: StringNullableFilter<"User"> | string | null
@@ -12121,6 +14621,8 @@ export namespace Prisma {
     transactions?: TransactionListRelationFilter
     otp_records?: OtpRecordListRelationFilter
     vouchers?: VoucherListRelationFilter
+    lucky_spin_logs?: LuckySpinLogListRelationFilter
+    offer_claim_logs?: OfferClaimLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12136,6 +14638,7 @@ export namespace Prisma {
     password?: SortOrder
     fp_id?: SortOrder
     ip?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
     invited_by?: SortOrderInput | SortOrder
@@ -12145,6 +14648,8 @@ export namespace Prisma {
     transactions?: TransactionOrderByRelationAggregateInput
     otp_records?: OtpRecordOrderByRelationAggregateInput
     vouchers?: VoucherOrderByRelationAggregateInput
+    lucky_spin_logs?: LuckySpinLogOrderByRelationAggregateInput
+    offer_claim_logs?: OfferClaimLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12163,6 +14668,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     fp_id?: StringFilter<"User"> | string
     ip?: StringFilter<"User"> | string
+    lucky_spin?: IntFilter<"User"> | number
     balance?: DecimalFilter<"User"> | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFilter<"User"> | Decimal | DecimalJsLike | number | string
     invited_by?: StringNullableFilter<"User"> | string | null
@@ -12172,6 +14678,8 @@ export namespace Prisma {
     transactions?: TransactionListRelationFilter
     otp_records?: OtpRecordListRelationFilter
     vouchers?: VoucherListRelationFilter
+    lucky_spin_logs?: LuckySpinLogListRelationFilter
+    offer_claim_logs?: OfferClaimLogListRelationFilter
   }, "id" | "phone_number">
 
   export type UserOrderByWithAggregationInput = {
@@ -12187,6 +14695,7 @@ export namespace Prisma {
     password?: SortOrder
     fp_id?: SortOrder
     ip?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
     invited_by?: SortOrderInput | SortOrder
@@ -12215,6 +14724,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     fp_id?: StringWithAggregatesFilter<"User"> | string
     ip?: StringWithAggregatesFilter<"User"> | string
+    lucky_spin?: IntWithAggregatesFilter<"User"> | number
     balance?: DecimalWithAggregatesFilter<"User"> | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalWithAggregatesFilter<"User"> | Decimal | DecimalJsLike | number | string
     invited_by?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -12756,6 +15266,115 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CommissionList"> | Date | string
   }
 
+  export type LuckySpinLogWhereInput = {
+    AND?: LuckySpinLogWhereInput | LuckySpinLogWhereInput[]
+    OR?: LuckySpinLogWhereInput[]
+    NOT?: LuckySpinLogWhereInput | LuckySpinLogWhereInput[]
+    id?: IntFilter<"LuckySpinLog"> | number
+    user_id?: IntFilter<"LuckySpinLog"> | number
+    winning_index?: StringFilter<"LuckySpinLog"> | string
+    prize_label?: StringFilter<"LuckySpinLog"> | string
+    createdAt?: DateTimeFilter<"LuckySpinLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type LuckySpinLogOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    winning_index?: SortOrder
+    prize_label?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type LuckySpinLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: LuckySpinLogWhereInput | LuckySpinLogWhereInput[]
+    OR?: LuckySpinLogWhereInput[]
+    NOT?: LuckySpinLogWhereInput | LuckySpinLogWhereInput[]
+    user_id?: IntFilter<"LuckySpinLog"> | number
+    winning_index?: StringFilter<"LuckySpinLog"> | string
+    prize_label?: StringFilter<"LuckySpinLog"> | string
+    createdAt?: DateTimeFilter<"LuckySpinLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type LuckySpinLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    winning_index?: SortOrder
+    prize_label?: SortOrder
+    createdAt?: SortOrder
+    _count?: LuckySpinLogCountOrderByAggregateInput
+    _avg?: LuckySpinLogAvgOrderByAggregateInput
+    _max?: LuckySpinLogMaxOrderByAggregateInput
+    _min?: LuckySpinLogMinOrderByAggregateInput
+    _sum?: LuckySpinLogSumOrderByAggregateInput
+  }
+
+  export type LuckySpinLogScalarWhereWithAggregatesInput = {
+    AND?: LuckySpinLogScalarWhereWithAggregatesInput | LuckySpinLogScalarWhereWithAggregatesInput[]
+    OR?: LuckySpinLogScalarWhereWithAggregatesInput[]
+    NOT?: LuckySpinLogScalarWhereWithAggregatesInput | LuckySpinLogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"LuckySpinLog"> | number
+    user_id?: IntWithAggregatesFilter<"LuckySpinLog"> | number
+    winning_index?: StringWithAggregatesFilter<"LuckySpinLog"> | string
+    prize_label?: StringWithAggregatesFilter<"LuckySpinLog"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"LuckySpinLog"> | Date | string
+  }
+
+  export type OfferClaimLogWhereInput = {
+    AND?: OfferClaimLogWhereInput | OfferClaimLogWhereInput[]
+    OR?: OfferClaimLogWhereInput[]
+    NOT?: OfferClaimLogWhereInput | OfferClaimLogWhereInput[]
+    id?: IntFilter<"OfferClaimLog"> | number
+    user_id?: IntFilter<"OfferClaimLog"> | number
+    offer_code?: EnumOfferCodeFilter<"OfferClaimLog"> | $Enums.OfferCode
+    createdAt?: DateTimeFilter<"OfferClaimLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type OfferClaimLogOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    offer_code?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type OfferClaimLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: OfferClaimLogWhereInput | OfferClaimLogWhereInput[]
+    OR?: OfferClaimLogWhereInput[]
+    NOT?: OfferClaimLogWhereInput | OfferClaimLogWhereInput[]
+    user_id?: IntFilter<"OfferClaimLog"> | number
+    offer_code?: EnumOfferCodeFilter<"OfferClaimLog"> | $Enums.OfferCode
+    createdAt?: DateTimeFilter<"OfferClaimLog"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type OfferClaimLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    offer_code?: SortOrder
+    createdAt?: SortOrder
+    _count?: OfferClaimLogCountOrderByAggregateInput
+    _avg?: OfferClaimLogAvgOrderByAggregateInput
+    _max?: OfferClaimLogMaxOrderByAggregateInput
+    _min?: OfferClaimLogMinOrderByAggregateInput
+    _sum?: OfferClaimLogSumOrderByAggregateInput
+  }
+
+  export type OfferClaimLogScalarWhereWithAggregatesInput = {
+    AND?: OfferClaimLogScalarWhereWithAggregatesInput | OfferClaimLogScalarWhereWithAggregatesInput[]
+    OR?: OfferClaimLogScalarWhereWithAggregatesInput[]
+    NOT?: OfferClaimLogScalarWhereWithAggregatesInput | OfferClaimLogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"OfferClaimLog"> | number
+    user_id?: IntWithAggregatesFilter<"OfferClaimLog"> | number
+    offer_code?: EnumOfferCodeWithAggregatesFilter<"OfferClaimLog"> | $Enums.OfferCode
+    createdAt?: DateTimeWithAggregatesFilter<"OfferClaimLog"> | Date | string
+  }
+
   export type UserCreateInput = {
     status?: string
     phone_number: string
@@ -12768,6 +15387,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -12777,6 +15397,8 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordCreateNestedManyWithoutUserInput
     vouchers?: VoucherCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12792,6 +15414,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -12801,6 +15424,8 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordUncheckedCreateNestedManyWithoutUserInput
     vouchers?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogUncheckedCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12815,6 +15440,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12824,6 +15450,8 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12839,6 +15467,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12848,6 +15477,8 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUncheckedUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12863,6 +15494,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -12882,6 +15514,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12902,6 +15535,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13455,6 +16089,103 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LuckySpinLogCreateInput = {
+    winning_index: string
+    prize_label: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutLucky_spin_logsInput
+  }
+
+  export type LuckySpinLogUncheckedCreateInput = {
+    id?: number
+    user_id: number
+    winning_index: string
+    prize_label: string
+    createdAt?: Date | string
+  }
+
+  export type LuckySpinLogUpdateInput = {
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutLucky_spin_logsNestedInput
+  }
+
+  export type LuckySpinLogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LuckySpinLogCreateManyInput = {
+    id?: number
+    user_id: number
+    winning_index: string
+    prize_label: string
+    createdAt?: Date | string
+  }
+
+  export type LuckySpinLogUpdateManyMutationInput = {
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LuckySpinLogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferClaimLogCreateInput = {
+    offer_code: $Enums.OfferCode
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOffer_claim_logsInput
+  }
+
+  export type OfferClaimLogUncheckedCreateInput = {
+    id?: number
+    user_id: number
+    offer_code: $Enums.OfferCode
+    createdAt?: Date | string
+  }
+
+  export type OfferClaimLogUpdateInput = {
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOffer_claim_logsNestedInput
+  }
+
+  export type OfferClaimLogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferClaimLogCreateManyInput = {
+    id?: number
+    user_id: number
+    offer_code: $Enums.OfferCode
+    createdAt?: Date | string
+  }
+
+  export type OfferClaimLogUpdateManyMutationInput = {
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferClaimLogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -13547,6 +16278,18 @@ export namespace Prisma {
     none?: VoucherWhereInput
   }
 
+  export type LuckySpinLogListRelationFilter = {
+    every?: LuckySpinLogWhereInput
+    some?: LuckySpinLogWhereInput
+    none?: LuckySpinLogWhereInput
+  }
+
+  export type OfferClaimLogListRelationFilter = {
+    every?: OfferClaimLogWhereInput
+    some?: OfferClaimLogWhereInput
+    none?: OfferClaimLogWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -13568,6 +16311,14 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type LuckySpinLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OfferClaimLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     status?: SortOrder
@@ -13581,6 +16332,7 @@ export namespace Prisma {
     password?: SortOrder
     fp_id?: SortOrder
     ip?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
     invited_by?: SortOrder
@@ -13590,6 +16342,7 @@ export namespace Prisma {
 
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
   }
@@ -13607,6 +16360,7 @@ export namespace Prisma {
     password?: SortOrder
     fp_id?: SortOrder
     ip?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
     invited_by?: SortOrder
@@ -13627,6 +16381,7 @@ export namespace Prisma {
     password?: SortOrder
     fp_id?: SortOrder
     ip?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
     invited_by?: SortOrder
@@ -13636,6 +16391,7 @@ export namespace Prisma {
 
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
+    lucky_spin?: SortOrder
     balance?: SortOrder
     turn_over?: SortOrder
   }
@@ -14160,6 +16916,88 @@ export namespace Prisma {
     salary?: SortOrder
   }
 
+  export type LuckySpinLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    winning_index?: SortOrder
+    prize_label?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LuckySpinLogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type LuckySpinLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    winning_index?: SortOrder
+    prize_label?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LuckySpinLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    winning_index?: SortOrder
+    prize_label?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LuckySpinLogSumOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type EnumOfferCodeFilter<$PrismaModel = never> = {
+    equals?: $Enums.OfferCode | EnumOfferCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumOfferCodeFilter<$PrismaModel> | $Enums.OfferCode
+  }
+
+  export type OfferClaimLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    offer_code?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferClaimLogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type OfferClaimLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    offer_code?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferClaimLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    offer_code?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OfferClaimLogSumOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type EnumOfferCodeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OfferCode | EnumOfferCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumOfferCodeWithAggregatesFilter<$PrismaModel> | $Enums.OfferCode
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOfferCodeFilter<$PrismaModel>
+    _max?: NestedEnumOfferCodeFilter<$PrismaModel>
+  }
+
   export type GameTransactionCreateNestedManyWithoutUserInput = {
     create?: XOR<GameTransactionCreateWithoutUserInput, GameTransactionUncheckedCreateWithoutUserInput> | GameTransactionCreateWithoutUserInput[] | GameTransactionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: GameTransactionCreateOrConnectWithoutUserInput | GameTransactionCreateOrConnectWithoutUserInput[]
@@ -14186,6 +17024,20 @@ export namespace Prisma {
     connectOrCreate?: VoucherCreateOrConnectWithoutUserInput | VoucherCreateOrConnectWithoutUserInput[]
     createMany?: VoucherCreateManyUserInputEnvelope
     connect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
+  }
+
+  export type LuckySpinLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<LuckySpinLogCreateWithoutUserInput, LuckySpinLogUncheckedCreateWithoutUserInput> | LuckySpinLogCreateWithoutUserInput[] | LuckySpinLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LuckySpinLogCreateOrConnectWithoutUserInput | LuckySpinLogCreateOrConnectWithoutUserInput[]
+    createMany?: LuckySpinLogCreateManyUserInputEnvelope
+    connect?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+  }
+
+  export type OfferClaimLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<OfferClaimLogCreateWithoutUserInput, OfferClaimLogUncheckedCreateWithoutUserInput> | OfferClaimLogCreateWithoutUserInput[] | OfferClaimLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OfferClaimLogCreateOrConnectWithoutUserInput | OfferClaimLogCreateOrConnectWithoutUserInput[]
+    createMany?: OfferClaimLogCreateManyUserInputEnvelope
+    connect?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
   }
 
   export type GameTransactionUncheckedCreateNestedManyWithoutUserInput = {
@@ -14216,6 +17068,20 @@ export namespace Prisma {
     connect?: VoucherWhereUniqueInput | VoucherWhereUniqueInput[]
   }
 
+  export type LuckySpinLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LuckySpinLogCreateWithoutUserInput, LuckySpinLogUncheckedCreateWithoutUserInput> | LuckySpinLogCreateWithoutUserInput[] | LuckySpinLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LuckySpinLogCreateOrConnectWithoutUserInput | LuckySpinLogCreateOrConnectWithoutUserInput[]
+    createMany?: LuckySpinLogCreateManyUserInputEnvelope
+    connect?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+  }
+
+  export type OfferClaimLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<OfferClaimLogCreateWithoutUserInput, OfferClaimLogUncheckedCreateWithoutUserInput> | OfferClaimLogCreateWithoutUserInput[] | OfferClaimLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OfferClaimLogCreateOrConnectWithoutUserInput | OfferClaimLogCreateOrConnectWithoutUserInput[]
+    createMany?: OfferClaimLogCreateManyUserInputEnvelope
+    connect?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -14226,6 +17092,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -14296,12 +17170,32 @@ export namespace Prisma {
     deleteMany?: VoucherScalarWhereInput | VoucherScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type LuckySpinLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LuckySpinLogCreateWithoutUserInput, LuckySpinLogUncheckedCreateWithoutUserInput> | LuckySpinLogCreateWithoutUserInput[] | LuckySpinLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LuckySpinLogCreateOrConnectWithoutUserInput | LuckySpinLogCreateOrConnectWithoutUserInput[]
+    upsert?: LuckySpinLogUpsertWithWhereUniqueWithoutUserInput | LuckySpinLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LuckySpinLogCreateManyUserInputEnvelope
+    set?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    disconnect?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    delete?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    connect?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    update?: LuckySpinLogUpdateWithWhereUniqueWithoutUserInput | LuckySpinLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LuckySpinLogUpdateManyWithWhereWithoutUserInput | LuckySpinLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LuckySpinLogScalarWhereInput | LuckySpinLogScalarWhereInput[]
+  }
+
+  export type OfferClaimLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OfferClaimLogCreateWithoutUserInput, OfferClaimLogUncheckedCreateWithoutUserInput> | OfferClaimLogCreateWithoutUserInput[] | OfferClaimLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OfferClaimLogCreateOrConnectWithoutUserInput | OfferClaimLogCreateOrConnectWithoutUserInput[]
+    upsert?: OfferClaimLogUpsertWithWhereUniqueWithoutUserInput | OfferClaimLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OfferClaimLogCreateManyUserInputEnvelope
+    set?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    disconnect?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    delete?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    connect?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    update?: OfferClaimLogUpdateWithWhereUniqueWithoutUserInput | OfferClaimLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OfferClaimLogUpdateManyWithWhereWithoutUserInput | OfferClaimLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OfferClaimLogScalarWhereInput | OfferClaimLogScalarWhereInput[]
   }
 
   export type GameTransactionUncheckedUpdateManyWithoutUserNestedInput = {
@@ -14358,6 +17252,34 @@ export namespace Prisma {
     update?: VoucherUpdateWithWhereUniqueWithoutUserInput | VoucherUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: VoucherUpdateManyWithWhereWithoutUserInput | VoucherUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: VoucherScalarWhereInput | VoucherScalarWhereInput[]
+  }
+
+  export type LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LuckySpinLogCreateWithoutUserInput, LuckySpinLogUncheckedCreateWithoutUserInput> | LuckySpinLogCreateWithoutUserInput[] | LuckySpinLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LuckySpinLogCreateOrConnectWithoutUserInput | LuckySpinLogCreateOrConnectWithoutUserInput[]
+    upsert?: LuckySpinLogUpsertWithWhereUniqueWithoutUserInput | LuckySpinLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LuckySpinLogCreateManyUserInputEnvelope
+    set?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    disconnect?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    delete?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    connect?: LuckySpinLogWhereUniqueInput | LuckySpinLogWhereUniqueInput[]
+    update?: LuckySpinLogUpdateWithWhereUniqueWithoutUserInput | LuckySpinLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LuckySpinLogUpdateManyWithWhereWithoutUserInput | LuckySpinLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LuckySpinLogScalarWhereInput | LuckySpinLogScalarWhereInput[]
+  }
+
+  export type OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OfferClaimLogCreateWithoutUserInput, OfferClaimLogUncheckedCreateWithoutUserInput> | OfferClaimLogCreateWithoutUserInput[] | OfferClaimLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OfferClaimLogCreateOrConnectWithoutUserInput | OfferClaimLogCreateOrConnectWithoutUserInput[]
+    upsert?: OfferClaimLogUpsertWithWhereUniqueWithoutUserInput | OfferClaimLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OfferClaimLogCreateManyUserInputEnvelope
+    set?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    disconnect?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    delete?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    connect?: OfferClaimLogWhereUniqueInput | OfferClaimLogWhereUniqueInput[]
+    update?: OfferClaimLogUpdateWithWhereUniqueWithoutUserInput | OfferClaimLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OfferClaimLogUpdateManyWithWhereWithoutUserInput | OfferClaimLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OfferClaimLogScalarWhereInput | OfferClaimLogScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutOtp_recordsInput = {
@@ -14436,6 +17358,38 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserCreateNestedOneWithoutLucky_spin_logsInput = {
+    create?: XOR<UserCreateWithoutLucky_spin_logsInput, UserUncheckedCreateWithoutLucky_spin_logsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLucky_spin_logsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutLucky_spin_logsNestedInput = {
+    create?: XOR<UserCreateWithoutLucky_spin_logsInput, UserUncheckedCreateWithoutLucky_spin_logsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLucky_spin_logsInput
+    upsert?: UserUpsertWithoutLucky_spin_logsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLucky_spin_logsInput, UserUpdateWithoutLucky_spin_logsInput>, UserUncheckedUpdateWithoutLucky_spin_logsInput>
+  }
+
+  export type UserCreateNestedOneWithoutOffer_claim_logsInput = {
+    create?: XOR<UserCreateWithoutOffer_claim_logsInput, UserUncheckedCreateWithoutOffer_claim_logsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOffer_claim_logsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumOfferCodeFieldUpdateOperationsInput = {
+    set?: $Enums.OfferCode
+  }
+
+  export type UserUpdateOneRequiredWithoutOffer_claim_logsNestedInput = {
+    create?: XOR<UserCreateWithoutOffer_claim_logsInput, UserUncheckedCreateWithoutOffer_claim_logsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOffer_claim_logsInput
+    upsert?: UserUpsertWithoutOffer_claim_logsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOffer_claim_logsInput, UserUpdateWithoutOffer_claim_logsInput>, UserUncheckedUpdateWithoutOffer_claim_logsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -14700,6 +17654,23 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumOfferCodeFilter<$PrismaModel = never> = {
+    equals?: $Enums.OfferCode | EnumOfferCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumOfferCodeFilter<$PrismaModel> | $Enums.OfferCode
+  }
+
+  export type NestedEnumOfferCodeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OfferCode | EnumOfferCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OfferCode[] | ListEnumOfferCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumOfferCodeWithAggregatesFilter<$PrismaModel> | $Enums.OfferCode
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOfferCodeFilter<$PrismaModel>
+    _max?: NestedEnumOfferCodeFilter<$PrismaModel>
+  }
+
   export type GameTransactionCreateWithoutUserInput = {
     trans_id: string
     type: string
@@ -14815,6 +17786,50 @@ export namespace Prisma {
 
   export type VoucherCreateManyUserInputEnvelope = {
     data: VoucherCreateManyUserInput | VoucherCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LuckySpinLogCreateWithoutUserInput = {
+    winning_index: string
+    prize_label: string
+    createdAt?: Date | string
+  }
+
+  export type LuckySpinLogUncheckedCreateWithoutUserInput = {
+    id?: number
+    winning_index: string
+    prize_label: string
+    createdAt?: Date | string
+  }
+
+  export type LuckySpinLogCreateOrConnectWithoutUserInput = {
+    where: LuckySpinLogWhereUniqueInput
+    create: XOR<LuckySpinLogCreateWithoutUserInput, LuckySpinLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type LuckySpinLogCreateManyUserInputEnvelope = {
+    data: LuckySpinLogCreateManyUserInput | LuckySpinLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OfferClaimLogCreateWithoutUserInput = {
+    offer_code: $Enums.OfferCode
+    createdAt?: Date | string
+  }
+
+  export type OfferClaimLogUncheckedCreateWithoutUserInput = {
+    id?: number
+    offer_code: $Enums.OfferCode
+    createdAt?: Date | string
+  }
+
+  export type OfferClaimLogCreateOrConnectWithoutUserInput = {
+    where: OfferClaimLogWhereUniqueInput
+    create: XOR<OfferClaimLogCreateWithoutUserInput, OfferClaimLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type OfferClaimLogCreateManyUserInputEnvelope = {
+    data: OfferClaimLogCreateManyUserInput | OfferClaimLogCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -14939,6 +17954,59 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Voucher"> | Date | string
   }
 
+  export type LuckySpinLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: LuckySpinLogWhereUniqueInput
+    update: XOR<LuckySpinLogUpdateWithoutUserInput, LuckySpinLogUncheckedUpdateWithoutUserInput>
+    create: XOR<LuckySpinLogCreateWithoutUserInput, LuckySpinLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type LuckySpinLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: LuckySpinLogWhereUniqueInput
+    data: XOR<LuckySpinLogUpdateWithoutUserInput, LuckySpinLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LuckySpinLogUpdateManyWithWhereWithoutUserInput = {
+    where: LuckySpinLogScalarWhereInput
+    data: XOR<LuckySpinLogUpdateManyMutationInput, LuckySpinLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LuckySpinLogScalarWhereInput = {
+    AND?: LuckySpinLogScalarWhereInput | LuckySpinLogScalarWhereInput[]
+    OR?: LuckySpinLogScalarWhereInput[]
+    NOT?: LuckySpinLogScalarWhereInput | LuckySpinLogScalarWhereInput[]
+    id?: IntFilter<"LuckySpinLog"> | number
+    user_id?: IntFilter<"LuckySpinLog"> | number
+    winning_index?: StringFilter<"LuckySpinLog"> | string
+    prize_label?: StringFilter<"LuckySpinLog"> | string
+    createdAt?: DateTimeFilter<"LuckySpinLog"> | Date | string
+  }
+
+  export type OfferClaimLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: OfferClaimLogWhereUniqueInput
+    update: XOR<OfferClaimLogUpdateWithoutUserInput, OfferClaimLogUncheckedUpdateWithoutUserInput>
+    create: XOR<OfferClaimLogCreateWithoutUserInput, OfferClaimLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type OfferClaimLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: OfferClaimLogWhereUniqueInput
+    data: XOR<OfferClaimLogUpdateWithoutUserInput, OfferClaimLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type OfferClaimLogUpdateManyWithWhereWithoutUserInput = {
+    where: OfferClaimLogScalarWhereInput
+    data: XOR<OfferClaimLogUpdateManyMutationInput, OfferClaimLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type OfferClaimLogScalarWhereInput = {
+    AND?: OfferClaimLogScalarWhereInput | OfferClaimLogScalarWhereInput[]
+    OR?: OfferClaimLogScalarWhereInput[]
+    NOT?: OfferClaimLogScalarWhereInput | OfferClaimLogScalarWhereInput[]
+    id?: IntFilter<"OfferClaimLog"> | number
+    user_id?: IntFilter<"OfferClaimLog"> | number
+    offer_code?: EnumOfferCodeFilter<"OfferClaimLog"> | $Enums.OfferCode
+    createdAt?: DateTimeFilter<"OfferClaimLog"> | Date | string
+  }
+
   export type UserCreateWithoutOtp_recordsInput = {
     status?: string
     phone_number: string
@@ -14951,6 +18019,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -14959,6 +18028,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionCreateNestedManyWithoutUserInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     vouchers?: VoucherCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOtp_recordsInput = {
@@ -14974,6 +18045,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -14982,6 +18054,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUncheckedCreateNestedManyWithoutUserInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     vouchers?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogUncheckedCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOtp_recordsInput = {
@@ -15012,6 +18086,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15020,6 +18095,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUpdateManyWithoutUserNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOtp_recordsInput = {
@@ -15035,6 +18112,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15043,6 +18121,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUncheckedUpdateManyWithoutUserNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTransactionsInput = {
@@ -15057,6 +18137,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -15065,6 +18146,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordCreateNestedManyWithoutUserInput
     vouchers?: VoucherCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTransactionsInput = {
@@ -15080,6 +18163,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -15088,6 +18172,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUncheckedCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordUncheckedCreateNestedManyWithoutUserInput
     vouchers?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogUncheckedCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTransactionsInput = {
@@ -15118,6 +18204,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15126,6 +18213,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransactionsInput = {
@@ -15141,6 +18230,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15149,6 +18239,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUncheckedUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUncheckedUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGame_transactionsInput = {
@@ -15163,6 +18255,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -15171,6 +18264,8 @@ export namespace Prisma {
     transactions?: TransactionCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordCreateNestedManyWithoutUserInput
     vouchers?: VoucherCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGame_transactionsInput = {
@@ -15186,6 +18281,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -15194,6 +18290,8 @@ export namespace Prisma {
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordUncheckedCreateNestedManyWithoutUserInput
     vouchers?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogUncheckedCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGame_transactionsInput = {
@@ -15224,6 +18322,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15232,6 +18331,8 @@ export namespace Prisma {
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGame_transactionsInput = {
@@ -15247,6 +18348,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15255,6 +18357,8 @@ export namespace Prisma {
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUncheckedUpdateManyWithoutUserNestedInput
     vouchers?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutVouchersInput = {
@@ -15269,6 +18373,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -15277,6 +18382,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionCreateNestedManyWithoutUserInput
     transactions?: TransactionCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVouchersInput = {
@@ -15292,6 +18399,7 @@ export namespace Prisma {
     password: string
     fp_id: string
     ip: string
+    lucky_spin?: number
     balance?: Decimal | DecimalJsLike | number | string
     turn_over?: Decimal | DecimalJsLike | number | string
     invited_by?: string | null
@@ -15300,6 +18408,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUncheckedCreateNestedManyWithoutUserInput
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
     otp_records?: OtpRecordUncheckedCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogUncheckedCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVouchersInput = {
@@ -15330,6 +18440,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15338,6 +18449,8 @@ export namespace Prisma {
     game_transactions?: GameTransactionUpdateManyWithoutUserNestedInput
     transactions?: TransactionUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVouchersInput = {
@@ -15353,6 +18466,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     fp_id?: StringFieldUpdateOperationsInput | string
     ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     invited_by?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15361,6 +18475,244 @@ export namespace Prisma {
     game_transactions?: GameTransactionUncheckedUpdateManyWithoutUserNestedInput
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
     otp_records?: OtpRecordUncheckedUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutLucky_spin_logsInput = {
+    status?: string
+    phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
+    user_code?: string | null
+    recovery_code?: string | null
+    two_fa_secret?: string | null
+    is_2fa_verified?: boolean
+    password: string
+    fp_id: string
+    ip: string
+    lucky_spin?: number
+    balance?: Decimal | DecimalJsLike | number | string
+    turn_over?: Decimal | DecimalJsLike | number | string
+    invited_by?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    game_transactions?: GameTransactionCreateNestedManyWithoutUserInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    otp_records?: OtpRecordCreateNestedManyWithoutUserInput
+    vouchers?: VoucherCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLucky_spin_logsInput = {
+    id?: number
+    status?: string
+    phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
+    user_code?: string | null
+    recovery_code?: string | null
+    two_fa_secret?: string | null
+    is_2fa_verified?: boolean
+    password: string
+    fp_id: string
+    ip: string
+    lucky_spin?: number
+    balance?: Decimal | DecimalJsLike | number | string
+    turn_over?: Decimal | DecimalJsLike | number | string
+    invited_by?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    game_transactions?: GameTransactionUncheckedCreateNestedManyWithoutUserInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    otp_records?: OtpRecordUncheckedCreateNestedManyWithoutUserInput
+    vouchers?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    offer_claim_logs?: OfferClaimLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLucky_spin_logsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLucky_spin_logsInput, UserUncheckedCreateWithoutLucky_spin_logsInput>
+  }
+
+  export type UserUpsertWithoutLucky_spin_logsInput = {
+    update: XOR<UserUpdateWithoutLucky_spin_logsInput, UserUncheckedUpdateWithoutLucky_spin_logsInput>
+    create: XOR<UserCreateWithoutLucky_spin_logsInput, UserUncheckedCreateWithoutLucky_spin_logsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLucky_spin_logsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLucky_spin_logsInput, UserUncheckedUpdateWithoutLucky_spin_logsInput>
+  }
+
+  export type UserUpdateWithoutLucky_spin_logsInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    user_code?: NullableStringFieldUpdateOperationsInput | string | null
+    recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    is_2fa_verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    fp_id?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    invited_by?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    game_transactions?: GameTransactionUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    otp_records?: OtpRecordUpdateManyWithoutUserNestedInput
+    vouchers?: VoucherUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLucky_spin_logsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    user_code?: NullableStringFieldUpdateOperationsInput | string | null
+    recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    is_2fa_verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    fp_id?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    invited_by?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    game_transactions?: GameTransactionUncheckedUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    otp_records?: OtpRecordUncheckedUpdateManyWithoutUserNestedInput
+    vouchers?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    offer_claim_logs?: OfferClaimLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutOffer_claim_logsInput = {
+    status?: string
+    phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
+    user_code?: string | null
+    recovery_code?: string | null
+    two_fa_secret?: string | null
+    is_2fa_verified?: boolean
+    password: string
+    fp_id: string
+    ip: string
+    lucky_spin?: number
+    balance?: Decimal | DecimalJsLike | number | string
+    turn_over?: Decimal | DecimalJsLike | number | string
+    invited_by?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    game_transactions?: GameTransactionCreateNestedManyWithoutUserInput
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    otp_records?: OtpRecordCreateNestedManyWithoutUserInput
+    vouchers?: VoucherCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutOffer_claim_logsInput = {
+    id?: number
+    status?: string
+    phone_number: string
+    e_wallet_number?: string | null
+    name_in_wallet?: string | null
+    user_code?: string | null
+    recovery_code?: string | null
+    two_fa_secret?: string | null
+    is_2fa_verified?: boolean
+    password: string
+    fp_id: string
+    ip: string
+    lucky_spin?: number
+    balance?: Decimal | DecimalJsLike | number | string
+    turn_over?: Decimal | DecimalJsLike | number | string
+    invited_by?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    game_transactions?: GameTransactionUncheckedCreateNestedManyWithoutUserInput
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    otp_records?: OtpRecordUncheckedCreateNestedManyWithoutUserInput
+    vouchers?: VoucherUncheckedCreateNestedManyWithoutUserInput
+    lucky_spin_logs?: LuckySpinLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutOffer_claim_logsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutOffer_claim_logsInput, UserUncheckedCreateWithoutOffer_claim_logsInput>
+  }
+
+  export type UserUpsertWithoutOffer_claim_logsInput = {
+    update: XOR<UserUpdateWithoutOffer_claim_logsInput, UserUncheckedUpdateWithoutOffer_claim_logsInput>
+    create: XOR<UserCreateWithoutOffer_claim_logsInput, UserUncheckedCreateWithoutOffer_claim_logsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutOffer_claim_logsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutOffer_claim_logsInput, UserUncheckedUpdateWithoutOffer_claim_logsInput>
+  }
+
+  export type UserUpdateWithoutOffer_claim_logsInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    user_code?: NullableStringFieldUpdateOperationsInput | string | null
+    recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    is_2fa_verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    fp_id?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    invited_by?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    game_transactions?: GameTransactionUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    otp_records?: OtpRecordUpdateManyWithoutUserNestedInput
+    vouchers?: VoucherUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutOffer_claim_logsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    e_wallet_number?: NullableStringFieldUpdateOperationsInput | string | null
+    name_in_wallet?: NullableStringFieldUpdateOperationsInput | string | null
+    user_code?: NullableStringFieldUpdateOperationsInput | string | null
+    recovery_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_fa_secret?: NullableStringFieldUpdateOperationsInput | string | null
+    is_2fa_verified?: BoolFieldUpdateOperationsInput | boolean
+    password?: StringFieldUpdateOperationsInput | string
+    fp_id?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    lucky_spin?: IntFieldUpdateOperationsInput | number
+    balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    turn_over?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    invited_by?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    game_transactions?: GameTransactionUncheckedUpdateManyWithoutUserNestedInput
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    otp_records?: OtpRecordUncheckedUpdateManyWithoutUserNestedInput
+    vouchers?: VoucherUncheckedUpdateManyWithoutUserNestedInput
+    lucky_spin_logs?: LuckySpinLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GameTransactionCreateManyUserInput = {
@@ -15401,6 +18753,19 @@ export namespace Prisma {
     collected_at?: Date | string | null
     message?: string | null
     updatedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type LuckySpinLogCreateManyUserInput = {
+    id?: number
+    winning_index: string
+    prize_label: string
+    createdAt?: Date | string
+  }
+
+  export type OfferClaimLogCreateManyUserInput = {
+    id?: number
+    offer_code: $Enums.OfferCode
     createdAt?: Date | string
   }
 
@@ -15520,6 +18885,43 @@ export namespace Prisma {
     collected_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LuckySpinLogUpdateWithoutUserInput = {
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LuckySpinLogUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LuckySpinLogUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winning_index?: StringFieldUpdateOperationsInput | string
+    prize_label?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferClaimLogUpdateWithoutUserInput = {
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferClaimLogUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OfferClaimLogUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    offer_code?: EnumOfferCodeFieldUpdateOperationsInput | $Enums.OfferCode
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

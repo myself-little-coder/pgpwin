@@ -22,6 +22,7 @@ model User {
   password          String
   fp_id             String
   ip                String
+  lucky_spin        Int               @default(0)
   balance           Decimal           @default(0) @db.Decimal(10, 2)
   turn_over         Decimal           @default(0) @db.Decimal(10, 2)
   invited_by        String?           @map("invite_code")
@@ -31,6 +32,8 @@ model User {
   transactions      Transaction[]
   otp_records       OtpRecord[]
   vouchers          Voucher[]
+  lucky_spin_logs   LuckySpinLog[]
+  offer_claim_logs  OfferClaimLog[]
 }
 
 model OtpRecord {
@@ -131,4 +134,25 @@ model CommissionList {
   salary    Decimal  @db.Decimal(10, 2)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model LuckySpinLog {
+  id            Int      @id @default(autoincrement())
+  user_id       Int
+  winning_index String
+  prize_label   String
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [user_id], references: [id])
+}
+
+model OfferClaimLog {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  offer_code OfferCode
+  createdAt  DateTime  @default(now())
+  user       User      @relation(fields: [user_id], references: [id])
+}
+
+enum OfferCode {
+  DAILY_LUCKY_SPIN
 }

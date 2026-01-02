@@ -87,7 +87,7 @@ const NotificationsPage = () => {
                   {/* Header */}
                   <div className="flex items-center gap-2">
                     <Gift className="h-4 w-4 text-orange-600" />
-                    <p className="font-semibold text-gray-900 dark:text-gray-300 text-sm">
+                    <p className="font-semibold text-gray-900 dark:text-gray-300 text-xs">
                       Code: {voucher.code}
                     </p>
                   </div>

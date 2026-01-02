@@ -17,6 +17,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { PiSpinnerBallDuotone } from "react-icons/pi";
+
 
 export default function Navbar() {
   const [theme, setTheme] = useState();
@@ -186,6 +188,12 @@ export default function Navbar() {
                 className=" block p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
                 <Bell size={20} />
+              </Link>
+              <Link
+                href="/lucky-spin"
+                className=" animate-bounce-twice block p-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-orange-500 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <PiSpinnerBallDuotone size={28} />
               </Link>
             </div>
           </div>

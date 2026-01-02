@@ -134,6 +134,7 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   fp_id: 'fp_id',
   ip: 'ip',
+  lucky_spin: 'lucky_spin',
   balance: 'balance',
   turn_over: 'turn_over',
   invited_by: 'invited_by',
@@ -223,6 +224,21 @@ exports.Prisma.CommissionListScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LuckySpinLogScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  winning_index: 'winning_index',
+  prize_label: 'prize_label',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OfferClaimLogScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  offer_code: 'offer_code',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -251,6 +267,10 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
   cancelled: 'cancelled'
 };
 
+exports.OfferCode = exports.$Enums.OfferCode = {
+  DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   OtpRecord: 'OtpRecord',
@@ -260,7 +280,9 @@ exports.Prisma.ModelName = {
   Message: 'Message',
   Voucher: 'Voucher',
   BonusList: 'BonusList',
-  CommissionList: 'CommissionList'
+  CommissionList: 'CommissionList',
+  LuckySpinLog: 'LuckySpinLog',
+  OfferClaimLog: 'OfferClaimLog'
 };
 
 /**
