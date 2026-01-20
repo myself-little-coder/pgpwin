@@ -46,18 +46,18 @@ export async function POST(request) {
       });
     }
 
-    // const existingUserWithSameFPAndIp = await prisma.user.findFirst({
-    //   where: {
-    //     fp_id: fingerprint_id,
-    //     ip: ip,
-    //   },
-    // });
+    const existingUserWithSameFPAndIp = await prisma.user.findFirst({
+      where: {
+        fp_id: fingerprint_id,
+        ip: ip,
+      },
+    });
 
-    // if (existingUserWithSameFPAndIp) {
-    //   return NextResponse.json(
-    //     { message: "You already have an account with this device." },
-    //   );
-    // }
+    if (existingUserWithSameFPAndIp) {
+      return NextResponse.json({
+        message: "You already have an account with this device.",
+      });
+    }
 
     const hashedPassword = await hashPassword(password);
 

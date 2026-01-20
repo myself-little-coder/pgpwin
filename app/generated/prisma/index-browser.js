@@ -239,6 +239,14 @@ exports.Prisma.OfferClaimLogScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.AdminUserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  position: 'position',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -271,6 +279,11 @@ exports.OfferCode = exports.$Enums.OfferCode = {
   DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN'
 };
 
+exports.PositionEnum = exports.$Enums.PositionEnum = {
+  admin: 'admin',
+  sub_admin: 'sub_admin'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   OtpRecord: 'OtpRecord',
@@ -282,7 +295,8 @@ exports.Prisma.ModelName = {
   BonusList: 'BonusList',
   CommissionList: 'CommissionList',
   LuckySpinLog: 'LuckySpinLog',
-  OfferClaimLog: 'OfferClaimLog'
+  OfferClaimLog: 'OfferClaimLog',
+  AdminUser: 'AdminUser'
 };
 
 /**

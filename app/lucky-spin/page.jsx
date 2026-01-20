@@ -53,9 +53,9 @@ const ResultNotification = ({
           className="fixed top-1/2 -translate-y-1/2 w-screen h-screen flex items-center justify-center bg-black/50 z-50"
         >
           <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            // initial={{ scale: 0, rotate: -180 }}
+            // animate={{ scale: 1, rotate: 0 }}
+            // transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="relative w-[320px] max-w-sm rounded-2xl overflow-hidden shadow-2xl bg-linear-to-br from-orange-50 to-orange-100"
           >
             <button
@@ -187,39 +187,47 @@ export default function LuckySpin() {
     label: "",
   });
 
-  const [isDailyLuckySpinClaimable, setIsDailyLuckySpinClaimable] = useState(false);
+  const [isDailyLuckySpinClaimable, setIsDailyLuckySpinClaimable] =
+    useState(false);
   const [dailySpinCooldown, setDailySpinCooldown] = useState("00:00:00");
 
   useEffect(() => {
-    let interval
-    if(!isDailyLuckySpinClaimable) {
+    let interval;
+    if (!isDailyLuckySpinClaimable) {
       interval = setInterval(() => {
         const now = new Date();
         const nextMidnight = new Date();
         nextMidnight.setHours(24, 0, 0, 0);
         const diff = nextMidnight - now;
 
-        const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, '0');
-        const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(
+          2,
+          "0",
+        );
+        const minutes = String(
+          Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+        ).padStart(2, "0");
+        const seconds = String(
+          Math.floor((diff % (1000 * 60)) / 1000),
+        ).padStart(2, "0");
         setDailySpinCooldown(`${hours}:${minutes}:${seconds}`);
-      })
+      });
     }
     return () => clearInterval(interval);
-  },[isDailyLuckySpinClaimable]);
+  }, [isDailyLuckySpinClaimable]);
 
   const segmentAngle = 360 / prizes.length;
   const idleRotation = useRef(0);
 
   useEffect(() => {
-    const mountParticles = () => {
-      const data = Array.from({ length: 70 }, () => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        delay: Math.random() * 2,
-      }));
-      setParticles(data);
-    };
+    // const mountParticles = () => {
+    //   const data = Array.from({ length: 70 }, () => ({
+    //     left: Math.random() * 100,
+    //     top: Math.random() * 100,
+    //     delay: Math.random() * 2,
+    //   }));
+    //   setParticles(data);
+    // };
 
     const fetchUser = async () => {
       try {
@@ -247,13 +255,12 @@ export default function LuckySpin() {
       } catch (error) {
         console.log(error?.message);
       }
-    }
+    };
 
-    mountParticles();
+    // mountParticles();
     fetchUser();
     fetchLuckySpinClaimableStatus();
   }, []);
-
 
   const claimLuckySpin = async () => {
     try {
@@ -266,15 +273,13 @@ export default function LuckySpin() {
           lucky_spin: prev.lucky_spin + 1,
         }));
       } else {
-        toast.error(
-          claimRes.data?.message || "Failed to claim free spin."
-        );
+        toast.error(claimRes.data?.message || "Failed to claim free spin.");
       }
     } catch (error) {
       toast.error("Failed to claim free spin.");
       console.log(error?.message);
     }
-  }
+  };
 
   useEffect(() => {
     let idleInterval;
@@ -309,12 +314,12 @@ export default function LuckySpin() {
       setIsButtonDisabled(true);
 
       const winningPrizeIndexRes = await axios.get(
-        "/api/user/lucky-spin-start"
+        "/api/user/lucky-spin-start",
       );
 
       if (winningPrizeIndexRes.data?.success === false) {
         toast.error(
-          winningPrizeIndexRes.data?.message || "Failed to start lucky spin."
+          winningPrizeIndexRes.data?.message || "Failed to start lucky spin.",
         );
         setIsButtonDisabled(false);
         return;
@@ -390,7 +395,7 @@ export default function LuckySpin() {
   return (
     <div className=" min-h-[calc(100vh-120px)] flex flex-col  items-center justify-center p-4">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particles.map((p, i) => (
           <motion.div
             key={i}
@@ -407,7 +412,7 @@ export default function LuckySpin() {
             }}
           />
         ))}
-      </div>
+      </div> */}
 
       <ResultNotification
         isVisible={showResultNotification}
@@ -420,7 +425,9 @@ export default function LuckySpin() {
 
       <div className=" glass-card p-2 my-2 flex justify-center items-center gap-3">
         <p>
-       {isDailyLuckySpinClaimable ? "Claim your daily spin!" : `Claim in ${dailySpinCooldown}.`}   
+          {isDailyLuckySpinClaimable
+            ? "Claim your daily spin!"
+            : `Claim in ${dailySpinCooldown}.`}
         </p>
 
         <button
@@ -434,8 +441,7 @@ export default function LuckySpin() {
         >
           {isDailyLuckySpinClaimable ? "Claim" : "Claimed"}
         </button>
-
-      </div> 
+      </div>
 
       <div className="relative mb-8 ">
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-2 z-20">

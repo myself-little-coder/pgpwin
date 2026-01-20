@@ -16,6 +16,14 @@
     }
   },
   {
+    "name": "CQ9",
+    "display_name": "CQ9",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/cq9.png"
+    }
+  },
+  {
     "name": "Pragmatic",
     "display_name": "Pragmatic",
     "game_main_types": ["slot", "live", "blackjack", "virtual_games"],
@@ -31,13 +39,36 @@
       "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/spribe.png"
     }
   },
-
+  {
+    "name": "funtagaming",
+    "display_name": "FunTa Gaming",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/funtagaming.png"
+    }
+  },
+  {
+    "name": "betsoft",
+    "display_name": "Betsoft",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/betsoft.png"
+    }
+  },
   {
     "name": "BOONGO",
     "display_name": "BOOONGO",
     "game_main_types": [],
     "icons": {
       "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/booongo.png"
+    }
+  },
+  {
+    "name": "pixmove",
+    "display_name": "pixmove",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/pixmove.png"
     }
   },
   {

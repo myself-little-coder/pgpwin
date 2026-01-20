@@ -159,4 +159,16 @@ enum OfferCode {
   DAILY_LUCKY_SPIN
 }
 
+enum PositionEnum {
+  admin
+  sub_admin
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  position  PositionEnum
+  createdAt DateTime @default(now())
+}
 

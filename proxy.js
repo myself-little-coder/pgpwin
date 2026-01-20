@@ -33,5 +33,6 @@ export const config = {
     "/new-provider/:path",
     "/new-game/:path",
     "/support",
+    "/lucky-spin",
   ],
 };

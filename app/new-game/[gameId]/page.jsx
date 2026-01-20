@@ -58,6 +58,7 @@ export default function GamePage() {
 
         if (isMounted && res.data.url) {
           setUrl(res.data.url); // set iframe only after receiving fresh token
+          // return (window.location.href = res.data.url);
         }
       } catch (err) {
         console.error("Failed to fetch game URL:", err);

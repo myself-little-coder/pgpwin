@@ -23,13 +23,18 @@ export default function GameCard({ game, badgeColor, badgeText, borderColor }) {
     >
       <Link href={`/new-game/${game?.game_code}`} className="block">
         <div className="relative inline-block aspect-square w-full  ">
-          <Image
+          <img
+            src={game.image_url || "/placeholder.svg"}
+            alt={game.game_name || "game"}
+            className=" w-full h-full object-cover rounded-xl overflow-hidden"
+          />
+          {/* <Image
             src={game.image_url || "/placeholder.svg"}
             alt={game.game_name || "game"}
             className=" object-cover rounded-xl overflow-hidden"
             fill
             sizes="100%"
-          />
+          /> */}
           <div
             className={`absolute -top-1 right-0 ${badgeColor} text-white px-2 py-0.5 rounded-full text-xs font-semibold`}
           >

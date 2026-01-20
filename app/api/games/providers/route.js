@@ -33,6 +33,11 @@ export async function GET(request) {
       "BGaming",
       "Platipus",
       "SA Gaming",
+      "CQ9",
+      "Habanero",
+      "betsoft",
+      "funtagaming",
+      "pixmove",
     ];
 
     if (!TORRO_API_URL || !TORRO_API_KEY) {
@@ -46,7 +51,7 @@ export async function GET(request) {
       headers: { "x-api-key": TORRO_API_KEY },
       params: {
         status: "active",
-        providers: workingProviders,
+        // providers: workingProviders,
       },
     });
 
@@ -63,7 +68,11 @@ export async function GET(request) {
 
     // console.log("providers.json file created at:", filePath);
 
-    return NextResponse.json({ success: true, data: res.data });
+    return NextResponse.json({
+      success: true,
+      total: res.data?.length,
+      data: res.data,
+    });
   } catch (err) {
     console.error("providers route error:", err);
     return NextResponse.json(
