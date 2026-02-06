@@ -10,14 +10,14 @@ import toast from "react-hot-toast";
 const prizes = [
   { label: "1.63 TK", color: "fill-blue-500", textColor: "text-black" },
   { label: "10 FS", color: "fill-green-500", textColor: "text-black" },
-  { label: "57.33 TK", color: "fill-purple-500", textColor: "text-black" },
+  { label: "0.33 TK", color: "fill-purple-500", textColor: "text-black" },
   { label: "2 FS", color: "fill-orange-500", textColor: "text-black" },
   { label: "10,000 TK", color: "fill-pink-400", textColor: "text-black" },
-  { label: "23.75 TK", color: "fill-blue-500", textColor: "text-black" },
-  { label: "37.85 TK", color: "fill-green-500", textColor: "text-black" },
+  { label: "1.75 TK", color: "fill-blue-500", textColor: "text-black" },
+  { label: "1.85 TK", color: "fill-green-500", textColor: "text-black" },
   { label: "766.42 TK", color: "fill-purple-500", textColor: "text-black" },
-  { label: "65.88 TK", color: "fill-orange-500", textColor: "text-black" },
-  { label: "33.96 TK", color: "fill-pink-500", textColor: "text-black" },
+  { label: "0.88 TK", color: "fill-orange-500", textColor: "text-black" },
+  { label: "0.96 TK", color: "fill-pink-500", textColor: "text-black" },
 ];
 
 const ResultNotification = ({

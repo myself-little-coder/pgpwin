@@ -54,11 +54,11 @@ export default function BottomNav() {
       href: "/wallet",
       icon: Wallet,
     },
-    {
-      name: "Help",
-      href: "/support",
-      icon: MessageCircleCode,
-    },
+    // {
+    //   name: "Help",
+    //   href: "/support",
+    //   icon: MessageCircleCode,
+    // },
     {
       name: "Account",
       href: "/account",

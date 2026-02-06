@@ -15,14 +15,14 @@ export async function GET(request, { params }) {
     if (!provider) {
       return NextResponse.json(
         { success: false, message: "Provider required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!TORRO_API_URL || !TORRO_API_KEY) {
       return NextResponse.json(
         { success: false, message: "Torrospin API not configured" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -36,13 +36,20 @@ export async function GET(request, { params }) {
       },
     });
 
+    //   const curlCommand = `curl -X GET "${TORRO_API_URL}/api/games/catalog?status=active&providers[]=${provider}&per_page=500&game_type=${type ? (type === "others" ? "all" : type) : "all"}" \
+    // -H "x-api-key: ${TORRO_API_KEY}"`;
+
+    //   console.log("CURL:", curlCommand);
+
+    //   console.log("TORROSPIN RESPONSE:", res.data);
+
     const games = res.data?.data || [];
     return NextResponse.json({ success: true, games });
   } catch (err) {
     console.error("provider route error:", err);
     return NextResponse.json(
       { success: false, message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -34,5 +34,6 @@ export const config = {
     "/new-game/:path",
     "/support",
     "/lucky-spin",
+    "/missions",
   ],
 };

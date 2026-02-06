@@ -62,7 +62,7 @@ export async function POST(req) {
     const params = {
       mchId: OKPAY_MERCHANT_ID,
       currency: "BDT",
-      out_trade_no: String(transactionData.id),
+      out_trade_no: `00${transactionData.id}${Date.now()}`,
       pay_type: pay_type,
       money: String(money),
       attach: attachString,

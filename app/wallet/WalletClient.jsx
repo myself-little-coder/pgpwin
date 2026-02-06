@@ -79,7 +79,7 @@ export default function WalletClient() {
     try {
       setLoadingTransactions(true);
       const res = await axios.get(
-        `/api/user/transactions?page=${page}&limit=${ITEMS_PER_PAGE}`
+        `/api/user/transactions?page=${page}&limit=${ITEMS_PER_PAGE}`,
       );
       if (res.data?.success) {
         setTransactions(res.data.data || []);
@@ -133,7 +133,7 @@ export default function WalletClient() {
         return;
       }
     } else {
-      if (amount < 300 || amount > 25000) {
+      if (amount < 100 || amount > 25000) {
         toast.error(`Withdraw amount must be between 300 and 25k`);
         return;
       }
@@ -178,7 +178,6 @@ export default function WalletClient() {
           selectedChannel?.name === "okpay"
             ? "/api/payout/okpay"
             : "/api/payout/okpay";
-
         const response = await fetch(payoutApi, {
           method: "POST",
           headers: {
@@ -367,7 +366,7 @@ export default function WalletClient() {
                   onChange={(e) =>
                     setSelectedBonus(
                       bonuses.find((b) => String(b.id) === e.target.value) ||
-                        null
+                        null,
                     )
                   }
                   className="w-full p-2 rounded-lg bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"
@@ -443,7 +442,7 @@ export default function WalletClient() {
           {(() => {
             const totalPages = Math.max(
               1,
-              Math.ceil(totalTransactions / ITEMS_PER_PAGE)
+              Math.ceil(totalTransactions / ITEMS_PER_PAGE),
             );
             // ensure current page is within bounds
             if (currentPage > totalPages) setCurrentPage(totalPages);
@@ -470,7 +469,7 @@ export default function WalletClient() {
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         {format(
                           new Date(transaction.createdAt),
-                          "MMM d, h:mm a"
+                          "MMM d, h:mm a",
                         )}
                       </p>
                     </div>
@@ -490,8 +489,8 @@ export default function WalletClient() {
                           transaction.status === "completed"
                             ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
                             : transaction.status === "pending"
-                            ? "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300"
-                            : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
+                              ? "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300"
+                              : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
                         }`}
                       >
                         {transaction.status}
@@ -639,8 +638,8 @@ export default function WalletClient() {
                         selectedTransaction.status === "completed"
                           ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
                           : selectedTransaction.status === "pending"
-                          ? "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300"
-                          : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
+                            ? "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300"
+                            : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
                       }`}
                     >
                       {selectedTransaction.status}

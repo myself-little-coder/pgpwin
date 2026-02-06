@@ -138,9 +138,6 @@ const ReferralPage = () => {
           height={0}
           className="w-full max-w-[600px] h-auto rounded-t-2xl"
         />
-        <p className="absolute top-2 left-2 text-white text-lg font-semibold drop-shadow">
-          Referral Program
-        </p>
       </div>
 
       {/* Tabs */}
@@ -356,7 +353,7 @@ const ReferralPage = () => {
                   className="cursor-pointer w-6 h-6 text-gray-700 dark:text-gray-200"
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/register/?invite_code=${user?.phone_number}`
+                      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/register/?invite_code=${user?.phone_number}`,
                     );
                     setIsCopied(true);
                     toast.success("Copied!");
