@@ -41,9 +41,13 @@ export async function POST(req) {
 
     const user = await prisma.user.findUnique({ where: { id: userId } });
     if (!user)
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+      return NextResponse.json({ success: false, message: "User not found" });
+    if (user.status == "Suspended") {
+      return NextResponse.json({
+        success: false,
+        message: "Your account is suspended!",
+      });
+    }
     if (Number(user.balance) < Number(money)) {
       return NextResponse.json({
         success: false,
@@ -76,7 +80,7 @@ export async function POST(req) {
     const params = {
       mchId: OKPAY_MERCHANT_ID,
       currency: "BDT",
-      out_trade_no: String(trx.id),
+      out_trade_no: `${transactionData.id}${Date.now()}`,
       pay_type,
       account,
       userName,

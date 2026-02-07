@@ -1,0 +1,234 @@
+[
+  {
+    "name": "RTG",
+    "display_name": "RTG",
+    "game_main_types": ["slot", "poker"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/rtg.png"
+    }
+  },
+  {
+    "name": "jili",
+    "display_name": "Jili",
+    "game_main_types": ["slot", "poker", "fishing", "table"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/jili.png"
+    }
+  },
+  {
+    "name": "CQ9",
+    "display_name": "CQ9",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/cq9.png"
+    }
+  },
+  {
+    "name": "Pragmatic",
+    "display_name": "Pragmatic",
+    "game_main_types": ["slot", "live", "blackjack", "virtual_games"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/pragmaticplay.png"
+    }
+  },
+  {
+    "name": "spribe",
+    "display_name": "Spribe",
+    "game_main_types": ["crash"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/spribe.png"
+    }
+  },
+  {
+    "name": "funtagaming",
+    "display_name": "FunTa Gaming",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/funtagaming.png"
+    }
+  },
+  {
+    "name": "betsoft",
+    "display_name": "Betsoft",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/betsoft.png"
+    }
+  },
+  {
+    "name": "BOONGO",
+    "display_name": "BOOONGO",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/booongo.png"
+    }
+  },
+  {
+    "name": "pixmove",
+    "display_name": "pixmove",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/pixmove.png"
+    }
+  },
+  {
+    "name": "Aviatrix",
+    "display_name": "Aviatrix",
+    "game_main_types": ["crash"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/aviatrix.png"
+    }
+  },
+  {
+    "name": "rubyplay",
+    "display_name": "RubyPlay",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/rubyplay.png"
+    }
+  },
+  {
+    "name": "Habanero",
+    "display_name": "Habanero",
+    "game_main_types": ["slot", "poker"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/habanero.png"
+    }
+  },
+  {
+    "name": "GMW",
+    "display_name": "GMW",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/gmw.png"
+    }
+  },
+  {
+    "name": "veliplay",
+    "display_name": "Veli Play",
+    "game_main_types": ["crash"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/veliplay.png"
+    }
+  },
+  {
+    "name": "playngo",
+    "display_name": "PlayNGo",
+    "game_main_types": ["slot", "poker"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/playngo.png"
+    }
+  },
+  {
+    "name": "EGT",
+    "display_name": "EGT",
+    "game_main_types": ["slot"],
+    "icons": {
+      "icon": "https://sit-ts-files.s3.ap-east-1.amazonaws.com/providers/icon/egt.png"
+    }
+  },
+  {
+    "name": "SimplePlay",
+    "display_name": "SimplePlay",
+    "game_main_types": ["slot", "card", "fishing", "arcade", "table"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/sp_white.png"
+    }
+  },
+  {
+    "name": "vivo",
+    "display_name": "Vivo",
+    "game_main_types": ["card", "table"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/vivo.png"
+    }
+  },
+  {
+    "name": "AMARIX",
+    "display_name": "AMARIX",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/AMARIX.svg"
+    }
+  },
+  {
+    "name": "Blue Jack Gaming",
+    "display_name": "Blue Jack Gaming",
+    "game_main_types": ["poker"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/Blue%20Jack%20Gaming.png"
+    }
+  },
+  {
+    "name": "DSTPLAY",
+    "display_name": "DSTPLAY",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/DSTPLAY.png"
+    }
+  },
+  {
+    "name": "Wonwon Games",
+    "display_name": "Wonwon Games",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/Wonwon%20Games.png"
+    }
+  },
+  {
+    "name": "YEEBET LIVE",
+    "display_name": "YEEBET LIVE",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/YEEBET%20LIVE.png"
+    }
+  },
+  {
+    "name": "PLAYSON",
+    "display_name": "Playson",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/PLAYSON.png"
+    }
+  },
+  {
+    "name": "Hacksaw Gaming",
+    "display_name": "Hacksaw Gaming",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://mgmt-stg.hacksawgaming.com/img/logo.png"
+    }
+  },
+  {
+    "name": "Gamzix",
+    "display_name": "Gamzix",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/gamzix.png"
+    }
+  },
+  {
+    "name": "BGaming",
+    "display_name": "BGaming",
+    "game_main_types": [],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/bgaming.png"
+    }
+  },
+  {
+    "name": "Platipus",
+    "display_name": "Platipus",
+    "game_main_types": ["poker"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/platipus.png"
+    }
+  },
+  {
+    "name": "SA Gaming",
+    "display_name": "SA Gaming",
+    "game_main_types": ["live"],
+    "icons": {
+      "icon": "https://m2-games-stg.s3.ap-east-1.amazonaws.com/providers/icons/sa-logo.png"
+    }
+  }
+]
