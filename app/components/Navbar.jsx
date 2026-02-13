@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import {
   Sun,
   Moon,
@@ -12,6 +13,7 @@ import {
   X,
   TextAlignJustify,
   Bell,
+  Circle,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,11 +21,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { PiSpinnerBallDuotone } from "react-icons/pi";
 
-
 export default function Navbar() {
   const [theme, setTheme] = useState();
   const [showDownApp, setShowDownApp] = useState(false);
   const [showBox, setShowBox] = useState(false);
+
+  const [hasNotification, setHasNotification] = useState(false);
 
   const pathName = usePathname();
 
@@ -102,6 +105,20 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const fetchVoucherStatus = async () => {
+    const res = await axios.get("/api/user/notifications");
+
+    if (res.data.success) {
+      setHasNotification(res.data.unSeenVouchers || false);
+    }
+  };
+
+  useEffect(() => {
+    if (pathName == "/") {
+      fetchVoucherStatus();
+    }
+  }, [pathName]);
 
   return (
     // <nav
@@ -185,9 +202,12 @@ export default function Navbar() {
               </button> */}
               <Link
                 href="/notifications"
-                className=" block p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className=" relative block p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               >
                 <Bell size={20} />
+                {hasNotification && (
+                  <div className="absolute top-0 right-0 animate-bounce-twice bg-orange-700 w-2.5 aspect-square rounded-full "></div>
+                )}
               </Link>
               <Link
                 href="/lucky-spin"

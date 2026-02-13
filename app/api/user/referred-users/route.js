@@ -9,7 +9,7 @@ export async function GET() {
     if (!userId) {
       return NextResponse.json(
         { success: false, message: "User not authenticated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -22,7 +22,7 @@ export async function GET() {
     if (!currentUser) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -35,6 +35,29 @@ export async function GET() {
         balance: true,
         createdAt: true,
         game_transactions: true,
+        transactions: {
+          where: {
+            type: "deposit",
+            status: "completed",
+          },
+        },
+      },
+    });
+
+    const userDetails = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        id: true,
+        phone_number: true,
+        balance: true,
+        createdAt: true,
+        offer_claim_logs: {
+          where: {
+            offer_code: "ONE_TIME_REFER_BONUS",
+          },
+        },
       },
     });
 
@@ -49,12 +72,14 @@ export async function GET() {
         phone_number: user.phone_number,
         current_balance: parseFloat(user.balance),
         total_bet_amount: totalBetAmount,
+        has_deposit: user.transactions.length > 0,
         joined_at: user.createdAt,
       };
     });
 
     return NextResponse.json({
       success: true,
+      isClaimed: userDetails.offer_claim_logs.length > 0,
       referred_users: referredUsersWithStats,
       total_referrals: referredUsersWithStats.length,
     });
@@ -62,7 +87,7 @@ export async function GET() {
     console.error("Error fetching referred users:", error);
     return NextResponse.json(
       { success: false, message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

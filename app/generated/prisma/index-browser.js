@@ -276,7 +276,8 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
 };
 
 exports.OfferCode = exports.$Enums.OfferCode = {
-  DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN'
+  DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN',
+  ONE_TIME_REFER_BONUS: 'ONE_TIME_REFER_BONUS'
 };
 
 exports.PositionEnum = exports.$Enums.PositionEnum = {

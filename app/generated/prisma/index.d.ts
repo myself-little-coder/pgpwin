@@ -99,7 +99,8 @@ export type TransactionType = (typeof TransactionType)[keyof typeof TransactionT
 
 
 export const OfferCode: {
-  DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN'
+  DAILY_LUCKY_SPIN: 'DAILY_LUCKY_SPIN',
+  ONE_TIME_REFER_BONUS: 'ONE_TIME_REFER_BONUS'
 };
 
 export type OfferCode = (typeof OfferCode)[keyof typeof OfferCode]

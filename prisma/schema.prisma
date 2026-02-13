@@ -157,6 +157,7 @@ model OfferClaimLog {
 
 enum OfferCode {
   DAILY_LUCKY_SPIN
+  ONE_TIME_REFER_BONUS
 }
 
 enum PositionEnum {

@@ -21,6 +21,35 @@ const ReferralPage = () => {
   const [loadingAgent, setLoadingAgent] = useState(false);
   const [earningTab, setEarningTab] = useState("commission");
 
+  const [isClaimed, setIsClaimed] = useState(false);
+
+  const handleClaim = async () => {
+    try {
+      const totalDepositedUsers = referredUsers.filter((item) => {
+        return item.has_deposit;
+      });
+      if (totalDepositedUsers.length < 5) {
+        return toast.error(
+          `You need more ${5 - totalDepositedUsers.length} deposited users to claim.`,
+        );
+      }
+
+      const res = await fetch("/api/user/refer-bonus", { method: "POST" });
+      const data = await res.json();
+
+      if (data.success) {
+        setIsClaimed(true);
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+        if (data.claimed) setIsClaimed(true);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+  };
+
   // useEffect(() => {
   //   if (selectedState === "commission") {
   //     setShowModal(true);
@@ -37,7 +66,11 @@ const ReferralPage = () => {
       try {
         setLoading(true);
         const res = await axios.get("/api/user/referred-users");
-        if (res.data.success) setReferredUsers(res.data.referred_users);
+        if (res.data.success) {
+          console.log(res.data);
+          setIsClaimed(res.data.isClaimed);
+          setReferredUsers(res.data.referred_users);
+        }
       } finally {
         setLoading(false);
       }
@@ -369,6 +402,23 @@ const ReferralPage = () => {
               Your Referred Friends ({referredUsers.length})
             </h2>
 
+            {/* Claim your referral bonus */}
+            <div className="my-4 flex justify-evenly items-center border-2 border-orange-500 p-2">
+              <h3 className="text-lg font-semibold">Refer 5 and Get 100TK</h3>
+              <button
+                onClick={handleClaim}
+                disabled={isClaimed}
+                className={`px-4 py-2 rounded-full font-semibold text-white transition 
+            ${
+              isClaimed
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-linear-to-r from-orange-600 to-yellow-500 hover:scale-105"
+            }`}
+              >
+                {isClaimed ? "Claimed" : "Claim"}
+              </button>
+            </div>
+
             {loading ? (
               <p className="text-center py-8 text-gray-600 dark:text-gray-400">
                 Loading...
@@ -393,10 +443,10 @@ const ReferralPage = () => {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-3 gap-4 text-sm">
                       <div>
                         <p className="text-gray-600 dark:text-gray-300">
-                          Current Balance
+                          Balance
                         </p>
                         <p className="text-lg font-semibold text-orange-600">
                           ৳{u.current_balance.toFixed(2)}
@@ -409,6 +459,15 @@ const ReferralPage = () => {
                         </p>
                         <p className="text-lg font-semibold text-blue-600">
                           ৳{u.total_bet_amount.toFixed(2)}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          Deposited
+                        </p>
+                        <p className="text-lg font-semibold">
+                          {u.has_deposit ? "Yes" : "False"}
                         </p>
                       </div>
                     </div>
